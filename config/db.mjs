@@ -16,12 +16,27 @@
 
 // export default connectDB;
 
+// import mongoose from 'mongoose';
+
+// const connectDB = async () => {
+//   try {
+//     await mongoose.connect('mongodb://localhost:27017/startupDB'); // ✅ No deprecated options
+//     console.log('✅ MongoDB Connected: localhost');
+//   } catch (error) {
+//     console.error('❌ MongoDB connection error:', error);
+//     process.exit(1);
+//   }
+// };
+
+// export default connectDB;
+
+// config/db.mjs
 import mongoose from 'mongoose';
 
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/startupDB'); // ✅ No deprecated options
-    console.log('✅ MongoDB Connected: localhost');
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log('✅ MongoDB Connected:', mongoose.connection.host);
   } catch (error) {
     console.error('❌ MongoDB connection error:', error);
     process.exit(1);
@@ -29,3 +44,4 @@ const connectDB = async () => {
 };
 
 export default connectDB;
+
