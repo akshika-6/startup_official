@@ -40,24 +40,6 @@ app.listen(PORT, () => {
   console.log(`🚀 Server started on http://localhost:${PORT}`);
 });
 
-import express from 'express';
-import connectDB from './config/db.mjs';
-import userRoutes from './routes/userRoutes.mjs'; // Add this
 
-const app = express();
-connectDB();
 
-// Middleware
-app.use(express.json());
 
-// Routes
-app.use(userRoutes); // Add this
-
-app.get('/', (req, res) => {
-  res.send('🌉 PitchBridge API is running...');
-});
-
-//const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server started on http://localhost:${PORT}`);
-});

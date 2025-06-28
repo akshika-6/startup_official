@@ -1,5 +1,6 @@
 // schema.mjs
 import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 const { Schema, model } = mongoose;
 
 // User Schema
@@ -15,6 +16,7 @@ const UserSchema = new Schema({
   linkedin: { type: String },
   createdAt: { type: Date, default: Date.now }
 });
+
 
 // Startup Schema
 const StartupSchema = new Schema({
@@ -132,6 +134,18 @@ const CommentSchema = new Schema({
 // export const Message = model('Message', MessageSchema);
 // export const Rating = model('Rating', RatingSchema);
 // export const Comment = model('Comment', CommentSchema);
+
+
+UserSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) return next();
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
+});
+
+UserSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
+};
+
 
 export const User = mongoose.models.User || model('User', UserSchema);
 export const Startup = mongoose.models.Startup || model('Startup', StartupSchema);
