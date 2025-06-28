@@ -35,7 +35,11 @@ import mongoose from 'mongoose';
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
     console.log('✅ MongoDB Connected:', mongoose.connection.host);
   } catch (error) {
     console.error('❌ MongoDB connection error:', error);
@@ -44,4 +48,5 @@ const connectDB = async () => {
 };
 
 export default connectDB;
+
 
