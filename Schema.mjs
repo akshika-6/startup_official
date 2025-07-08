@@ -8,7 +8,7 @@ const UserSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true, minLength: 8 },
-  role: { type: String, enum: ['founder', 'investor'], default: 'founder' },
+  role: { type: String, enum: ['founder', 'investor','admin'], default: 'founder' },
   location: { type: String },
   verified: { type: Boolean, default: false },
   profilePic: { type: String },

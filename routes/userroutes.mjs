@@ -10,6 +10,7 @@ import {
 import { body, param } from 'express-validator';
 import validateRequest from '../middleware/validateRequest.mjs'; // ✅ new
 import { protect } from '../middleware/auth.mjs'; // ✅ auth middleware
+import { authorizeRoles } from '../middleware/roleAuth.mjs';
 
 const router = express.Router();
 
@@ -74,9 +75,24 @@ router.put(
 );
 
 // Delete user
+// router.delete(
+//   '/:id',
+//   protect,
+//   [param('id').isMongoId().withMessage('Invalid user ID')],
+//   validateRequest,
+//   deleteUser
+// );
+// router.delete(
+//   '/:id',
+//   protect,
+//   authorizeRoles('admin'), // 👈 only admins can access
+//   deleteUser
+// );
+
 router.delete(
   '/:id',
   protect,
+  authorizeRoles('admin'), // ✅ Only admins
   [param('id').isMongoId().withMessage('Invalid user ID')],
   validateRequest,
   deleteUser
