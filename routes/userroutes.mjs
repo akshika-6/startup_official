@@ -7,6 +7,7 @@ import {
   deleteUser,
   loginUser
 } from '../controllers/usercontroller.mjs';
+import { body, param } from 'express-validator';
 import validateRequest from '../middleware/validateRequest.mjs'; // ✅ new
 import { protect } from '../middleware/auth.mjs'; // ✅ auth middleware
 
