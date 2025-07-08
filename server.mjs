@@ -1,5 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
+import helmet from 'helmet';
 import connectDB from './config/db.mjs';
 
 import userRoutes from './routes/userroutes.mjs';
@@ -11,12 +13,15 @@ import messageRoutes from './routes/messageroutes.mjs';
 import ratingRoutes from './routes/ratingroutes.mjs';
 import commentRoutes from './routes/commentroutes.mjs';
 import investorPreferenceRoutes from './routes/InvestorPreferencerouts.mjs'; // ✅ NEW
+import errorHandler from './middleware/errorHandler.mjs';
 
 dotenv.config(); // Load environment variables
 connectDB();     // Connect to MongoDB
 
 const app = express();
 app.use(express.json()); // Enable JSON request body parsing
+app.use(cors());
+app.use(helmet());
 
 // API Routes
 app.use('/api/users', userRoutes);
@@ -34,11 +39,21 @@ app.get('/', (req, res) => {
   res.send('🌉 PitchBridge API is running...');
 });
 
+app.use((req, res) => {
+  res.status(404).json({ success: false, message: 'Route Not Found' });
+});
+
+// ✅ Central Error Handler
+app.use(errorHandler);
+
 // Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server started on http://localhost:${PORT}`);
 });
+
+
+
 
 
 
