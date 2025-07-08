@@ -89,14 +89,16 @@ router.put(
 //   deleteUser
 // );
 
-router.delete(
-  '/:id',
-  protect,
-  authorizeRoles('admin'), // ✅ Only admins
-  [param('id').isMongoId().withMessage('Invalid user ID')],
-  validateRequest,
-  deleteUser
-);
+// router.delete(
+//   '/:id',
+//   protect,
+//   authorizeRoles('admin'), // ✅ Only admins
+//   [param('id').isMongoId().withMessage('Invalid user ID')],
+//   validateRequest,
+//   deleteUser
+// );
+
+router.delete('/:id', protect, deleteUser); // Temporarily allow all authenticated users
 
 export default router;
 
