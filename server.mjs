@@ -12,7 +12,8 @@ import notificationRoutes from './routes/notificationroutes.mjs';
 import messageRoutes from './routes/messageroutes.mjs';
 import ratingRoutes from './routes/ratingroutes.mjs';
 import commentRoutes from './routes/commentroutes.mjs';
-import investorPreferenceRoutes from './routes/InvestorPreferencerouts.mjs'; // ✅ NEW
+//import investorPreferenceRoutes from './routes/InvestorPreferencerouts.mjs'; // ✅ NEW
+import investorPreferenceRoutes from './routes/InvestorPreferenceroutes.mjs';
 import errorHandler from './middleware/errorHandler.mjs';
 
 dotenv.config(); // Load environment variables
