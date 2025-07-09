@@ -83,6 +83,7 @@ const NotificationSchema = new Schema({
   timestamp: { type: Date, default: Date.now }
 });
 
+
 // Message Schema
 const MessageSchema = new Schema({
   senderId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
