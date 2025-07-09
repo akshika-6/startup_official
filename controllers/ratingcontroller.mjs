@@ -11,7 +11,6 @@
 // };
 
 import { Rating } from '../Schema.mjs';
-import CustomError from '../utils/CustomError.mjs';
 
 export const giveRating = async (req, res, next) => {
   try {

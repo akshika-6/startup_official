@@ -20,7 +20,6 @@
 // };
 
 import { Pitch } from '../Schema.mjs';
-import CustomError from '../utils/CustomError.mjs';
 
 export const createPitch = async (req, res, next) => {
   try {

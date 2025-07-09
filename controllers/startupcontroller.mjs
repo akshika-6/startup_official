@@ -56,7 +56,7 @@
 // };
 
 import { Startup } from '../Schema.mjs';
-import CustomError from '../utils/CustomError.mjs';
+
 
 export const createStartup = async (req, res, next) => {
   try {

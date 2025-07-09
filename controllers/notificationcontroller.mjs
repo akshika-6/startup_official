@@ -11,7 +11,6 @@
 // };
 
 import { Notification } from '../Schema.mjs';
-import CustomError from '../utils/CustomError.mjs';
 
 export const createNotification = async (req, res, next) => {
   try {
