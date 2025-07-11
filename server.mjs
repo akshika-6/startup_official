@@ -21,7 +21,11 @@ connectDB();     // Connect to MongoDB
 
 const app = express();
 app.use(express.json()); // Enable JSON request body parsing
-app.use(cors());
+//app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://your-frontend-domain.netlify.app'],
+  credentials: true,
+}));
 app.use(helmet());
 
 // API Routes
