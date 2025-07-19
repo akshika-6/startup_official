@@ -1,5 +1,7 @@
 import express from 'express';
 import { protect } from '../middleware/authMiddleware.mjs';
+import { getDashboardData } from "../controllers/dashboardController.mjs";
+
 
 const router = express.Router();
 
