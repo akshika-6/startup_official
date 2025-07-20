@@ -1,19 +1,3 @@
-// import express from 'express';
-// import {
-//   createStartup,
-//   getAllStartups,
-//   getStartupById
-// } from '../controllers/startupcontroller.mjs';
-// import { protect } from '../middleware/auth.mjs';
-
-// const router = express.Router();
-
-// router.post('/', protect, createStartup);
-// router.get('/', getAllStartups);
-// router.get('/:id', getStartupById);
-
-// export default router;
-
 import express from 'express';
 import { body, param } from 'express-validator';
 import {
@@ -26,7 +10,7 @@ import validateRequest from '../middleware/validateRequest.mjs';
 
 const router = express.Router();
 
-// POST /api/startups - founders only
+// 🔐 POST /api/startups - founders only (still protected)
 router.post(
   '/',
   protect,
@@ -41,10 +25,10 @@ router.post(
   createStartup
 );
 
-// GET /api/startups
+// 🔓 GET /api/startups - now public
 router.get('/', getAllStartups);
 
-// GET /api/startups/:id
+// 🔓 GET /api/startups/:id - public but with ID validation
 router.get(
   '/:id',
   [param('id').isMongoId().withMessage('Invalid startup ID')],
@@ -53,4 +37,3 @@ router.get(
 );
 
 export default router;
-
