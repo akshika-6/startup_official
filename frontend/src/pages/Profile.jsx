@@ -150,7 +150,7 @@ const Profile = () => {
         };
     }, [updateUserProfile]);
 
-    // Save the current 
+    // Save the current
     const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -590,3 +590,452 @@ const Profile = () => {
 };
 
 export default Profile;
+
+
+/*
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+            };
+
+            const token = localStorage.getItem('token');
+            if (!token || !user?._id) {
+                throw new Error('User not authenticated or ID not found');
+            }
+
+            const response = await axios.put(
+                `${API_BASE_URL}/api/users/${user._id}`,
+                updatedData,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+
+            updateUserProfile(response.data);
+            setStatusMessage('Profile updated successfully!');
+            setIsEditing(false);
+        } catch (error) {
+            console.error("Error saving profile:", error);
+            setStatusMessage(error.response?.data?.message || 'Failed to update profile. Please try again.');
+        } finally {
+            setIsLoading(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+
+    const CLOUD_NAME = "ddz1j7qtz";
+    const UPLOAD_PRESET = "profilePhoto";
+
+    const handleImageChange = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (file.size > 2 * 1024 * 1024) {
+            setStatusMessage("File too large. Please choose an image under 2MB.");
+            return;
+        }
+
+        setIsLoading1(true);
+        setStatusMessage("Uploading picture...");
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', UPLOAD_PRESET);
+
+            const res = await fetch(
+                `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+                { method: 'POST', body: formData }
+            );
+            const data = await res.json();
+
+            if (!data.secure_url) {
+                throw new Error(data.error?.message || "Cloudinary upload failed");
+            }
+
+            setProfileImage(data.secure_url);
+            await updateProfilePicture(data.secure_url);
+            setStatusMessage("Profile picture updated successfully!");
+
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+            };
+
+            const token = localStorage.getItem('token');
+            if (!token || !user?._id) {
+                throw new Error('User not authenticated or ID not found');
+            }
+
+            const response = await axios.put(
+                `${API_BASE_URL}/api/users/${user._id}`,
+                updatedData,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+
+            updateUserProfile(response.data);
+            setStatusMessage('Profile updated successfully!');
+            setIsEditing(false);
+        } catch (error) {
+            console.error("Error saving profile:", error);
+            setStatusMessage(error.response?.data?.message || 'Failed to update profile. Please try again.');
+        } finally {
+            setIsLoading(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+
+    const CLOUD_NAME = "ddz1j7qtz";
+    const UPLOAD_PRESET = "profilePhoto";
+
+    const handleImageChange = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (file.size > 2 * 1024 * 1024) {
+            setStatusMessage("File too large. Please choose an image under 2MB.");
+            return;
+        }
+
+        setIsLoading1(true);
+        setStatusMessage("Uploading picture...");
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', UPLOAD_PRESET);
+
+            const res = await fetch(
+                `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+                { method: 'POST', body: formData }
+            );
+            const data = await res.json();
+
+            if (!data.secure_url) {
+                throw new Error(data.error?.message || "Cloudinary upload failed");
+            }
+
+            setProfileImage(data.secure_url);
+            await updateProfilePicture(data.secure_url);
+            setStatusMessage("Profile picture updated successfully!");
+
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+            };
+
+            const token = localStorage.getItem('token');
+            if (!token || !user?._id) {
+                throw new Error('User not authenticated or ID not found');
+            }
+
+            const response = await axios.put(
+                `${API_BASE_URL}/api/users/${user._id}`,
+                updatedData,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+
+            updateUserProfile(response.data);
+            setStatusMessage('Profile updated successfully!');
+            setIsEditing(false);
+        } catch (error) {
+            console.error("Error saving profile:", error);
+            setStatusMessage(error.response?.data?.message || 'Failed to update profile. Please try again.');
+        } finally {
+            setIsLoading(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+
+    const CLOUD_NAME = "ddz1j7qtz";
+    const UPLOAD_PRESET = "profilePhoto";
+
+    const handleImageChange = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (file.size > 2 * 1024 * 1024) {
+            setStatusMessage("File too large. Please choose an image under 2MB.");
+            return;
+        }
+
+        setIsLoading1(true);
+        setStatusMessage("Uploading picture...");
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', UPLOAD_PRESET);
+
+            const res = await fetch(
+                `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+                { method: 'POST', body: formData }
+            );
+            const data = await res.json();
+
+            if (!data.secure_url) {
+                throw new Error(data.error?.message || "Cloudinary upload failed");
+            }
+
+            setProfileImage(data.secure_url);
+            await updateProfilePicture(data.secure_url);
+            setStatusMessage("Profile picture updated successfully!");
+
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+            };
+
+            const token = localStorage.getItem('token');
+            if (!token || !user?._id) {
+                throw new Error('User not authenticated or ID not found');
+            }
+
+            const response = await axios.put(
+                `${API_BASE_URL}/api/users/${user._id}`,
+                updatedData,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+
+            updateUserProfile(response.data);
+            setStatusMessage('Profile updated successfully!');
+            setIsEditing(false);
+        } catch (error) {
+            console.error("Error saving profile:", error);
+            setStatusMessage(error.response?.data?.message || 'Failed to update profile. Please try again.');
+        } finally {
+            setIsLoading(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+
+    const CLOUD_NAME = "ddz1j7qtz";
+    const UPLOAD_PRESET = "profilePhoto";
+
+    const handleImageChange = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (file.size > 2 * 1024 * 1024) {
+            setStatusMessage("File too large. Please choose an image under 2MB.");
+            return;
+        }
+
+        setIsLoading1(true);
+        setStatusMessage("Uploading picture...");
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', UPLOAD_PRESET);
+
+            const res = await fetch(
+                `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+                { method: 'POST', body: formData }
+            );
+            const data = await res.json();
+
+            if (!data.secure_url) {
+                throw new Error(data.error?.message || "Cloudinary upload failed");
+            }
+
+            setProfileImage(data.secure_url);
+            await updateProfilePicture(data.secure_url);
+            setStatusMessage("Profile picture updated successfully!");
+
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+            };
+
+            const token = localStorage.getItem('token');
+            if (!token || !user?._id) {
+                throw new Error('User not authenticated or ID not found');
+            }
+
+            const response = await axios.put(
+                `${API_BASE_URL}/api/users/${user._id}`,
+                updatedData,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+
+            updateUserProfile(response.data);
+            setStatusMessage('Profile updated successfully!');
+            setIsEditing(false);
+        } catch (error) {
+            console.error("Error saving profile:", error);
+            setStatusMessage(error.response?.data?.message || 'Failed to update profile. Please try again.');
+        } finally {
+            setIsLoading(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+
+    const CLOUD_NAME = "ddz1j7qtz";
+    const UPLOAD_PRESET = "profilePhoto";
+
+    const handleImageChange = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (file.size > 2 * 1024 * 1024) {
+            setStatusMessage("File too large. Please choose an image under 2MB.");
+            return;
+        }
+
+        setIsLoading1(true);
+        setStatusMessage("Uploading picture...");
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', UPLOAD_PRESET);
+
+            const res = await fetch(
+                `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+                { method: 'POST', body: formData }
+            );
+            const data = await res.json();
+
+            if (!data.secure_url) {
+                throw new Error(data.error?.message || "Cloudinary upload failed");
+            }
+
+            setProfileImage(data.secure_url);
+            await updateProfilePicture(data.secure_url);
+            setStatusMessage("Profile picture updated successfully!");
+
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+            };
+
+            const token = localStorage.getItem('token');
+            if (!token || !user?._id) {
+                throw new Error('User not authenticated or ID not found');
+            }
+
+            const response = await axios.put(
+                `${API_BASE_URL}/api/users/${user._id}`,
+                updatedData,
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+
+            updateUserProfile(response.data);
+            setStatusMessage('Profile updated successfully!');
+            setIsEditing(false);
+        } catch (error) {
+            console.error("Error saving profile:", error);
+            setStatusMessage(error.response?.data?.message || 'Failed to update profile. Please try again.');
+        } finally {
+            setIsLoading(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+
+    const CLOUD_NAME = "ddz1j7qtz";
+    const UPLOAD_PRESET = "profilePhoto";
+
+    const handleImageChange = async (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        if (file.size > 2 * 1024 * 1024) {
+            setStatusMessage("File too large. Please choose an image under 2MB.");
+            return;
+        }
+
+        setIsLoading1(true);
+        setStatusMessage("Uploading picture...");
+
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('upload_preset', UPLOAD_PRESET);
+
+            const res = await fetch(
+                `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
+                { method: 'POST', body: formData }
+            );
+            const data = await res.json();
+    }; */
