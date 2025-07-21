@@ -17,6 +17,7 @@ import investorPreferenceRoutes from './routes/InvestorPreferenceroutes.mjs';
 import errorHandler from './middleware/errorHandler.mjs';
 import dashboardRoutes from './routes/dashboardRoutes.mjs';
 import settingsRoutes from './routes/settingsRoutes.mjs';
+import investorRoutes from './routes/investorRoutes.mjs';
 
 dotenv.config(); // Load environment variables
 connectDB();     // Connect to MongoDB
@@ -42,6 +43,7 @@ app.use('/api/comments', commentRoutes);
 app.use('/api/investor-preferences', investorPreferenceRoutes); // ✅ ADDED
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/settings', settingsRoutes);
+app.use('/api/investors', investorRoutes);
 
 // Root endpoint
 app.get('/', (req, res) => {

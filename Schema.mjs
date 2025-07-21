@@ -15,7 +15,8 @@ const UserSchema = new Schema({
   bio: { type: String, maxLength: 300 },
   linkedin: { type: String },
   createdAt: { type: Date, default: Date.now }
-});
+}
+);
 
 
 // Startup Schema
