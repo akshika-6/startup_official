@@ -8,7 +8,7 @@ import {
   updatePrivacySettings,
   deleteAccount,
 } from '../controllers/settingsController.js';
-import { protect } from '../middleware/auth.js';
+import { protect } from '../middleware/auth.mjs';
 
 const router = express.Router();
 
