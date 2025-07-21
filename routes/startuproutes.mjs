@@ -15,7 +15,7 @@ const router = express.Router();
 router.post(
   '/',
   protect,
-  checkRole(['founder']),
+  authorizeRoles(['founder']),
   [
     body('startupName').notEmpty().withMessage('Startup name is required'),
     body('domain').notEmpty().withMessage('Domain is required'),
