@@ -62,11 +62,12 @@ app.get('/', (req, res) => {
 app.use(express.static(path.join(__dirname, 'client')));
 
 // Serve index.html for any unknown route (except API)
-app.get('/:path(*)', (req, res) => {
+app.get('*', (req, res) => {
   if (!req.originalUrl.startsWith('/api')) {
     res.sendFile(path.join(__dirname, 'client', 'index.html'));
   }
 });
+
 
 
 
