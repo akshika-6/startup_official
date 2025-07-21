@@ -12,6 +12,7 @@ import validateRequest from '../middleware/validateRequest.mjs'; // ✅ new
 import { protect } from '../middleware/auth.mjs'; // ✅ auth middleware
 import { authorizeRoles } from '../middleware/roleAuth.mjs';
 import upload from '../middleware/multer.mjs';
+import path from 'path';
 
 
 const router = express.Router();
@@ -41,7 +42,7 @@ router.get('/', protect, getAllUsers);
 
 // Get a specific user by ID
 router.get(
-  '/:id',
+  '/by-id/:id',
   protect,
   [param('id').isMongoId().withMessage('Invalid user ID')],
   validateRequest,
@@ -156,9 +157,11 @@ router.post(
       const user = await User.findById(req.user.id);
       if (!user) return res.status(404).json({ message: 'User not found' });
 
-      user.profilePicture = req.file.path;
+      // ✅ FIX: Convert path to use forward slashes
+      user.profilePicture = path.posix.join('/', req.file.path.replace(/\\/g, '/'));
+
       await user.save();
-      res.status(200).json({ message: 'Profile picture uploaded', path: req.file.path });
+      res.status(200).json({ message: 'Profile picture uploaded', path: user.profilePicture });
     } catch (err) {
       next(err);
     }
