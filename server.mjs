@@ -39,21 +39,23 @@ app.use(cors({
 app.use(helmet());
 
 /* ✅ Static folder for profile pictures (avatars) */
-app.use('/uploads/avatars', express.static(path.join(__dirname, 'uploads/avatars')));
+//app.use('/uploads/avatars', express.static(path.join(__dirname, 'uploads/avatars')));
+app.use('/uploads/avatars', express.static(path.join(__dirname, 'client/assets/uploads/avatars')));
+
 
 // ✅ API Routes
-app.use('/api/users', userRoutes);
-app.use('/api/startups', startupRoutes);
-app.use('/api/pitches', pitchRoutes);
-app.use('/api/meetings', meetingRoutes);
-app.use('/api/notifications', notificationRoutes);
-app.use('/api/messages', messageRoutes);
-app.use('/api/ratings', ratingRoutes);
-app.use('/api/comments', commentRoutes);
-app.use('/api/investor-preferences', investorPreferenceRoutes);
-app.use('/api/dashboard', dashboardRoutes);
-app.use('/api/settings', settingsRoutes);
-app.use('/api/investors', investorRoutes);
+// app.use('/api/users', userRoutes);
+// app.use('/api/startups', startupRoutes);
+// app.use('/api/pitches', pitchRoutes);
+// app.use('/api/meetings', meetingRoutes);
+// app.use('/api/notifications', notificationRoutes);
+// app.use('/api/messages', messageRoutes);
+// app.use('/api/ratings', ratingRoutes);
+// app.use('/api/comments', commentRoutes);
+// app.use('/api/investor-preferences', investorPreferenceRoutes);
+// app.use('/api/dashboard', dashboardRoutes);
+// app.use('/api/settings', settingsRoutes);
+// app.use('/api/investors', investorRoutes);
 
 // ✅ Root endpoint
 app.get('/', (req, res) => {
@@ -61,12 +63,13 @@ app.get('/', (req, res) => {
 });
 
 // ✅ Serve frontend static files (optional if deploying fullstack together)
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'client', 'dist')));
+
 
 // ✅ Fallback to index.html for SPA routing (not API)
 app.get('*', (req, res) => {
   if (!req.originalUrl.startsWith('/api')) {
-    res.sendFile(path.join(__dirname, 'client', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
   }
 });
 

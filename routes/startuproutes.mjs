@@ -7,6 +7,7 @@ import {
 } from '../controllers/startupcontroller.mjs';
 import { protect } from '../middleware/auth.mjs';
 import validateRequest from '../middleware/validateRequest.mjs';
+import { checkRole } from '../middleware/roleAuth.mjs';
 
 const router = express.Router();
 
@@ -14,6 +15,7 @@ const router = express.Router();
 router.post(
   '/',
   protect,
+  checkRole(['founder']),
   [
     body('startupName').notEmpty().withMessage('Startup name is required'),
     body('domain').notEmpty().withMessage('Domain is required'),
