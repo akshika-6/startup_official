@@ -13,6 +13,8 @@ import { protect } from '../middleware/auth.mjs'; // ✅ auth middleware
 import { authorizeRoles } from '../middleware/roleAuth.mjs';
 import upload from '../middleware/multer.mjs';
 import path from 'path';
+import { User } from '../Schema.mjs'; // or correct path
+
 
 
 const router = express.Router();
