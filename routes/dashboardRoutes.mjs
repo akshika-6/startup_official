@@ -1,7 +1,7 @@
 // routes/dashboardRoutes.mjs
 import express from 'express';
 import { getDashboard } from '../controllers/dashboardController.mjs';
-import { export const authorizeRoles } from '../middleware/auth.mjs';
+import { authorizeRoles } from '../middleware/auth.mjs';
 
 const router = express.Router();
 
