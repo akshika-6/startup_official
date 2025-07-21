@@ -7,7 +7,7 @@ import {
 } from '../controllers/startupcontroller.mjs';
 import { protect } from '../middleware/auth.mjs';
 import validateRequest from '../middleware/validateRequest.mjs';
-import { checkRole } from '../middleware/roleAuth.mjs';
+import { authorizeRoles } from '../middleware/roleAuth.mjs';
 
 const router = express.Router();
 
