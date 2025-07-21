@@ -11,6 +11,8 @@ import { body, param } from 'express-validator';
 import validateRequest from '../middleware/validateRequest.mjs'; // ✅ new
 import { protect } from '../middleware/auth.mjs'; // ✅ auth middleware
 import { authorizeRoles } from '../middleware/roleAuth.mjs';
+import upload from '../middleware/multer.mjs';
+
 
 const router = express.Router();
 
@@ -99,6 +101,81 @@ router.delete(
 );
 
 //router.delete('/:id', protect, deleteUser); // Temporarily allow all authenticated users
+
+
+router.put(
+  '/update-username',
+  protect,
+  [body('username').notEmpty().withMessage('Username is required')],
+  validateRequest,
+  async (req, res, next) => {
+    try {
+      const user = await User.findById(req.user.id);
+      if (!user) return res.status(404).json({ message: 'User not found' });
+
+      user.name = req.body.username;
+      await user.save();
+      res.status(200).json({ message: 'Username updated' });
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+// ✅ Update email (PUT /api/users/update-email)
+router.put(
+  '/update-email',
+  protect,
+  [body('email').isEmail().withMessage('Valid email required')],
+  validateRequest,
+  async (req, res, next) => {
+    try {
+      const user = await User.findById(req.user.id);
+      if (!user) return res.status(404).json({ message: 'User not found' });
+
+      user.email = req.body.email;
+      await user.save();
+      res.status(200).json({ message: 'Email updated' });
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+// ✅ Upload profile picture (POST /api/users/upload-avatar)
+router.post(
+  '/upload-avatar',
+  protect,
+  upload.single('avatar'),
+  async (req, res, next) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: 'No file uploaded' });
+      }
+
+      const user = await User.findById(req.user.id);
+      if (!user) return res.status(404).json({ message: 'User not found' });
+
+      user.profilePicture = req.file.path;
+      await user.save();
+      res.status(200).json({ message: 'Profile picture uploaded', path: req.file.path });
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+// ✅ Allow user to delete their own account (DELETE /api/users/delete-self)
+router.delete('/delete-self', protect, async (req, res, next) => {
+  try {
+    const user = await User.findByIdAndDelete(req.user.id);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    res.status(200).json({ message: 'Account deleted' });
+  } catch (err) {
+    next(err);
+  }
+});
 
 export default router;
 
