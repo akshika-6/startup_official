@@ -158,7 +158,7 @@ router.post(
       if (!user) return res.status(404).json({ message: 'User not found' });
 
       // ✅ FIX: Convert path to use forward slashes
-      user.profilePicture = path.posix.join('/', req.file.path.replace(/\\/g, '/'));
+      user.profilePicture = '/' + req.file.path.replace(/\\/g, '/').replace('client/', '');
 
       await user.save();
       res.status(200).json({ message: 'Profile picture uploaded', path: user.profilePicture });
