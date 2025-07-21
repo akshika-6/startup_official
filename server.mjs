@@ -18,9 +18,16 @@ import errorHandler from './middleware/errorHandler.mjs';
 import dashboardRoutes from './routes/dashboardRoutes.mjs';
 import settingsRoutes from './routes/settingsRoutes.mjs';
 import investorRoutes from './routes/investorRoutes.mjs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 
 dotenv.config(); // Load environment variables
 connectDB();     // Connect to MongoDB
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
 
 const app = express();
 app.use(express.json()); // Enable JSON request body parsing
@@ -49,6 +56,19 @@ app.use('/api/investors', investorRoutes);
 app.get('/', (req, res) => {
   res.send('🌉 PitchBridge API is running...');
 });
+
+
+// Serve frontend static files
+app.use(express.static(path.join(__dirname, 'client')));
+
+// Serve index.html for any unknown route (except API)
+app.get('*', (req, res) => {
+  if (!req.originalUrl.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, 'client', 'index.html'));
+  }
+});
+
+
 
 app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Route Not Found' });
