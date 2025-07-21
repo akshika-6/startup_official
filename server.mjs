@@ -50,14 +50,27 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/ratings', ratingRoutes);
 app.use('/api/comments', commentRoutes);
-app.use('/api/investor-preferences', investorPreferenceRoutes
+app.use('/api/investor-preferences', investorPreferenceRoutes);
+app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/settings', settingsRoutes);
+app.use('/api/investors', investorRoutes);
 
+// ✅ Root endpoint
+app.get('/', (req, res) => {
+  res.send('🌉 PitchBridge API is running...');
+});
 
+// ✅ Serve frontend static files (optional if deploying fullstack together)
+app.use(express.static(path.join(__dirname, 'client')));
 
+// ✅ Fallback to index.html for SPA routing (not API)
+app.get('*', (req, res) => {
+  if (!req.originalUrl.startsWith('/api')) {
+    res.sendFile(path.join(__dirname, 'client', 'index.html'));
+  }
+});
 
-
-
-
+// ✅ 404 Handler
 app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Route Not Found' });
 });
@@ -65,11 +78,12 @@ app.use((req, res) => {
 // ✅ Central Error Handler
 app.use(errorHandler);
 
-// Start server
+// ✅ Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server started on http://localhost:${PORT}`);
 });
+
 
 
 
