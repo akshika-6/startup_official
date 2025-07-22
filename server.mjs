@@ -31,6 +31,9 @@ app.use(cors({
   origin: ['http://localhost:5173', 'https://your-frontend-domain.netlify.app'],
   credentials: true,
 }));
+
+app.options('*', cors()); // Handle preflight requests
+
 app.use(helmet());
 
 // API Routes
