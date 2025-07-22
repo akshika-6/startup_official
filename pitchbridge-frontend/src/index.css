@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Base styles - Light Mode (Default) */
+/* These values correspond to your current homepage appearance */
+:root {
+  /* General Colors */
+  --theme-bg: #c6f0f8; /* white */
+  --theme-text: #f2f4f7; /* gray-900 */
+  --theme-text-secondary: #446a84; /* gray-600 */
+  --theme-heading-primary: #1c2634; /* gray-900 */
+
+  /* Navigation */
+  --theme-nav-bg: rgba(255, 255, 255, 0.9); /* white/90 */
+  --theme-border: #e5e7eb; /* gray-200 */
+
+  /* Hero Section */
+  --theme-hero-bg: #ffffff; /* This is for the underlying hero section, before the static gradient */
+  --theme-hero-heading: #f3f3f5; /* gray-900 (for light mode hero) */
+  --theme-hero-text: #f4f6f9; /* gray-600 (for light mode hero) */
+  --theme-stat-number: #1f2937; /* gray-900 */
+  --theme-stat-label: #4b5563; /* gray-600 */
+  
+  /* Buttons */
+  --theme-button-secondary-bg: #e5e7eb; /* gray-200 */
+  --theme-button-secondary-text: #4b5563; /* gray-700 */
+  --theme-button-secondary-hover: #d1d5db; /* gray-300 */
+  --theme-button-secondary-border: #d1d5db; /* gray-300 */
+  --theme-button-secondary-hover-alt: #f3f4f6; /* gray-100 */
+
+  /* Cards & Inputs */
+  --theme-card-bg: #ffffff; /* white */
+  --theme-input-bg: #f3f4f6; /* gray-100 */
+  --theme-progress-bar-bg: #d1d5db; /* gray-300 */
+
+  /* How It Works Section */
+  --theme-section-bg: #f9fafb; /* gray-50 */
+  --theme-heading-step: #9ca3af; /* gray-400 */
+  --theme-step-arrow: #9ca3af; /* gray-400 */
+
+  /* Stats Icons (remain similar across themes for vibrant feel) */
+  --theme-stat-icon-bg: #eff6ff; /* blue-50 */
+  --theme-stat-icon-color: #2563eb; /* blue-600 */
+  --theme-stat-icon-hover-bg: #dbeafe; /* blue-100 */
+
+  /* Why Choose Section Cards */
+  --theme-card-bg-light: #f9fafb; /* gray-50 */
+  --theme-card-hover-bg-light: #f3f4f6; /* gray-100 */
+}
+
+/* Dark Mode Overrides */
+html[data-theme='dark'] {
+  /* General Colors */
+  --theme-bg: #1a202c; /* slate-900 */
+  --theme-text: #f8fafc; /* slate-100 */
+  --theme-text-secondary: #cbd5e1; /* slate-400 */
+  --theme-heading-primary: #fcfbfb; /* white */
+
+  /* Navigation */
+  --theme-nav-bg: rgba(26, 32, 44, 0.9); /* Dark background with transparency */
+  --theme-border: #4a5568; /* gray-700 */
+
+  /* Hero Section */
+  --theme-hero-bg: #1a202c; /* For the underlying hero section, before the static gradient */
+  --theme-hero-heading: #4a5568; /* white */
+  --theme-hero-text: #7f8996; /* blue-100 */
+  --theme-stat-number: #ffffff; /* white */
+  --theme-stat-label: #93c5fd; /* blue-200 */
+
+  /* Buttons */
+  --theme-button-secondary-bg: #4a5568; /* gray-700 */
+  --theme-button-secondary-text: #f8fafc; /* slate-100 */
+  --theme-button-secondary-hover: #2d3748; /* gray-800 */
+  --theme-button-secondary-border: #9ca3af; /* gray-300 */
+  --theme-button-secondary-hover-alt: rgba(255, 255, 255, 0.1); /* white/10 */
+
+  /* Cards & Inputs */
+  --theme-card-bg: #2d3748; /* gray-800 */
+  --theme-input-bg: #1a202c; /* slate-900 */
+  --theme-progress-bar-bg: #4a5568; /* gray-700 */
+
+  /* How It Works Section */
+  --theme-section-bg: #1a202c; /* slate-900 */
+  --theme-heading-step: #d1d5db; /* gray-300 */
+  --theme-step-arrow: #d1d5db; /* gray-300 */
+
+  /* Stats Icons (remain similar across themes for vibrant feel) */
+  /* No changes needed as they are already vibrant */
+
+  /* Why Choose Section Cards */
+  --theme-card-bg-light: #2d3748; /* gray-800 */
+  --theme-card-hover-bg-light: #1a202c; /* slate-900 */
+}
+
+/* Apply CSS variables to custom utility classes */
+.bg-theme-bg { background-color: var(--theme-bg); }
+.text-theme-text { color: var(--theme-text); }
+.text-theme-text-secondary { color: var(--theme-text-secondary); }
+.text-theme-heading-primary { color: var(--theme-heading-primary); }
+
+.bg-theme-nav-bg { background-color: var(--theme-nav-bg); }
+.border-theme-border { border-color: var(--theme-border); }
+
+.bg-theme-hero-bg { background-color: var(--theme-hero-bg); }
+.text-theme-hero-heading { color: var(--theme-hero-heading); }
+.text-theme-hero-text { color: var(--theme-hero-text); }
+.text-theme-stat-number { color: var(--theme-stat-number); }
+.text-theme-stat-label { color: var(--theme-stat-label); }
+
+.bg-theme-button-secondary-bg { background-color: var(--theme-button-secondary-bg); }
+.text-theme-button-secondary-text { color: var(--theme-button-secondary-text); }
+.hover\:bg-theme-button-secondary-hover:hover { background-color: var(--theme-button-secondary-hover); }
+.border-theme-button-secondary-border { border-color: var(--theme-button-secondary-border); }
+.hover\:bg-theme-button-secondary-hover-alt:hover { background-color: var(--theme-button-secondary-hover-alt); }
+
+.bg-theme-card-bg { background-color: var(--theme-card-bg); }
+.bg-theme-input-bg { background-color: var(--theme-input-bg); }
+.bg-theme-progress-bar-bg { background-color: var(--theme-progress-bar-bg); }
+
+.bg-theme-section-bg { background-color: var(--theme-section-bg); }
+.text-theme-heading-step { color: var(--theme-heading-step); }
+.text-theme-step-arrow { color: var(--theme-step-arrow); }
+
+.bg-theme-stat-icon-bg { background-color: var(--theme-stat-icon-bg); }
+.text-theme-stat-icon-color { color: var(--theme-stat-icon-color); }
+.group-hover\:bg-theme-stat-icon-hover-bg:hover { background-color: var(--theme-stat-icon-hover-bg); }
+
+.bg-theme-card-bg-light { background-color: var(--theme-card-bg-light); }
+.hover\:bg-theme-card-hover-bg-light:hover { background-color: var(--theme-card-hover-bg-light); }
