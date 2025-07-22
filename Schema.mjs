@@ -3,19 +3,26 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 const { Schema, model } = mongoose;
 
-// User Schema
 const UserSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true, minLength: 8 },
-  role: { type: String, enum: ['founder', 'investor','admin'], default: 'founder' },
+  role: { type: String, enum: ['founder', 'investor', 'admin'], default: 'founder' },
   location: { type: String },
   verified: { type: Boolean, default: false },
   profilePic: { type: String },
   bio: { type: String, maxLength: 300 },
   linkedin: { type: String },
+  
+  // Investor-specific fields (optional)
+  sector: { type: String },           // e.g., HealthTech, AI, EdTech
+  stage: { type: String },            // e.g., Seed, Series A, etc.
+  ticketSize: { type: String },       // e.g., "$50K–$200K"
+  tags: [{ type: String }],           // e.g., ['Top Investor', 'Active Deal']
+
   createdAt: { type: Date, default: Date.now }
 });
+
 
 
 // Startup Schema
@@ -23,7 +30,16 @@ const StartupSchema = new Schema({
   founderId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   startupName: { type: String, required: true },
   domain: { type: String, required: true },
-  stage: { type: String, enum: ['idea', 'MVP', 'revenue'], required: true },
+  stage: { type: String, enum: ['Idea',
+    'Pre-Seed',
+    'Seed',
+    'MVP',
+    'Launched',
+    'Scaling',
+    'Revenue',
+    'Series A',
+    'Series B',
+    'IPO'], required: true },
   pitchDeck: { type: String },
   videoPitch: { type: String },
   summary: { type: String, maxLength: 1000 },
