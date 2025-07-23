@@ -1,25 +1,24 @@
-// src/pages/Login.jsx
+// src/pages/Login.jsx - CORRECTED
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { API_BASE_URL } from '../config';
-import { useAuth } from '../context/AuthContext'; // <--- IMPORTANT: Import useAuth here!
+import { useAuth } from '../context/AuthContext';
 
-import { CheckCircle, XCircle } from 'lucide-react';
+import { XCircle } from 'lucide-react';
 import emailIcon from '../assets/email.gif';
 import lockIcon from '../assets/lock.gif';
 
-import Navbar from '../components/Navbar'; // Keep this if you want a Navbar on the login page
+import AuthNavbar from '../components/AuthNavbar';
 
-// Remove the `setUser` prop, as we'll use `useAuth().setUser` directly
-const Login = () => { // <--- Changed: Removed `({ setUser })`
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { setUser } = useAuth(); // <--- NEW: Get setUser from the AuthContext!
+  const { setUser } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -28,14 +27,31 @@ const Login = () => { // <--- Changed: Removed `({ setUser })`
 
     try {
       const res = await axios.post(`${API_BASE_URL}/api/users/login`, { email, password });
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user', JSON.stringify(res.data));
 
-      setUser(res.data); // <--- This will update the AuthContext state
+      console.log('Login API Response:', res.data); // This will now correctly show the response you shared!
 
-      navigate('/dashboard'); // Navigate to a protected route
+      // --- CRUCIAL CHANGE START ---
+      const token = res.data.token; // The token is directly on res.data
+      
+      // The user data (name, email, role, _id) is ALSO directly on res.data,
+      // but we want to exclude the 'token' field when storing the 'user' object.
+      // We can use object destructuring to separate 'token' and collect the rest into 'userData'.
+      const { token: _, ...userData } = res.data; // Assign token to a throwaway variable '_', collect rest into userData
+      // --- CRUCIAL CHANGE END ---
+
+      if (!token || !userData) { // This check should now pass if token and other user data exist
+          throw new Error("Invalid response from server: token or user data missing.");
+      }
+
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(userData)); // Store the user object without the token
+
+      setUser(userData);
+
+      console.log('Login successful, navigating to /dashboard');
+      navigate('/dashboard');
     } catch (err) {
-      console.error('Login error:', err.response || err);
+      console.error('Login error:', err.response?.data || err);
       setError(err.response?.data?.message || 'Invalid email or password. Please try again.');
     } finally {
       setIsLoading(false);
@@ -50,7 +66,7 @@ const Login = () => { // <--- Changed: Removed `({ setUser })`
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 h-1/3 bg-purple-300 dark:bg-pink-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
       </div>
 
-      <Navbar className="absolute top-0 w-full z-10" />
+      <AuthNavbar className="absolute top-0 w-full z-10" />
 
       <div className="flex justify-center items-center px-4 py-16 w-full z-10">
         <motion.form

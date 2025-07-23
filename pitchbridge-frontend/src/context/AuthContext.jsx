@@ -1,47 +1,70 @@
-// src/context/AuthContext.jsx
-import { createContext, useContext, useState, useEffect, useMemo } from 'react';
-// No need for useNavigate or axios imports here if login logic is outside this context
-// import { useNavigate } from 'react-router-dom';
-// import axios from 'axios';
-// import { API_BASE_URL } from '../config'; // Assuming your API_BASE_URL is used elsewhere
+// src/context/AuthContext.js - CORRECTED
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // Initialize user to null
-  const [loading, setLoading] = useState(true); // <--- NEW: Add loading state, initially true
+  const [user, setUser] = useState(null); // Stores the authenticated user object
+  const [loading, setLoading] = useState(true); // Indicates if initial auth check is in progress
 
-  // This useEffect runs once on component mount to check localStorage for user data
+  // Effect to load user from localStorage on initial component mount
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
+    const loadUserFromLocalStorage = () => {
       try {
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        console.error("Failed to parse user from localStorage:", error);
-        localStorage.removeItem('user'); // Clear invalid data
-        setUser(null);
-      }
-    }
-    setLoading(false); // <--- IMPORTANT: Set loading to false AFTER checking localStorage
-  }, []); // Empty dependency array means this runs only once on mount
+        const storedToken = localStorage.getItem('token'); // Check for token
+        const storedUser = localStorage.getItem('user'); // Check for user data
 
-  // This useEffect runs whenever 'user' state changes, to save it to localStorage
+        if (storedToken && storedUser) {
+          // Both token and user data must be present for a valid session
+          const parsedUser = JSON.parse(storedUser);
+          setUser(parsedUser);
+          console.log("AuthContext: User loaded from localStorage:", parsedUser); // Debugging
+        } else {
+          // Clear any incomplete or invalid data if one is missing
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          setUser(null);
+          console.log("AuthContext: No valid session found in localStorage."); // Debugging
+        }
+      } catch (error) {
+        console.error("AuthContext: Failed to load user from localStorage:", error);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setUser(null);
+      } finally {
+        setLoading(false); // Authentication check is complete
+      }
+    };
+
+    loadUserFromLocalStorage();
+  }, []); // Runs only once on mount
+
+  // Effect to persist user to localStorage whenever `user` state changes
   useEffect(() => {
     if (user) {
       localStorage.setItem('user', JSON.stringify(user));
+      console.log("AuthContext: User state persisted to localStorage:", user); // Debugging
     } else {
-      localStorage.removeItem('user'); // Also remove if user logs out or is set to null
+      // User is null (logged out or no session)
+      localStorage.removeItem('user');
+      localStorage.removeItem('token'); // Ensure token is also removed
+      console.log("AuthContext: User state cleared from localStorage."); // Debugging
     }
-  }, [user]);
+  }, [user]); // Runs whenever the `user` state object changes
 
+  // Logout function
   const logout = () => {
-    setUser(null); // Clear user state
-    // localStorage.removeItem('user'); // This will be handled by the useEffect above
+    setUser(null); // This will trigger the useEffect above to clear localStorage
+    // No explicit localStorage.removeItem here, as useEffect handles it
   };
 
-  // Memoize the context value to prevent unnecessary re-renders of consuming components
-  const authContextValue = useMemo(() => ({ user, setUser, logout, loading }), [user, setUser, logout, loading]);
+  // Memoize the context value for performance optimization
+  const authContextValue = useMemo(() => ({
+    user,
+    setUser, // Expose setUser for components like Login to update user data
+    logout,
+    loading // Expose loading state
+  }), [user, setUser, logout, loading]);
 
   return (
     <AuthContext.Provider value={authContextValue}>
@@ -50,7 +73,10 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use authentication context
 export const useAuth = () => {
-  return useContext(AuthContext);
+  const context = useContext(AuthContext);
+  if (context === null) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
 };
