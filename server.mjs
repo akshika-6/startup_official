@@ -28,7 +28,7 @@ const app = express();
 app.use(express.json()); // Enable JSON request body parsing
 //app.use(cors());
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:5174', 'https://your-frontend-domain.netlify.app'],
+  origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'https://your-frontend-domain.netlify.app'],
   credentials: true,
 }));
 
