@@ -59,5 +59,17 @@ router.get('/my', protect, getMyStartups);
 
 
 
+import upload from '../middleware/multer.mjs';
+import { uploadPitch } from '../controllers/startupcontroller.mjs';
+
+router.post(
+  '/upload-pitch/:startupId',
+  protect,
+  upload.single('pitchFile'),
+  uploadPitch
+);
+
+
+
 export default router;
 
