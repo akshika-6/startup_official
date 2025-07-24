@@ -63,8 +63,6 @@ import { Startup } from '../Schema.mjs';
 
 
 export const createStartup = async (req, res, next) => {
-  console.log('Received body:', req.body);
-
   try {
     if (req.user.role !== 'founder') {
       return next(new CustomError('Only founders can create startups', 403));

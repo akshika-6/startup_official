@@ -28,7 +28,7 @@ const UserSchema = new Schema({
 // Startup Schema
 const StartupSchema = new Schema({
   founderId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  startupName: { type: String, required: true },
+  name: { type: String, required: true },
   domain: { type: String, required: true },
   stage: { type: String, enum: ['Idea',
     'Pre-Seed',
