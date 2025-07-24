@@ -52,5 +52,10 @@ router.get(
   getStartupById
 );
 
+
+router.get('/my', protect, getMyStartups);
+
+
+
 export default router;
 

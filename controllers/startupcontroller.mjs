@@ -96,3 +96,13 @@ export const getStartupById = async (req, res, next) => {
   }
 };
 
+export const getMyStartups = async (req, res, next) => {
+  try {
+    const startups = await Startup.find({ founderId: req.user._id });
+    res.status(200).json({ success: true, data: startups });
+  } catch (err) {
+    next(err);
+  }
+};
+
+
