@@ -19,8 +19,10 @@ import { body, param } from 'express-validator';
 import {
   createStartup,
   getAllStartups,
-  getStartupById
+  getStartupById,
+  getMyStartups // ✅ Add this
 } from '../controllers/startupcontroller.mjs';
+
 import { protect } from '../middleware/auth.mjs';
 import validateRequest from '../middleware/validateRequest.mjs';
 
