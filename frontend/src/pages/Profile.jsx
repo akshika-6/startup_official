@@ -3703,6 +3703,54 @@ const handleSave = async () => {
                 bio,
                 linkedin,
                 location,
+        
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
         } catch (err) {
             console.error("Error during image upload:", err);
             setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
@@ -4961,8 +5009,26 @@ const handleSave = async () => {
             setTimeout(() => setStatusMessage(''), 3000);
         }
     };
+const handleSave = async () => {
+        setStatusMessage('');
 const handleSave = async () => {
         setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -4999,6 +5065,8 @@ const handleSave = async () => {
             setTimeout(() => setStatusMessage(''), 3000);
         }
     };
+const handleSave = async () => {
+        setStatusMessage('');
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5019,6 +5087,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+        setIsLoading(true);
+        try {
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5057,6 +5127,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
         setIsLoading(true);
         try {
             const updatedData = {
@@ -5075,6 +5147,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+        setIsLoading(true);
+        try {
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5111,6 +5185,8 @@ const handleSave = async () => {
             setTimeout(() => setStatusMessage(''), 3000);
         }
     };
+const handleSave = async () => {
+        setStatusMessage('');
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5131,6 +5207,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+        setIsLoading(true);
+        try {
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5167,6 +5245,8 @@ const handleSave = async () => {
             setTimeout(() => setStatusMessage(''), 3000);
         }
     };
+const handleSave = async () => {
+        setStatusMessage('');
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5187,6 +5267,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+        setIsLoading(true);
+        try {
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5225,6 +5307,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
         setIsLoading(true);
         try {
             const updatedData = {
@@ -5243,6 +5327,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+        setIsLoading(true);
+        try {
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5281,6 +5367,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
         setIsLoading(true);
         try {
             const updatedData = {
@@ -5299,6 +5387,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+        setIsLoading(true);
+        try {
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5335,6 +5425,8 @@ const handleSave = async () => {
             setTimeout(() => setStatusMessage(''), 3000);
         }
     };
+const handleSave = async () => {
+        setStatusMessage('');
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5355,6 +5447,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+        setIsLoading(true);
+        try {
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5391,6 +5485,8 @@ const handleSave = async () => {
             setTimeout(() => setStatusMessage(''), 3000);
         }
     };
+const handleSave = async () => {
+        setStatusMessage('');
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5411,6 +5507,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+        setIsLoading(true);
+        try {
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5447,6 +5545,8 @@ const handleSave = async () => {
             setTimeout(() => setStatusMessage(''), 3000);
         }
     };
+const handleSave = async () => {
+        setStatusMessage('');
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5467,6 +5567,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+        setIsLoading(true);
+        try {
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5503,6 +5605,8 @@ const handleSave = async () => {
             setTimeout(() => setStatusMessage(''), 3000);
         }
     };
+const handleSave = async () => {
+        setStatusMessage('');
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5523,6 +5627,26 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+        setIsLoading(true);
+        try {
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5543,6 +5667,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
         setIsLoading(true);
         try {
             const updatedData = {
@@ -5559,6 +5685,10 @@ const handleSave = async () => {
             setTimeout(() => setStatusMessage(''), 3000);
         }
     };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
 const handleSave = async () => {
         setStatusMessage('');
         setIsLoading(true);
@@ -5579,8 +5709,25 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
 const handleSave = async () => {
         setStatusMessage('');
+const
         setIsLoading(true);
         try {
             const updatedData = {
