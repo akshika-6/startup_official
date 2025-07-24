@@ -33,7 +33,7 @@ router.post(
   '/',
   protect,
   [
-    body('startupName').notEmpty().withMessage('Startup name is required'),
+    body('name').notEmpty().withMessage('Startup name is required'),
     body('domain').notEmpty().withMessage('Domain is required'),
     body('stage')
       .isIn(['idea', 'MVP', 'revenue'])
