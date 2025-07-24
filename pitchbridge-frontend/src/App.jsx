@@ -1,17 +1,17 @@
-// src/App.jsx - CORRECTED & VERIFIED
-import React from 'react';
+// src/App.jsx - FINAL FINAL FINAL CORRECTED & VERIFIED for "SIDEBAR PUSHES NAV"
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 
 // Import your Navbar components
-import AuthNavbar from './components/AuthNavbar'; // For public/auth pages
-import Navbar from './components/Navbar'; // Standard authenticated navbar with sidebar
-import DashboardHomeNavbar from './components/DashboardHomeNavbar'; // Specific navbar for /home-dashboard
+import GuestNavbar from './components/GuestNavbar';
+import AuthNavbar from './components/AuthNavbar';
+// REMOVED: import DashboardHomeNavbar from './components/DashboardHomeNavbar'; // This is removed for layout consistency
 import Sidebar from './components/Sidebar';
 import FullPageSpinner from './components/FullPageSpinner';
 
-// Import all your page components (ensure these paths are correct)
+// Import all your page components
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -22,26 +22,20 @@ import SubmitPitch from './pages/SubmitPitch';
 import Notifications from './pages/Notifications';
 import RateStartup from './pages/RateStartup';
 import CreateStartup from './pages/CreateStartup';
-
 import AdminUsers from './pages/admin/Users';
 import AdminActivity from './pages/admin/Activity';
-
 import InvestorDeck from './pages/InvestorDeck';
 import Messages from './pages/Messages';
 import Profile from './pages/Profile';
-import FAQ from './pages/FAQ';
+import FAQ from './pages/FAQ'; // This FAQ page will now be authenticated
 import Contact from './pages/Contact';
 import Logout from './pages/Logout';
-
-import DashboardInstructions from './pages/dashboard/DashboardInstructions'; // This is your default dashboard WITH sidebar
-import DashboardHome from './pages/dashboard/DashboardHome'; // This is your full-screen dashboard WITHOUT sidebar
-
+import DashboardInstructions from './pages/dashboard/DashboardInstructions';
+import DashboardHome from './pages/dashboard/DashboardHome'; // This will now be part of AuthenticatedLayout
 import FounderDashboard from './pages/dashboard/FounderDashboard';
 import InvestorDashboard from './pages/dashboard/InvestorDashboard';
-
 import ExploreInvestors from './pages/ExploreInvestors';
 import AddStartup from './pages/AddStartup';
-
 import Settings from './pages/Settings';
 import ChangePassword from './pages/settings/ChangePassword';
 import ChangeEmail from './pages/settings/ChangeEmail';
@@ -52,176 +46,224 @@ import PrivacySettings from './pages/settings/PrivacySettings';
 import DeleteAccount from './pages/settings/DeleteAccount';
 
 
-// This component defines the layout for all authenticated routes *that use the sidebar*
-const AuthenticatedLayout = () => {
-  const { user, loading } = useAuth();
-  const location = useLocation();
+// Constants for layout dimensions (adjust these as needed)
+const SIDEBAR_WIDTH_DESKTOP = '64'; // w-64 = 16rem = 256px
+const NAVBAR_HEIGHT = '16'; // h-16 = 4rem = 64px
 
-  if (loading) {
-    return <FullPageSpinner />;
-  }
+/**
+ * Layout for authenticated users, includes Sidebar and AuthNavbar.
+ */
+const AuthenticatedLayout = ({ toggleSidebar, isSidebarOpen, sidebarWidthDesktop, navbarHeight }) => {
+    const { user, loading } = useAuth();
+    const location = useLocation();
 
-  // If user is not authenticated, redirect to login page.
-  // This catches direct access to protected routes without a session.
-  if (!user) {
-    console.log(`AuthenticatedLayout: User not found, redirecting to /login from ${location.pathname}`); // Debugging
-    return <Navigate to="/login" state={{ from: location.pathname }} replace />;
-  }
-
-  return (
-    <div className="flex bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white min-h-screen">
-      <Sidebar /> {/* Sidebar is rendered here for all AuthenticatedLayout routes */}
-      <main className="flex-1 p-6 overflow-y-auto pt-20 md:ml-64"> {/* Adjust pt-xx for your Navbar height */}
-        <Outlet /> {/* Child routes will render here */}
-      </main>
-    </div>
-  );
-};
-
-// Main AppContent component that decides which Navbar and layout to show
-const AppContent = () => {
-  const { user, loading } = useAuth(); // Get user and loading state from AuthContext
-  const location = useLocation();
-
-  // Paths that typically use AuthNavbar (public or auth-related)
-  const publicAuthPaths = [
-    '/', '/login', '/register', '/forgot-password',
-    '/startups', '/startups/:id', '/faq', '/contact', '/investors',
-    '/logout'
-  ];
-
-  // Helper to check if the current path is one of the public/auth paths
-  const isPublicAuthPath = publicAuthPaths.some(path => {
-    if (path.includes(':')) {
-      const regex = new RegExp(`^${path.replace(/:\w+/g, '[^/]+')}(/.*)?$`);
-      return regex.test(location.pathname);
+    // Show a full page spinner while authentication status is being determined
+    if (loading) {
+        return <FullPageSpinner />;
     }
-    return location.pathname === path;
-  });
 
-  // Determine which Navbar to render based on the current path and auth status
-  let CurrentNavbarComponent = null;
-  if (loading) {
-      // Don't render any specific Navbar while auth status is loading to avoid flashes
-      CurrentNavbarComponent = null;
-  } else if (location.pathname === '/home-dashboard' && user) {
-    // 5. For the specific full-screen dashboard home (DashboardHome.jsx)
-    CurrentNavbarComponent = <DashboardHomeNavbar />;
-  } else if (isPublicAuthPath) {
-    // For public and authentication-related pages
-    CurrentNavbarComponent = <AuthNavbar />;
-  } else if (user) {
-    // For all other authenticated pages that use the sidebar (e.g., /dashboard, /profile)
-    CurrentNavbarComponent = <Navbar />;
-  } else {
-    // Fallback for unauthenticated users on non-public paths (should mostly be caught by AuthenticatedLayout)
-    CurrentNavbarComponent = <AuthNavbar />;
-  }
+    // Redirect unauthenticated users to login page
+    if (!user) {
+        console.log(`AuthenticatedLayout: User not found, redirecting to /login from ${location.pathname}`);
+        return <Navigate to="/login" state={{ from: location.pathname }} replace />;
+    }
 
+    return (
+        <div className="flex min-h-screen bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white overflow-hidden">
+            {/* Sidebar component - fixed on desktop, overlay on mobile */}
+            <Sidebar
+                isOpen={isSidebarOpen}
+                toggleSidebar={toggleSidebar}
+                sidebarWidthDesktop={sidebarWidthDesktop}
+                navbarHeight={navbarHeight}
+            />
 
-  return (
-    <>
-      {CurrentNavbarComponent} {/* Conditionally render the appropriate Navbar */}
+            {/* Main content area, including AuthNavbar */}
+            {/* This div handles the pushing of content away from the fixed sidebar on desktop */}
+            <div
+                className={`
+                    flex-1 flex flex-col min-h-screen
+                    transition-all duration-300
+                    // Desktop: Margin-left creates space for the sidebar
+                    md:ml-[16rem]
+                    // Mobile: No margin-left, as sidebar is overlay (managed by Sidebar component itself)
+                `}
+            >
+                {/* AuthNavbar - now a child of the main content area, so it's pushed by the sidebar */}
+                <AuthNavbar
+                    toggleSidebar={toggleSidebar}
+                    navbarHeight={navbarHeight}
+                />
 
-      <Routes>
-        {/*
-          1. Initial Load (`/`) -> Home.jsx (public)
-          If user is logged in and lands on '/', navigate to /dashboard (your default authenticated view).
-          Otherwise, show Home component.
-        */}
-        <Route
-          path="/"
-          element={user ? <Navigate to="/dashboard" replace /> : <Home />}
-        />
+                {/* Page content */}
+                {/* The padding-top ensures content starts below the AuthNavbar */}
+                <main className={`flex-1 p-6 overflow-y-auto pt-${navbarHeight}`}>
+                    <Outlet /> {/* Renders the specific page component */}
+                </main>
+            </div>
 
-        {/* Public & Auth Routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/startups" element={<Startups />} />
-        <Route path="/startups/:id" element={<StartupDetail />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/investors" element={<ExploreInvestors />} />
-        <Route path="/logout" element={<Logout />} />
-
-        {/*
-          Route for DashboardHome.jsx (full-screen, no sidebar).
-          This is outside AuthenticatedLayout because it doesn't use the sidebar.
-        */}
-        <Route
-          path="/home-dashboard"
-          element={
-            user ? ( // Simple check if user is logged in
-              <DashboardHome />
-            ) : (
-              // If user tries to access /home-dashboard directly when logged out
-              <Navigate to="/login" replace state={{ from: location.pathname }} />
-            )
-          }
-        />
-
-        {/*
-          PROTECTED ROUTES GROUP (for pages WITH Sidebar and standard Navbar)
-          All routes nested here will automatically get the Sidebar and the 'Navbar' component.
-        */}
-        <Route element={<AuthenticatedLayout />}>
-
-          {/* 3. Default dashboard landing page (INSTRUCTIONS ONLY) - uses sidebar */}
-          {/* 4. Sidebar "Dashboard" button points here */}
-          <Route path="/dashboard" element={<DashboardInstructions />} />
-
-          {/* Specific role-based dashboards if they are *different* from DashboardInstructions and DashboardHome */}
-          <Route path="/dashboard/founder" element={user?.role === 'founder' ? <FounderDashboard /> : <Navigate to="/dashboard" replace />} />
-          <Route path="/dashboard/investor" element={user?.role === 'investor' ? <InvestorDashboard /> : <Navigate to="/dashboard" replace />} />
-
-          {/* General Protected Routes that use the sidebar */}
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/messages" element={<Messages />} />
-          <Route path="/notifications" element={<Notifications />} />
-
-          {/* Founder Specific Routes */}
-          <Route path="/submit-pitch" element={user?.role === 'founder' ? <SubmitPitch /> : <Navigate to="/dashboard" replace />} />
-          <Route path="/create-startup" element={user?.role === 'founder' ? <CreateStartup /> : <Navigate to="/dashboard" replace />} />
-          <Route path="/add-startup" element={user?.role === 'founder' ? <AddStartup /> : <Navigate to="/dashboard" replace />} />
-
-          {/* Investor Specific Routes */}
-          <Route path="/investor-deck" element={user?.role === 'investor' ? <InvestorDeck /> : <Navigate to="/dashboard" replace />} />
-          <Route path="/rate-startups" element={user?.role === 'investor' ? <RateStartup /> : <Navigate to="/dashboard" replace />} />
-
-          {/* Settings and its Sub-Routes */}
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/settings/username" element={<ChangeUsername />} />
-          <Route path="/settings/email" element={<ChangeEmail />} />
-          <Route path="/settings/password" element={<ChangePassword />} />
-          <Route path="/settings/profile-picture" element={<UpdateProfilePicture />} />
-          <Route path="/settings/notifications" element={<NotificationSettings />} />
-          <Route path="/settings/privacy" element={<PrivacySettings />} />
-          <Route path="/settings/delete" element={<DeleteAccount />} />
-
-          {/* Admin Routes */}
-          <Route path="/admin/users" element={user?.role === 'admin' ? <AdminUsers /> : <Navigate to="/dashboard" replace />} />
-          <Route path="/admin/activity" element={user?.role === 'admin' ? <AdminActivity /> : <Navigate to="/dashboard" replace />} />
-
-          {/* Fallback for protected routes - if a path is matched, but user is not authorized or path doesn't exist */}
-          <Route path="*" element={<div>Protected Route: 404 Not Found or Unauthorized Access</div>} />
-        </Route>
-
-        {/* Catch-all for any other unmatched public routes */}
-        <Route path="*" element={<div>404 Not Found</div>} />
-      </Routes>
-    </>
-  );
+            {/* Mobile-only overlay background when sidebar is open */}
+            {isSidebarOpen && window.innerWidth < 768 && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+                    onClick={toggleSidebar}
+                ></div>
+            )}
+        </div>
+    );
 };
 
+/**
+ * Layout for public (guest) users, includes GuestNavbar.
+ */
+const PublicLayout = () => {
+    const { user } = useAuth();
+    const location = useLocation();
+
+    // Redirect authenticated users from typical public entry points (login, register, forgot-password) to dashboard
+    if (user && (location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/forgot-password')) {
+        return <Navigate to="/dashboard" replace />;
+    }
+
+    return (
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+            <GuestNavbar />
+            {/* Use padding-top to ensure content starts below the fixed GuestNavbar */}
+            <main className="pt-16">
+                <Outlet /> {/* Renders the specific public page component */}
+            </main>
+        </div>
+    );
+};
+
+/**
+ * Main AppContent component to handle routing logic and layouts.
+ */
+const AppContent = () => {
+    const { user, loading } = useAuth();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Default to true for desktop
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) { // Tailwind's 'md' breakpoint
+                setIsSidebarOpen(true); // Ensure sidebar is always open on desktop
+            } else {
+                setIsSidebarOpen(false); // Default to closed on mobile
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Set initial state
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const toggleSidebar = () => {
+        // Only allow toggling on mobile. On desktop, it's always open by design.
+        if (window.innerWidth < 768) {
+            setIsSidebarOpen(!isSidebarOpen);
+        }
+    };
+
+    if (loading) {
+        return <FullPageSpinner />;
+    }
+
+    return (
+        <Routes>
+            {/* Public routes wrapped by PublicLayout */}
+            {/* The root path "/" should also use PublicLayout if not logged in */}
+            <Route element={<PublicLayout />}>
+                <Route
+                    path="/"
+                    element={user ? <Navigate to="/dashboard" replace /> : <Home />}
+                    
+                />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                
+                {/* REMOVED: <Route path="/faq" element={<FAQ />} />  FAQ is now under AuthenticatedLayout */}
+                
+              
+            </Route>
+
+            {/* Authenticated/Protected routes wrapped by AuthenticatedLayout */}
+            <Route
+                element={
+                    <AuthenticatedLayout
+                        toggleSidebar={toggleSidebar}
+                        isSidebarOpen={isSidebarOpen}
+                        sidebarWidthDesktop={SIDEBAR_WIDTH_DESKTOP}
+                        navbarHeight={NAVBAR_HEIGHT}
+                    />
+                }
+            >
+                {/* Moved FAQ here, so it's now a protected route */}
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/logout" element={<Logout />} />
+              
+                <Route path="/investors" element={<ExploreInvestors />} /> {/* Public Explore Investors if any */}
+                {/* <Route path="/startups" element={<ExploreStartups />} /> Public Explore Investors if any */}
+
+                {/* Dashboards based on user role or general dashboard */}
+                <Route path="/dashboard" element={<DashboardInstructions />} />
+                <Route path="/dashboard-home" element={<DashboardHome />} /> {/* Consolidated Dashboard Home */}
+                <Route path="/dashboard/founder" element={user?.role === 'founder' ? <FounderDashboard /> : <Navigate to="/dashboard" replace />} />
+                <Route path="/dashboard/investor" element={user?.role === 'investor' ? <InvestorDashboard /> : <Navigate to="/dashboard" replace />} />
+
+                {/* Main application features */}
+                <Route path="/startups" element={<Startups />} />
+                <Route path="/startups/:id" element={<StartupDetail />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/messages" element={<Messages />} />
+                <Route path="/notifications" element={<Notifications />} />
+
+                {/* Founder-specific routes */}
+                <Route path="/submit-pitch" element={user?.role === 'founder' ? <SubmitPitch /> : <Navigate to="/dashboard" replace />} />
+                <Route path="/create-startup" element={user?.role === 'founder' ? <CreateStartup /> : <Navigate to="/dashboard" replace />} />
+                <Route path="/add-startup" element={user?.role === 'founder' ? <AddStartup /> : <Navigate to="/dashboard" replace />} />
+
+                {/* Investor-specific routes */}
+                <Route path="/investor-deck" element={user?.role === 'investor' ? <InvestorDeck /> : <Navigate to="/dashboard" replace />} />
+                <Route path="/rate-startups" element={user?.role === 'investor' ? <RateStartup /> : <Navigate to="/dashboard" replace />} />
+
+                {/* Settings routes */}
+                <Route path="/settings" element={<Settings />} />
+                <Route path="/settings/username" element={<ChangeUsername />} />
+                <Route path="/settings/email" element={<ChangeEmail />} />
+                <Route path="/settings/password" element={<ChangePassword />} />
+                <Route path="/settings/profile-picture" element={<UpdateProfilePicture />} />
+                <Route path="/settings/notifications" element={<NotificationSettings />} />
+                <Route path="/settings/privacy" element={<PrivacySettings />} />
+                <Route path="/settings/delete" element={<DeleteAccount />} />
+
+                {/* Admin-specific routes */}
+                <Route path="/admin/users" element={user?.role === 'admin' ? <AdminUsers /> : <Navigate to="/dashboard" replace />} />
+                <Route path="/admin/activity" element={user?.role === 'admin' ? <AdminActivity /> : <Navigate to="/dashboard" replace />} />
+
+                {/* Fallback for protected routes - ensures user is logged in before showing 404 */}
+                <Route path="*" element={<div className="text-center text-xl font-bold mt-10">Protected Route: 404 Not Found or Unauthorized Access</div>} />
+            </Route>
+
+            {/* Catch-all for any other routes not matched by PublicLayout or AuthenticatedLayout */}
+            <Route path="/home-dashboard" element={<DashboardHome />} />
+            <Route path="*" element={<div className="text-center text-xl font-bold mt-10">404 Not Found</div>} />
+        </Routes>
+    );
+};
+
+/**
+ * Root App component, providing AuthProvider and ThemeProvider context.
+ */
 const App = () => (
-  <Router>
-    <AuthProvider>
-      <ThemeProvider>
-        <AppContent />
-      </ThemeProvider>
-    </AuthProvider>
-  </Router>
+    <Router>
+        <AuthProvider>
+            <ThemeProvider>
+                <AppContent />
+            </ThemeProvider>
+        </AuthProvider>
+    </Router>
 );
 
 export default App;

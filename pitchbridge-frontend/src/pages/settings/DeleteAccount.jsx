@@ -1,9 +1,8 @@
-// src/pages/settings/DeleteAccount.jsx
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../config';
 import { Trash2, Loader2, CheckCircle, XCircle, ChevronLeft } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
+import { Link, useNavigate } from 'react-router-dom';
 
 const DeleteAccount = () => {
     const [password, setPassword] = useState('');
@@ -12,7 +11,7 @@ const DeleteAccount = () => {
     const [messageType, setMessageType] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState({});
-    const navigate = useNavigate(); // For redirecting after successful deletion
+    const navigate = useNavigate();
 
     useEffect(() => {
         const style = document.createElement('style');
@@ -95,7 +94,7 @@ const DeleteAccount = () => {
             setMessage(res.data.message || 'Account deleted successfully. Redirecting...');
             setMessageType('success');
             localStorage.removeItem('token'); // Clear token on successful deletion
-            localStorage.removeItem('user');   // Clear user data
+            localStorage.removeItem('user');  // Clear user data
             setTimeout(() => navigate('/login'), 3000); // Redirect to login after 3 seconds
         } catch (err) {
             const errorMsg = err.response?.data?.message || 'Error deleting account. Please try again.';
@@ -108,9 +107,10 @@ const DeleteAccount = () => {
 
     return (
         <div className="min-h-screen flex items-center justify-center p-6 bg-gray-100 dark:bg-gray-900 relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-64 h-64 bg-slate-300 dark:bg-slate-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-            <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-stone-300 dark:bg-stone-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-            <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-gray-300 dark:bg-gray-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+            {/* Background blobs updated to match ChangeUsername.jsx */}
+            <div className="absolute top-0 left-0 w-64 h-64 bg-yellow-300 dark:bg-yellow-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
+            <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-orange-300 dark:bg-orange-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
+            <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-lime-300 dark:bg-lime-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
 
             <div className="relative z-10 w-full max-w-md bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-8 md:p-10 animate-fade-in border border-gray-200 dark:border-gray-700">
                 <div className="text-center mb-8">
@@ -135,9 +135,9 @@ const DeleteAccount = () => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent
-                                          bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white
-                                          ${errors.password ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'}
-                                         `}
+                                         bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white
+                                         ${errors.password ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'}
+                                        `}
                             aria-invalid={errors.password ? "true" : "false"}
                             aria-describedby={errors.password ? "password-error" : undefined}
                             disabled={isLoading}
@@ -158,9 +158,9 @@ const DeleteAccount = () => {
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent
-                                          bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white
-                                          ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'}
-                                         `}
+                                         bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white
+                                         ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'}
+                                        `}
                             aria-invalid={errors.confirmPassword ? "true" : "false"}
                             aria-describedby={errors.confirmPassword ? "confirm-password-error" : undefined}
                             disabled={isLoading}
@@ -173,13 +173,13 @@ const DeleteAccount = () => {
                     <button
                         type="submit"
                         className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-white
-                                      transition-all duration-300 ease-in-out
-                                      ${isLoading
-                                          ? 'bg-red-400 dark:bg-red-600 cursor-not-allowed'
-                                          : 'bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800'
-                                      }
-                                      transform hover:scale-[1.005]
-                                     `}
+                                    transition-all duration-300 ease-in-out
+                                    ${isLoading
+                                        ? 'bg-red-400 dark:bg-red-600 cursor-not-allowed'
+                                        : 'bg-red-600 hover:bg-red-700 dark:bg-red-700 dark:hover:bg-red-800'
+                                    }
+                                    transform hover:scale-[1.005]
+                                    `}
                         disabled={isLoading}
                     >
                         {isLoading ? (

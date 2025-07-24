@@ -1,13 +1,21 @@
 /* src/index.css */
-
-/* Tailwind CSS Directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Add this to prevent horizontal scrolling globally */
+html, body {
+  overflow-x: hidden;
+  /* Optional: Ensure they take full width, though usually default */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 /* Smooth transition for theme changes */
 html {
-  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+  /* Applying transition directly on properties that change with theme */
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
 }
 
 /* --- Theme Variables --- */
@@ -18,19 +26,22 @@ html {
   --color-bg: #f3f4f6; /* gray-100 */
   --color-section-bg: #ffffff; /* white */
   --color-heading-primary: #111827; /* gray-900 */
-  --color-text: #d0d3d4; /* gray-700 */
-  --color-text-secondary: #070000; /* gray-500 */
+  --color-text: #1f2937; /* gray-800 - Adjusted for better contrast in light mode */
+  --color-text-secondary: #4b5563; /* gray-600 - Adjusted for better contrast */
 
   /* Navigation Bar Colors */
-  --color-nav-bg: rgba(255, 255, 255, 0.8); /* White with transparency for backdrop-blur */
+  --color-nav-bg: rgba(255, 255, 255, 0.9); /* White with slight transparency for backdrop-blur */
   --color-border: #e5e7eb; /* gray-200 */
 
   /* Hero Section Specific Colors */
   --color-hero-bg: #f3f4f6; /* Used for the underlying background of the hero section */
   --color-hero-heading: #111827; /* Darker heading for light hero */
-  --color-hero-text: #c7ccd4; /* Darker text for light hero */
+  --color-hero-text: #4b5563; /* Darker text for light hero */
 
   /* Button Colors (e.g., secondary buttons, outlines) */
+  --color-button-primary-bg: #3b82f6; /* Blue 600 */
+  --color-button-primary-hover: #2563eb; /* Blue 700 */
+
   --color-button-secondary-bg: #e0f2fe; /* blue-100 */
   --color-button-secondary-text: #1d4ed8; /* blue-700 */
   --color-button-secondary-hover: #bfdbfe; /* blue-200 */
@@ -41,63 +52,66 @@ html {
   --color-card-bg: #ffffff; /* Default card background */
   --color-card-bg-light: #fbfaf9; /* Lighter card background (e.g., "Why Choose" cards) */
   --color-card-hover-bg-light: #f3f4f6; /* Hover state for lighter cards */
-  --color-input-bg: #353333; /* Input field background */
+  --color-input-bg: #f1f5f9; /* Input field background (light gray) */
   --color-progress-bar-bg: #e5e7eb; /* Background for progress bars */
 
   /* How It Works Section Specifics */
   --color-heading-step: #4b5563; /* Step numbers/titles in light mode */
-  --color-step-arrow: #464b54; /* Arrow color in light mode */
+  --color-step-arrow: #cbd5e1; /* Arrow color in light mode */
 
-  /* Stats Icons - Often remain vibrant */
-  --color-theme-stat-number: #1f2937; /* gray-800 */
-  --color-theme-stat-label: #4b5563; /* gray-600 */
-  --color-theme-stat-icon-bg: #a3c5f1; /* blue-200 */
-  --color-theme-stat-icon-color: #2d4cb1; /* blue-800 */
-  --color-theme-stat-icon-hover-bg: #bfdbfe; /* blue-300 */
+  /* Stats Icons - Consistent naming with tailwind.config.js now */
+  --color-stat-number: #1f2937; /* gray-800 */
+  --color-stat-label: #4b5563; /* gray-600 */
+  --color-stat-icon-bg: #e0f2fe; /* blue-100 (light) */
+  --color-stat-icon-color: #2563eb; /* blue-700 (light) */
+  --color-stat-icon-hover-bg: #bfdbfe; /* blue-200 (light) */
 }
 
 /* Dark Theme Overrides */
 html[data-theme='dark'] {
   /* General Background and Text Colors */
-  --color-bg: #1f2937; /* gray-800 */
-  --color-section-bg: #111827; /* gray-900 */
-  --color-heading-primary: #f9fafb; /* gray-50 */
-  --color-text: #fbf8f8; /* gray-300 */
-  --color-text-secondary: #e7e8eb; /* gray-400 */
+  --color-bg: #0f172a; /* slate-900 */
+  --color-section-bg: #1e293b; /* slate-800 */
+  --color-heading-primary: #f8fafc; /* slate-50 */
+  --color-text: #e2e8f0; /* slate-200 */
+  --color-text-secondary: #94a3b8; /* slate-400 */
 
   /* Navigation Bar Colors */
-  --color-nav-bg: rgba(17, 24, 39, 0.8); /* gray-900 with transparency */
-  --color-border: #374151; /* gray-700 */
+  --color-nav-bg: rgba(15, 23, 42, 0.9); /* slate-900 with transparency */
+  --color-border: #334155; /* slate-700 */
 
   /* Hero Section Specific Colors */
-  --color-hero-bg: #1f2937; /* Underlying background for dark hero */
-  --color-hero-heading: #f9fafb; /* Lighter heading for dark hero */
-  --color-hero-text: #d1d5db; /* Lighter text for dark hero */
+  --color-hero-bg: #0f172a; /* slate-900 */
+  --color-hero-heading: #f8fafc; /* slate-50 */
+  --color-hero-text: #cbd5e1; /* slate-300 */
 
   /* Button Colors */
-  --color-button-secondary-bg: #1e3a8a; /* blue-900 */
-  --color-button-secondary-text: #93c5fd; /* blue-300 */
-  --color-button-secondary-hover: #172554; /* blue-950 */
-  --color-button-secondary-border: #4b5563; /* gray-600 - if you use an explicit border color */
+  --color-button-primary-bg: #6366f1; /* Indigo 500 */
+  --color-button-primary-hover: #4f46e5; /* Indigo 600 */
+
+  --color-button-secondary-bg: #1e293b; /* slate-800 */
+  --color-button-secondary-text: #a78bfa; /* violet-400 */
+  --color-button-secondary-hover: #334155; /* slate-700 */
+  --color-button-secondary-border: #475569; /* slate-600 */
   --color-button-secondary-hover-alt: rgba(255, 255, 255, 0.1); /* Alternative hover for outlined buttons */
 
   /* Card and Input Elements */
-  --color-card-bg: #111827; /* Default card background */
-  --color-card-bg-light: #1f2937; /* Lighter card background */
-  --color-card-hover-bg-light: #374151; /* Hover state for lighter cards */
-  --color-input-bg: #111827; /* Input field background */
-  --color-progress-bar-bg: #374151; /* Background for progress bars */
+  --color-card-bg: #1e293b; /* slate-800 */
+  --color-card-bg-light: #334155; /* slate-700 */
+  --color-card-hover-bg-light: #475569; /* slate-600 */
+  --color-input-bg: #111827; /* gray-900 */
+  --color-progress-bar-bg: #475569; /* slate-600 */
 
   /* How It Works Section Specifics */
-  --color-heading-step: #d1d5db; /* Step numbers/titles in dark mode */
-  --color-step-arrow: #6b7280; /* Arrow color in dark mode */
+  --color-heading-step: #cbd5e1; /* slate-300 */
+  --color-step-arrow: #475569; /* slate-600 */
 
-  /* Stats Icons */
-  --color-theme-stat-number: #f8fafc; /* Changed to slate-50 (very light white) */
-  --color-theme-stat-label: #aeb9c5; /* Changed to a lighter slate-400 equivalent */
-  --color-theme-stat-icon-bg: #0e0f0f; /* slate-700 */
-  --color-theme-stat-icon-color: #f5f1f1; /* blue-300 */
-  --color-theme-stat-icon-hover-bg: #b2c0d3; /* slate-600 */
+  /* Stats Icons - Consistent naming with tailwind.config.js now */
+  --color-stat-number: #f1f5f9; /* slate-100 */
+  --color-stat-label: #cbd5e1; /* slate-300 */
+  --color-stat-icon-bg: #334155; /* slate-700 (dark) */
+  --color-stat-icon-color: #818cf8; /* indigo-400 (dark) */
+  --color-stat-icon-hover-bg: #475569; /* slate-600 (dark) */
 }
 
 /* Optional: Keyframe animations */
@@ -109,42 +123,87 @@ html[data-theme='dark'] {
   animation: fadeIn 0.5s ease-out forwards;
 }
 
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height for horizontal scrollbar (less common for vertical) */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-bg); /* Use theme background color for track */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888; /* Default thumb color */
+  border-radius: 10px;
+}
+
+/* Dark mode scrollbar thumb */
+html[data-theme='dark'] .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #555; /* Darker thumb for dark mode */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Lighter hover for default */
+}
+
+html[data-theme='dark'] .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #777; /* Lighter hover for dark mode */
+}
+
+
+/* For Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: #888 var(--color-bg); /* thumb color track color */
+}
+
+html[data-theme='dark'] .custom-scrollbar {
+  scrollbar-color: #555 var(--color-bg);
+}
+
+
 /* Tailwind CSS utility classes using CSS variables */
-.bg-color-bg { @apply bg-[var(--color-bg)]; }
-.bg-color-section-bg { @apply bg-[var(--color-section-bg)]; }
-.text-heading-primary { @apply text-[var(--color-heading-primary)]; }
-.text-color-text { @apply text-[var(--color-text)]; }
-.text-text-secondary { @apply text-[var(--color-text-secondary)]; }
+/* Using the exact names from tailwind.config.js 'theme' object */
+/* Remember, in your JSX, you'd use classes like 'bg-theme-bg', 'text-theme-text' etc. */
 
-.bg-color-nav-bg { @apply bg-[var(--color-nav-bg)]; }
-.border-color-border { @apply border-[var(--color-border)]; }
+.bg-theme-bg { @apply bg-[var(--color-bg)]; }
+.bg-theme-section-bg { @apply bg-[var(--color-section-bg)]; }
+.text-theme-heading-primary { @apply text-[var(--color-heading-primary)]; }
+.text-theme-text { @apply text-[var(--color-text)]; }
+.text-theme-text-secondary { @apply text-[var(--color-text-secondary)]; }
 
-.bg-color-hero-bg { @apply bg-[var(--color-hero-bg)]; }
-.text-color-hero-heading { @apply text-[var(--color-hero-heading)]; }
-.text-color-hero-text { @apply text-[var(--color-hero-text)]; }
+.bg-theme-nav-bg { @apply bg-[var(--color-nav-bg)]; }
+.border-theme-border { @apply border-[var(--color-border)]; }
 
-/* These are the utility classes that will now correctly apply the themed stat colors */
-.text-theme-stat-number { @apply text-[var(--color-theme-stat-number)]; }
-.text-theme-stat-label { @apply text-[var(--color-theme-stat-label)]; }
+.bg-theme-hero-bg { @apply bg-[var(--color-hero-bg)]; }
+.text-theme-hero-heading { @apply text-[var(--color-hero-heading)]; }
+.text-theme-hero-text { @apply text-[var(--color-hero-text)]; }
 
+/* Button classes */
+.bg-theme-button-primary-bg { @apply bg-[var(--color-button-primary-bg)]; }
+.hover\:bg-theme-button-primary-hover { @apply hover:bg-[var(--color-button-primary-hover)]; }
 
-.bg-color-button-secondary-bg { @apply bg-[var(--color-button-secondary-bg)]; }
-.text-color-button-secondary-text { @apply text-[var(--color-button-secondary-text)]; }
-.hover\:bg-color-button-secondary-hover { @apply hover:bg-[var(--color-button-secondary-hover)]; }
-.border-color-button-secondary-border { @apply border-[var(--color-button-secondary-border)]; }
-.hover\:bg-color-button-secondary-hover-alt { @apply hover:bg-[var(--color-button-secondary-hover-alt)]; }
-
-
-.bg-color-card-bg { @apply bg-[var(--color-card-bg)]; }
-.bg-color-card-bg-light { @apply bg-[var(--color-card-bg-light)]; }
-.hover\:bg-color-card-hover-bg-light { @apply hover:bg-[var(--color-card-hover-bg-light)]; }
-.bg-color-input-bg { @apply bg-[var(--color-input-bg)]; }
-.bg-color-progress-bar-bg { @apply bg-[var(--color-progress-bar-bg)]; }
-
-.text-color-heading-step { @apply text-[var(--color-heading-step)]; }
-.text-color-step-arrow { @apply text-[var(--color-step-arrow)]; }
+.bg-theme-button-secondary-bg { @apply bg-[var(--color-button-secondary-bg)]; }
+.text-theme-button-secondary-text { @apply text-[var(--color-button-secondary-text)]; }
+.hover\:bg-theme-button-secondary-hover { @apply hover:bg-[var(--color-button-secondary-hover)]; }
+.border-theme-button-secondary-border { @apply border-[var(--color-button-secondary-border)]; }
+.hover\:bg-theme-button-secondary-hover-alt { @apply hover:bg-[var(--color-button-secondary-hover-alt)]; }
 
 
-.bg-theme-stat-icon-bg { @apply bg-[var(--color-theme-stat-icon-bg)]; }
-.text-theme-stat-icon-color { @apply text-[var(--color-theme-stat-icon-color)]; }
-.group-hover\:bg-theme-stat-icon-hover-bg { @apply group-hover:bg-[var(--color-theme-stat-icon-hover-bg)]; }
+.bg-theme-card-bg { @apply bg-[var(--color-card-bg)]; }
+.bg-theme-card-bg-light { @apply bg-[var(--color-card-bg-light)]; }
+.hover\:bg-theme-card-hover-bg-light { @apply hover:bg-[var(--color-card-hover-bg-light)]; }
+.bg-theme-input-bg { @apply bg-[var(--color-input-bg)]; }
+.bg-theme-progress-bar-bg { @apply bg-[var(--color-progress-bar-bg)]; }
+
+.text-theme-heading-step { @apply text-[var(--color-heading-step)]; }
+.text-theme-step-arrow { @apply text-[var(--color-step-arrow)]; }
+
+/* Stat Icons - Now consistent with the new naming */
+.bg-theme-stat-icon-bg { @apply bg-[var(--color-stat-icon-bg)]; }
+.text-theme-stat-icon-color { @apply text-[var(--color-stat-icon-color)]; }
+.group-hover\:bg-theme-stat-icon-hover-bg { @apply group-hover:bg-[var(--color-stat-icon-hover-bg)]; }
+.text-theme-stat-number { @apply text-[var(--color-stat-number)]; } /* Changed prefix to theme- for consistency in JSX */
+.text-theme-stat-label { @apply text-[var(--color-stat-label)]; } /* Changed prefix to theme- for consistency in JSX */

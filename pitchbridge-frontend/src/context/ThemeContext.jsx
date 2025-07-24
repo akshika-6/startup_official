@@ -1,32 +1,20 @@
 // src/context/ThemeContext.jsx
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-const ThemeContext = createContext();
+const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
+  // Initialize theme from localStorage or default to 'light'
   const [theme, setTheme] = useState(() => {
-    // Try to get theme from localStorage, default to 'light'
-    const storedTheme = localStorage.getItem('theme');
-    // Check for user's system preference if no theme is stored
-    if (storedTheme) {
-      return storedTheme;
-    }
-    // Fallback to system preference if no stored theme
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      ? 'dark'
-      : 'light';
+    const savedTheme = localStorage.getItem('theme');
+    return savedTheme ? savedTheme : 'light';
   });
 
+  // Effect to update the 'data-theme' attribute on the <html> element
   useEffect(() => {
-    const root = window.document.documentElement; // Get the <html> element
-    if (theme === 'dark') {
-      root.classList.add('dark'); // Add the 'dark' class
-      localStorage.setItem('theme', 'dark'); // Save preference
-    } else {
-      root.classList.remove('dark'); // Remove the 'dark' class
-      localStorage.setItem('theme', 'light'); // Save preference
-    }
-  }, [theme]); // Re-run effect when theme changes
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme); // Save theme preference
+  }, [theme]);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
@@ -41,7 +29,7 @@ export const ThemeProvider = ({ children }) => {
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
-  if (context === undefined) { // Or `if (!context)` works too
+  if (!context) {
     throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;

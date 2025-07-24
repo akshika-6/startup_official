@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Loader2, LogOut as LogOutIcon, CheckCircle, XCircle } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const Logout = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
   const [message, setMessage] = useState('Are you sure you want to log out?');
   const [messageType, setMessageType] = useState('prompt'); // 'prompt', 'info', 'success', 'error'
   const [isLoading, setIsLoading] = useState(false); // Initially not loading, waiting for user input

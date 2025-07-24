@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link, useLocation } from 'react-router-dom'; // Import useLocation for active link
-import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion'; // Import AnimatePresence for modal animations
 import { API_BASE_URL } from "../config";
 
-// Lucide icons
-import {
-  Search, XCircle, User, Mail, MapPin, Briefcase, Filter, RefreshCcw, X, ChevronDown,
-  LayoutDashboard, Rocket, DollarSign, User as UserIcon // Renamed User to UserIcon to avoid conflict
-} from 'lucide-react';
+// Lucide icons for a polished look
+import { Search, XCircle, User, Mail, MapPin, Briefcase, Filter, RefreshCcw, X, ChevronDown } from 'lucide-react';
 
 const ExploreInvestors = () => {
   const [investors, setInvestors] = useState([]);
@@ -19,9 +16,9 @@ const ExploreInvestors = () => {
   // Filter states
   const [showFilterModal, setShowFilterModal] = useState(false);
   const [availableRegions, setAvailableRegions] = useState([]);
-  const [selectedRegion, setSelectedRegion] = useState('');
+  const [selectedRegion, setSelectedRegion] = useState(''); // Changed to single select
   const [availableRoles, setAvailableRoles] = useState([]);
-  const [selectedRole, setSelectedRole] = useState('');
+  const [selectedRole, setSelectedRole] = useState(''); // Changed to single select
 
   // New filter states for demonstration
   const [availableStages, setAvailableStages] = useState([]);
@@ -30,8 +27,6 @@ const ExploreInvestors = () => {
   const [selectedIndustry, setSelectedIndustry] = useState('');
   const [availableDealSizes, setAvailableDealSizes] = useState([]);
   const [selectedDealSize, setSelectedDealSize] = useState('');
-
-  const location = useLocation(); // To highlight active link in simulated sidebar
 
   useEffect(() => {
     const fetchInvestors = async () => {
@@ -60,7 +55,7 @@ const ExploreInvestors = () => {
         if (response.data && Array.isArray(response.data.data)) {
           let fetchedInvestors = response.data.data;
 
-          // --- START: ADDING DUMMY DATA FOR DEMO PURPOSES FOR NEW FILTERS ---
+          // --- START: ADDING DUMMY DATA FOR DEMO PURPOSES ---
           // In a real application, these fields (investmentStage, industry, preferredDealSize)
           // would come directly from your backend API response for each investor.
           const stages = ['Seed', 'Series A', 'Series B', 'Series C', 'Growth', 'Public'];
@@ -69,6 +64,7 @@ const ExploreInvestors = () => {
 
           fetchedInvestors = fetchedInvestors.map(inv => ({
             ...inv,
+            // Assign a random dummy value if the field doesn't exist
             investmentStage: inv.investmentStage || stages[Math.floor(Math.random() * stages.length)],
             industry: inv.industry || industries[Math.floor(Math.random() * industries.length)],
             preferredDealSize: inv.preferredDealSize || dealSizes[Math.floor(Math.random() * dealSizes.length)],
@@ -93,7 +89,7 @@ const ExploreInvestors = () => {
         } else if (Array.isArray(response.data)) {
           // Fallback if data is directly an array (less common for API responses)
           let fetchedInvestors = response.data;
-          // You might need to augment dummy data here too if this branch is hit
+          // Apply dummy data augmentation here too if necessary
           setInvestors(fetchedInvestors);
           // Extract unique filters from this format as well
           const uniqueRegions = [...new Set(fetchedInvestors.map(inv => inv.location).filter(Boolean))].sort();
@@ -136,14 +132,23 @@ const ExploreInvestors = () => {
     setSelectedStage('');
     setSelectedIndustry('');
     setSelectedDealSize('');
+    // Optionally, close the modal after clearing
+    // setShowFilterModal(false);
   };
 
   // Combine search and filter logic
   const filteredInvestors = investors.filter((inv) => {
     const lowerCaseSearchQuery = searchQuery.toLowerCase();
 
-    // ONLY FILTER BY NAME as per request (1)
-    const matchesSearch = inv.name?.toLowerCase().includes(lowerCaseSearchQuery);
+    const matchesSearch =
+      inv.name?.toLowerCase().includes(lowerCaseSearchQuery) ||
+      inv.email?.toLowerCase().includes(lowerCaseSearchQuery) ||
+      inv.location?.toLowerCase().includes(lowerCaseSearchQuery) ||
+      inv.role?.toLowerCase().includes(lowerCaseSearchQuery) ||
+      inv.investmentStage?.toLowerCase().includes(lowerCaseSearchQuery) || // Search new fields
+      inv.industry?.toLowerCase().includes(lowerCaseSearchQuery) ||
+      inv.preferredDealSize?.toLowerCase().includes(lowerCaseSearchQuery);
+
 
     const matchesRegion = selectedRegion === '' || inv.location === selectedRegion;
     const matchesRole = selectedRole === '' || inv.role === selectedRole;
@@ -154,7 +159,7 @@ const ExploreInvestors = () => {
     return matchesSearch && matchesRegion && matchesRole && matchesStage && matchesIndustry && matchesDealSize;
   });
 
-  // Framer Motion variants
+  // Framer Motion variants for staggered list animations
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -180,67 +185,38 @@ const ExploreInvestors = () => {
   };
 
   return (
-    <div className="relative min-h-screen flex">
-      {/* Background Gradient & Animated Shapes (remains behind sidebar and main content) */}
+    <div className="relative min-h-screen flex"> {/* Changed to flex for sidebar layout */}
+      {/* Background Gradient & Animated Shapes */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-950 dark:via-purple-950 dark:to-blue-950 z-0">
         <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-blue-300 dark:bg-blue-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
         <div className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-pink-300 dark:bg-purple-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 h-1/3 bg-purple-300 dark:bg-pink-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
       </div>
 
-      {/* --- SIMULATED DASHBOARD SIDEBAR (REPLACE WITH YOUR ACTUAL Sidebar.jsx) --- */}
+      {/* Dashboard-like Sidebar (Placeholder - you'd integrate your actual dashboard sidebar here) */}
+      {/* For a true dashboard layout, this part would likely be in a parent layout component */}
       <aside className="relative z-20 w-64 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-xl border-r border-white/30 dark:border-gray-700/50 flex-shrink-0
                       hidden md:flex flex-col py-8 px-4 overflow-y-auto">
-        <div className="text-3xl font-extrabold text-gray-900 dark:text-white mb-10 text-center">
-          PitchBridge
+        <div className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+          Investify Pro
         </div>
         <nav className="flex-1 space-y-2">
-          {/* Example Nav Links - adapt to your actual routes */}
-          <Link
-            to="/dashboard"
-            className={`flex items-center p-3 rounded-lg text-lg font-medium transition-colors duration-200
-              ${location.pathname === '/dashboard'
-                ? 'bg-blue-50 dark:bg-gray-700/50 text-blue-700 dark:text-blue-300'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800 hover:text-blue-700 dark:hover:text-blue-300'
-              }`}
-          >
-            <LayoutDashboard className="mr-3 h-6 w-6" /> Dashboard
+          {/* Example Nav Links - replace with your actual sidebar links */}
+          <Link to="/dashboard" className="flex items-center p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200">
+            <span className="mr-3">📊</span> Dashboard
           </Link>
-          <Link
-            to="/startups"
-            className={`flex items-center p-3 rounded-lg text-lg font-medium transition-colors duration-200
-              ${location.pathname === '/startups'
-                ? 'bg-blue-50 dark:bg-gray-700/50 text-blue-700 dark:text-blue-300'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800 hover:text-blue-700 dark:hover:text-blue-300'
-              }`}
-          >
-            <Rocket className="mr-3 h-6 w-6" /> Explore Startups
+          <Link to="/startups" className="flex items-center p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200">
+            <span className="mr-3">🚀</span> Explore Startups
           </Link>
-          <Link
-            to="/investors"
-            className={`flex items-center p-3 rounded-lg text-lg font-medium transition-colors duration-200
-              ${location.pathname === '/investors'
-                ? 'bg-blue-50 dark:bg-gray-700/50 text-blue-700 dark:text-blue-300'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800 hover:text-blue-700 dark:hover:text-blue-300'
-              }`}
-          >
-            <DollarSign className="mr-3 h-6 w-6" /> Explore Investors
+          <Link to="/investors" className="flex items-center p-3 rounded-lg text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-gray-700/50 font-semibold">
+            <span className="mr-3">💰</span> Explore Investors
           </Link>
-          <Link
-            to="/profile"
-            className={`flex items-center p-3 rounded-lg text-lg font-medium transition-colors duration-200
-              ${location.pathname === '/profile'
-                ? 'bg-blue-50 dark:bg-gray-700/50 text-blue-700 dark:text-blue-300'
-                : 'text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800 hover:text-blue-700 dark:hover:text-blue-300'
-              }`}
-          >
-            <UserIcon className="mr-3 h-6 w-6" /> My Profile
+          <Link to="/profile" className="flex items-center p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200">
+            <span className="mr-3">👤</span> My Profile
           </Link>
-          {/* Add more links as per your actual Sidebar.jsx */}
+          {/* More links */}
         </nav>
       </aside>
-      {/* --- END SIMULATED DASHBOARD SIDEBAR --- */}
-
 
       {/* Main Content Area */}
       <main className="relative z-10 flex-1 px-4 sm:px-6 lg:px-8 py-8 md:py-12 overflow-y-auto">
@@ -271,11 +247,11 @@ const ExploreInvestors = () => {
           >
             <div className="relative w-full max-w-lg sm:max-w-md flex-1">
               <input
-              type="text"
-              placeholder="Search investors by name.."
-              value={searchQuery}
-              onChange={(e)=>setSearchQuery(e.target.value)}
-              ClassName="w-full px-6 py-3 pl-12 border border-gray-300 dark:border-gray-700 rounded-full bg-white dark:bg-gray-800 text-lg text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-3 focus:ring-blue-500/50 shadow-md"
+                type="text"
+                placeholder="Search investors by name, email, location, or role..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-6 py-3 pl-12 border border-gray-300 dark:border-gray-700 rounded-full bg-white dark:bg-gray-800 text-lg text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-3 focus:ring-blue-500/50 shadow-md"
               />
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 h-6 w-6" />
             </div>

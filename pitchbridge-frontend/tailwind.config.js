@@ -1,14 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: 'class', // Keep this if you're using data-theme="dark" on <html>
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
-      colors: { // <--- ADD THIS 'colors' OBJECT
-        theme: { // <--- AND THIS 'theme' OBJECT
+      spacing: {
+        sidebarWidthDesktop: '16rem', // Now usable as ml-sidebarWidthDesktop
+      },
+      colors: {
+        theme: {
           'nav-bg': 'var(--color-nav-bg)',
           'border': 'var(--color-border)',
           'heading-primary': 'var(--color-heading-primary)',
