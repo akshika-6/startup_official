@@ -1155,6 +1155,8 @@ const handleSave = async () => {
     };
 const handleSave = async () => {
         setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
         setIsLoading(true);
         try {
             const updatedData = {
@@ -1163,28 +1165,4466 @@ const handleSave = async () => {
                 bio,
                 linkedin,
                 location,
-            };
-
-            c
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
             setTimeout(() => setStatusMessage(''), 3000);
         }
     };
-
-    const CLOUD_NAME = "ddz1j7qtz";
-    const UPLOAD_PRESET = "profilePhoto";
-
-    const handleImageChange = async (event) => {
-        const file = event.target.files[0];
-        if (!file) return;
-
-        if (file.size > 2 * 1024 * 1024) {
-            setStatusMessage("File too large. Please choose an image under 2MB.");
-            return;
-        }
-
-        setIsLoading1(true);
-        setStatusMessage("Uploading picture...");
-
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
         try {
-            const data = await res.json();
-    }; */
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+        } finally {
+            setIsLoading1(false);
+            setTimeout(() => setStatusMessage(''), 3000);
+        }
+    };
+const handleSave = async () => {
+        setStatusMessage('');
+        setIsLoading(true);
+        try {
+            const updatedData = {
+                name,
+                email,
+                bio,
+                linkedin,
+                location,
+        } catch (err) {
+            console.error("Error during image upload:", err);
+       */
