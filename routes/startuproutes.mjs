@@ -46,6 +46,13 @@ router.post(
 // GET /api/startups
 router.get('/', getAllStartups);
 
+
+
+router.get('/my', protect, getMyStartups);
+
+
+
+
 // GET /api/startups/:id
 router.get(
   '/:id',
@@ -54,8 +61,6 @@ router.get(
   getStartupById
 );
 
-
-router.get('/my', protect, getMyStartups);
 
 
 
