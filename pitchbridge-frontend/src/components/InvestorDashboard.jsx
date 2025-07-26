@@ -227,47 +227,47 @@ const InvestorDashboard = () => {
                 Welcome back! Your personalized overview of investment opportunities and portfolio performance.
             </p>
 
-            {/* Quick Stats & Actions Grid */}
+            {/* Quick Stats & Actions Grid - Keeping them non-clickable as per previous request */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                 {/* Stat Card: Total Portfolio Value */}
-                <Link to="/portfolio" className="bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 dark:from-green-700 dark:to-teal-800 dark:hover:from-green-800 dark:hover:to-teal-900 p-5 rounded-xl shadow-lg text-white transform hover:scale-[1.03] transition-all duration-300 ease-in-out block cursor-pointer">
+                <div className="bg-gradient-to-r from-green-500 to-teal-600 dark:from-green-700 dark:to-teal-800 p-5 rounded-xl shadow-lg text-white transform transition-all duration-300 ease-in-out">
                     <div className="flex items-center justify-between mb-2">
                         <DollarSign size={24} className="text-white/80" />
                         <span className="text-sm font-semibold">Total Portfolio Value</span>
                     </div>
                     <p className="text-3xl font-bold">${(portfolioStats.currentValue / 1000000).toFixed(1)}M</p>
                     <p className="text-sm text-white/80">+{portfolioStats.roi.toFixed(1)}% ROI</p>
-                </Link>
+                </div>
 
                 {/* Stat Card: Active Investments */}
-                <Link to="/portfolio/active" className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 dark:from-blue-700 dark:to-indigo-800 dark:hover:from-blue-800 dark:hover:to-indigo-900 p-5 rounded-xl shadow-lg text-white transform hover:scale-[1.03] transition-all duration-300 ease-in-out block cursor-pointer">
+                <div className="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-700 dark:to-indigo-800 p-5 rounded-xl shadow-lg text-white transform transition-all duration-300 ease-in-out">
                     <div className="flex items-center justify-between mb-2">
                         <Layers className="text-white/80" size={24} />
                         <span className="text-sm font-semibold">Active Investments</span>
                     </div>
                     <p className="text-3xl font-bold">{portfolioStats.activeInvestments}</p>
                     <p className="text-sm text-white/80">{portfolioStats.exitedInvestments} Exited</p>
-                </Link>
+                </div>
 
                 {/* Stat Card: New Opportunities */}
-                <Link to="/opportunities" className="bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 dark:from-purple-700 dark:to-pink-800 dark:hover:from-purple-800 dark:hover:to-pink-900 p-5 rounded-xl shadow-lg text-white transform hover:scale-[1.03] transition-all duration-300 ease-in-out block cursor-pointer">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-600 dark:from-purple-700 dark:to-pink-800 p-5 rounded-xl shadow-lg text-white transform transition-all duration-300 ease-in-out">
                     <div className="flex items-center justify-between mb-2">
                         <Lightbulb size={24} className="text-white/80" />
                         <span className="text-sm font-semibold">New Opportunities</span>
                     </div>
                     <p className="text-3xl font-bold">{opportunitiesStats.newOpportunities}</p>
                     <p className="text-sm text-white/80">{opportunitiesStats.trendingStartups} Trending Startups</p>
-                </Link>
+                </div>
 
                 {/* Stat Card: Active Deals */}
-                <Link to="/deal-flow" className="bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-600 hover:to-orange-700 dark:from-yellow-700 dark:to-orange-800 dark:hover:from-yellow-800 dark:hover:to-orange-900 p-5 rounded-xl shadow-lg text-white transform hover:scale-[1.03] transition-all duration-300 ease-in-out block cursor-pointer">
+                <div className="bg-gradient-to-r from-yellow-500 to-orange-600 dark:from-yellow-700 dark:to-orange-800 p-5 rounded-xl shadow-lg text-white transform transition-all duration-300 ease-in-out">
                     <div className="flex items-center justify-between mb-2">
                         <TrendingUp size={24} className="text-white/80" />
                         <span className="text-sm font-semibold">Active Deals</span>
                     </div>
                     <p className="text-3xl font-bold">{dealFlowStats.activeDeals}</p>
                     <p className="text-sm text-white/80">{dealFlowStats.dueDiligence} In Due Diligence</p>
-                </Link>
+                </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -405,12 +405,12 @@ const InvestorDashboard = () => {
                             ))}
                         </ul>
                         <Link
-                            to="/activity"
-                            className="mt-6 w-full px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 shadow-md flex items-center justify-center text-center"
-                        >
-                            <Eye className="mr-2" size={20} />
-                            View All Activity
-                        </Link>
+    to="/notifications" 
+    className="mt-6 w-full px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 shadow-md flex items-center justify-center text-center"
+>
+    <Eye className="mr-2" size={20} />
+    View All Activity
+</Link>
                     </div>
 
                     {/* Section: Quick Sec (Redesigned with new items) */}
@@ -422,7 +422,7 @@ const InvestorDashboard = () => {
                         <div className="space-y-4">
                             {/* Item 1: Profile */}
                             <Link
-                                to="/profile"
+                                to="/profile" 
                                 className="flex items-center px-4 py-3 bg-blue-100 hover:bg-blue-200 dark:bg-gray-800 dark:hover:bg-gray-600 rounded-lg shadow-sm transition-colors duration-200 text-gray-900 dark:text-white font-medium"
                             >
                                 <User className="mr-3 text-blue-600 dark:text-blue-400" size={20} />
@@ -431,7 +431,7 @@ const InvestorDashboard = () => {
 
                             {/* Item 2: New Opportunity */}
                             <Link
-                                to="/new-opportunity"
+                                to="/startups"
                                 className="flex items-center px-4 py-3 bg-green-100 hover:bg-green-200 dark:bg-gray-800 dark:hover:bg-gray-600 rounded-lg shadow-sm transition-colors duration-200 text-gray-900 dark:text-white font-medium"
                             >
                                 <Briefcase className="mr-3 text-green-600 dark:text-green-400" size={20} />
@@ -440,7 +440,7 @@ const InvestorDashboard = () => {
 
                             {/* Item 3: Add Deals */}
                             <Link
-                                to="/add-deals"
+                                to="/my-investments" 
                                 className="flex items-center px-4 py-3 bg-purple-100 hover:bg-purple-200 dark:bg-gray-800 dark:hover:bg-gray-600 rounded-lg shadow-sm transition-colors duration-200 text-gray-900 dark:text-white font-medium"
                             >
                                 <Handshake className="mr-3 text-purple-600 dark:text-purple-400" size={20} />
@@ -449,7 +449,7 @@ const InvestorDashboard = () => {
 
                             {/* Item 4: Settings */}
                             <Link
-                                to="/settings"
+                                to="/settings" 
                                 className="flex items-center px-4 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-600 rounded-lg shadow-sm transition-colors duration-200 text-gray-900 dark:text-white font-medium"
                             >
                                 <Settings className="mr-3 text-gray-600 dark:text-gray-400" size={20} />

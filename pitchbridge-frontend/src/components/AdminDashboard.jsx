@@ -104,7 +104,7 @@ const AdminDashboard = () => {
   // State for rotating graphs
   const [currentGraphIndex, setCurrentGraphIndex] = useState(0);
   // State to simulate dark mode (add this for actual toggling)
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(false); // You can connect this to a theme context or button later
 
   // Determine text color for Chart.js based on dark mode
   const chartTextColor = darkMode ? 'rgb(255, 255, 255)' : 'rgb(31, 41, 55)'; // white or gray-800
@@ -202,47 +202,51 @@ const AdminDashboard = () => {
         Your comprehensive overview for platform management and operational insights.
       </p>
 
-      {/* Admin Key Stats Grid - These were already colored, no changes needed for background or text color for dark mode based on request */}
+      {/* Admin Key Stats Grid - Changed from Link to div and removed 'block cursor-pointer' related styles */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         {/* Stat Card: Total Users */}
-        <Link to="/admin/users" className="bg-gradient-to-r from-red-500 to-rose-600 dark:from-red-700 dark:to-rose-800 p-5 rounded-xl shadow-lg text-white transform hover:scale-[1.03] transition-transform duration-300 ease-in-out block cursor-pointer">
+        {/* Changed from <Link to="/admin/users" ...> to <div ...> */}
+        <div className="bg-gradient-to-r from-red-500 to-rose-600 dark:from-red-700 dark:to-rose-800 p-5 rounded-xl shadow-lg text-white transform transition-transform duration-300 ease-in-out">
           <div className="flex items-center justify-between mb-2">
             <Users size={24} className="text-white/80" />
             <span className="text-sm font-semibold">Total Users</span>
           </div>
           <p className="text-3xl font-bold">{mockAdminStats.totalUsers.toLocaleString()}</p>
           <p className="text-sm text-white/80">+{mockAdminStats.newRegistrationsThisWeek} this week</p>
-        </Link>
+        </div>
 
         {/* Stat Card: Active Users Today */}
-        <Link to="/admin/activity-log" className="bg-gradient-to-r from-green-500 to-teal-600 dark:from-green-700 dark:to-teal-800 p-5 rounded-xl shadow-lg text-white transform hover:scale-[1.03] transition-transform duration-300 ease-in-out block cursor-pointer">
+        {/* Changed from <Link to="/admin/activity-log" ...> to <div ...> */}
+        <div className="bg-gradient-to-r from-green-500 to-teal-600 dark:from-green-700 dark:to-teal-800 p-5 rounded-xl shadow-lg text-white transform transition-transform duration-300 ease-in-out">
           <div className="flex items-center justify-between mb-2">
             <UserCheck size={24} className="text-white/80" />
             <span className="text-sm font-semibold">Active Users Today</span>
           </div>
           <p className="text-3xl font-bold">{mockAdminStats.activeUsersToday.toLocaleString()}</p>
           <p className="text-sm text-white/80">Currently Online: 80</p>
-        </Link>
+        </div>
 
         {/* Stat Card: Pending Verifications */}
-        <Link to="/admin/verifications" className="bg-gradient-to-r from-yellow-500 to-orange-600 dark:from-yellow-700 dark:to-orange-800 p-5 rounded-xl shadow-lg text-white transform hover:scale-[1.03] transition-transform duration-300 ease-in-out block cursor-pointer">
+        {/* Changed from <Link to="/admin/verifications" ...> to <div ...> */}
+        <div className="bg-gradient-to-r from-yellow-500 to-orange-600 dark:from-yellow-700 dark:to-orange-800 p-5 rounded-xl shadow-lg text-white transform transition-transform duration-300 ease-in-out">
           <div className="flex items-center justify-between mb-2">
             <AlertTriangle size={24} className="text-white/80" />
             <span className="text-sm font-semibold">Pending Verifications</span>
           </div>
           <p className="text-3xl font-bold">{mockAdminStats.pendingVerifications}</p>
           <p className="text-sm text-white/80">+{mockAdminStats.reportedIssues} Reported Issues</p>
-        </Link>
+        </div>
 
         {/* Stat Card: Total Investments Managed (Platform-wide) */}
-        <Link to="/admin/investments" className="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-700 dark:to-indigo-800 p-5 rounded-xl shadow-lg text-white transform hover:scale-[1.03] transition-transform duration-300 ease-in-out block cursor-pointer">
+        {/* Changed from <Link to="/admin/investments" ...> to <div ...> */}
+        <div className="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-700 dark:to-indigo-800 p-5 rounded-xl shadow-lg text-white transform transition-transform duration-300 ease-in-out">
           <div className="flex items-center justify-between mb-2">
             <BarChart2 size={24} className="text-white/80" />
             <span className="text-sm font-semibold">Investments Managed</span>
           </div>
           <p className="text-3xl font-bold">{mockAdminStats.totalInvestmentsManaged.toLocaleString()}</p>
           <p className="text-sm text-white/80">Avg. Deal Size: $50K</p>
-        </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -363,7 +367,7 @@ const AdminDashboard = () => {
                 className="flex items-center px-4 py-3 bg-blue-50 hover:bg-blue-200 dark:bg-[#1F2836] rounded-lg shadow-sm dark:hover:bg-gray-600 transition-colors duration-200 text-gray-800 dark:text-white font-medium"
               >
                 <UserPlus className="mr-3 text-blue-600 dark:text-blue-400" size={20} />
-                Add New User
+                <span>Add New User</span>
               </Link>
 
               <Link
@@ -371,32 +375,34 @@ const AdminDashboard = () => {
                 className="flex items-center px-4 py-3 bg-green-50 hover:bg-green-200 dark:bg-[#1F2836] rounded-lg shadow-sm dark:hover:bg-gray-600 transition-colors duration-200 text-gray-800 dark:text-white font-medium"
               >
                 <FileText className="mr-3 text-green-600 dark:text-green-400" size={20} />
-                Manage Content
+                <span>Manage Content</span>
               </Link>
 
+              {/* Corrected: 'to' prop for System Settings & wrapped text */}
               <Link
-                to="/admin/settings"
+                to="/settings"
                 className="flex items-center px-4 py-3 bg-purple-50 hover:bg-purple-200 dark:bg-[#1F2836] rounded-lg shadow-sm dark:hover:bg-gray-600 transition-colors duration-200 text-gray-800 dark:text-white font-medium"
               >
                 <Settings className="mr-3 text-purple-600 dark:text-purple-400" size={20} />
-                System Settings
+                <span>System Settings</span>
               </Link>
 
+              {/* Corrected: Wrapped text for Send Broadcast */}
               <Link
                 to="/admin/broadcast"
                 className="flex items-center px-4 py-3 bg-red-50 hover:bg-red-200 dark:bg-[#1F2836] rounded-lg shadow-sm dark:hover:bg-gray-600 transition-colors duration-200 text-gray-800 dark:text-white font-medium"
               >
                 <Mail className="mr-3 text-red-600 dark:text-red-400" size={20} />
-                Send Broadcast
+                <span>Send Broadcast</span>
               </Link>
 
-              {/* Help & FAQ Button */}
+              {/* Corrected: 'to' prop for Help & FAQ Button & wrapped text */}
               <Link
-                to="/admin/faq"
+                to="/faq"
                 className="flex items-center px-4 py-3 bg-yellow-50 hover:bg-yellow-200 dark:bg-[#1F2836] rounded-lg shadow-sm dark:hover:bg-gray-600 transition-colors duration-200 text-gray-800 dark:text-white font-medium"
               >
                 <HelpCircle className="mr-3 text-yellow-600 dark:text-yellow-400" size={20} />
-                Help & FAQ
+                <span>Help & FAQ</span>
               </Link>
             </div>
           </div>

@@ -17,7 +17,6 @@ import {
     Settings,
 } from 'lucide-react';
 
-// Import Chart.js components
 import { Line, Bar, Doughnut } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -33,7 +32,6 @@ import {
     Filler,
 } from 'chart.js';
 
-// Register Chart.js components
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -61,7 +59,6 @@ const FounderDashboard = ({ teamMembers }) => {
         return () => observer.disconnect();
     }, []);
 
-    // --- Mock Data ---
     const fundingProgress = {
         raised: 7500000,
         goal: 10000000,
@@ -88,7 +85,6 @@ const FounderDashboard = ({ teamMembers }) => {
     ];
 
     // --- Chart Data & Options for different views ---
-
     // 1. Pitch Views Chart Data & Options
     const pitchViewsChartData = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
@@ -364,16 +360,10 @@ const FounderDashboard = ({ teamMembers }) => {
 
     // Reusable span for text with potential white background (now dark:text-white)
     const HighlightedText = ({ children }) => (
-        // The original component had 'text-black'. When the parent background
-        // changes from white to dark:bg-gray-700, the text should become white.
-        // There was no explicit background for this span, so it would inherit.
-        // The instruction is to make 'all text to white (make these changes only for dark theme)'.
-        // So, this span's text color needs to become white in dark mode.
         <span className="text-black dark:text-white py-0 px-1 rounded box-decoration-clone">
             {children}
         </span>
     );
-
     return (
         <div className="bg-gray-100 dark:bg-gray-800 min-h-screen p-8"> {/* Added dark:bg-gray-800 to overall container */}
             {/* Main Title Heading */}
@@ -389,41 +379,40 @@ const FounderDashboard = ({ teamMembers }) => {
                 </span>
             </p>
 
-            {/* Quick Stats & Actions Grid - Cards are now Link components */}
+            {/* Quick Stats & Actions Grid - Cards are now static divs */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-                {/* Stat Card: Funding Raised - Text here is intentionally left white for contrast on gradient */}
-                <Link to="/fundraising-details" className="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-700 dark:to-indigo-800 p-5 rounded-xl shadow-lg text-white transform hover:scale-[1.03] transition-transform duration-300 ease-in-out block cursor-pointer">
+                {/* Stat Card: Funding Raised */}
+                <div className="bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-700 dark:to-indigo-800 p-5 rounded-xl shadow-lg text-white">
                     <div className="flex items-center justify-between mb-2">
                         <DollarSign size={24} className="text-white/80" />
-                        <span className="text-sm font-semibold text-white"><HighlightedText>Total Raised</HighlightedText></span> {/* Ensured text is white */}
+                        <span className="text-sm font-semibold text-white"><HighlightedText>Total Raised</HighlightedText></span>
                     </div>
-                    {/* Dollar values and "M" are numbers, not typical "text" to highlight. Keeping it simple. */}
                     <p className="text-3xl font-bold text-white">${(fundingProgress.raised / 1000000).toFixed(1)}M</p>
-                    <p className="text-sm text-white/80 text-white"><HighlightedText>of ${(fundingProgress.goal / 1000000).toFixed(0)}M Goal</HighlightedText></p> {/* Ensured text is white */}
-                </Link>
+                    <p className="text-sm text-white/80 text-white"><HighlightedText>of ${(fundingProgress.goal / 1000000).toFixed(0)}M Goal</HighlightedText></p>
+                </div>
 
                 {/* Stat Card: Pitch Views */}
-                <Link to="/pitch-analytics" className="bg-gradient-to-r from-green-500 to-teal-600 dark:from-green-700 dark:to-teal-800 p-5 rounded-xl shadow-lg text-white transform hover:scale-[1.03] transition-transform duration-300 ease-in-out block cursor-pointer">
+                <div className="bg-gradient-to-r from-green-500 to-teal-600 dark:from-green-700 dark:to-teal-800 p-5 rounded-xl shadow-lg text-white">
                     <div className="flex items-center justify-between mb-2">
                         <Eye className="text-white/80" size={24} />
                         <span className="text-sm font-semibold text-white"><HighlightedText>Pitch Views</HighlightedText></span>
                     </div>
                     <p className="text-3xl font-bold text-white">{pitchAnalytics.views}</p>
                     <p className="text-sm text-white/80 text-white"><HighlightedText>{pitchAnalytics.downloads} Downloads</HighlightedText></p>
-                </Link>
+                </div>
 
                 {/* Stat Card: Messages */}
-                <Link to="/messages" className="bg-gradient-to-r from-purple-500 to-pink-600 dark:from-purple-700 dark:to-pink-800 p-5 rounded-xl shadow-lg text-white transform hover:scale-[1.03] transition-transform duration-300 ease-in-out block cursor-pointer">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-600 dark:from-purple-700 dark:to-pink-800 p-5 rounded-xl shadow-lg text-white">
                     <div className="flex items-center justify-between mb-2">
                         <MessageSquare size={24} className="text-white/80" />
                         <span className="text-sm font-semibold text-white"><HighlightedText>New Messages</HighlightedText></span>
                     </div>
                     <p className="text-3xl font-bold text-white">7</p> {/* Mock data */}
                     <p className="text-sm text-white/80 text-white"><HighlightedText>From investors & partners</HighlightedText></p>
-                </Link>
+                </div>
 
                 {/* Stat Card: Next Key Action */}
-                <Link to="/milestones" className="bg-gradient-to-r from-yellow-500 to-orange-600 dark:from-yellow-700 dark:to-orange-800 p-5 rounded-xl shadow-lg text-white transform hover:scale-[1.03] transition-transform duration-300 ease-in-out block cursor-pointer">
+                <div className="bg-gradient-to-r from-yellow-500 to-orange-600 dark:from-yellow-700 dark:to-orange-800 p-5 rounded-xl shadow-lg text-white">
                     <div className="flex items-center justify-between mb-2">
                         <Target size={24} className="text-white/80" />
                         <span className="text-sm font-semibold text-white"><HighlightedText>Next Deadline</HighlightedText></span>
@@ -433,7 +422,7 @@ const FounderDashboard = ({ teamMembers }) => {
                         {new Date(fundingProgress.targetCloseDate).toLocaleDateString()}
                     </p>
                     <p className="text-sm text-white/80 text-white"><HighlightedText>Funding Round Close</HighlightedText></p>
-                </Link>
+                </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -496,9 +485,9 @@ const FounderDashboard = ({ teamMembers }) => {
                                     }}
                                     className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300
                                                 ${activeChart === chart.key
-                                                    ? 'bg-indigo-600 text-white shadow-md'
-                                                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600' // Applied dark styles
-                                                }`}
+                                            ? 'bg-indigo-600 text-white shadow-md'
+                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600' // Applied dark styles
+                                        }`}
                                 >
                                     {/* No highlight here, button text should contrast with button color */}
                                     {chart.label}
@@ -551,7 +540,7 @@ const FounderDashboard = ({ teamMembers }) => {
                         </div>
                         {/* Link Button Text - Not highlighted */}
                         <Link
-                            to="/manage-pitch-decks"
+                            to="/submit-pitch"
                             className="w-full px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors duration-200 shadow-md flex items-center justify-center text-center"
                         >
                             <Briefcase className="mr-2" size={20} />
@@ -646,7 +635,7 @@ const FounderDashboard = ({ teamMembers }) => {
                             ))}
                         </ul>
                         <Link
-                            to="/activity"
+                            to="/notifications"
                             className="mt-6 w-full px-6 py-3 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition-colors duration-200 shadow-md flex items-center justify-center text-center"
                         >
                             <Eye className="mr-2" size={20} />
@@ -664,28 +653,28 @@ const FounderDashboard = ({ teamMembers }) => {
                         </h3>
                         <div className="space-y-4">
                             <Link
-                                to="/new-pitch-deck"
+                                to="/submit-pitch"
                                 className="flex items-center px-4 py-3 bg-blue-100 hover:bg-blue-200 dark:bg-[#1F2836] dark:bg-gray-700 rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 text-gray-900 dark:text-white font-medium"
                             > {/* Applied dark:bg-gray-700, dark:hover:bg-gray-600, dark:text-white */}
                                 <Briefcase className="mr-3 text-blue-600 dark:text-blue-400" size={20} />
-                                <HighlightedText>Create New Pitch Deck</HighlightedText>
+                                <HighlightedText>Create New Pitch</HighlightedText>
                             </Link>
                             <Link
-                                to="/request-feedback"
+                                to="/investors"
                                 className="flex items-center px-4 py-3 bg-green-100 hover:bg-green-200 dark:bg-[#1F2836] dark:bg-gray-700 rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 text-gray-900 dark:text-white font-medium"
                             > {/* Applied dark:bg-gray-700, dark:hover:bg-gray-600, dark:text-white */}
                                 <MessageSquare className="mr-3 text-green-600 dark:text-green-400" size={20} />
-                                <HighlightedText>Request Feedback</HighlightedText>
+                                <HighlightedText>Meet Investors</HighlightedText>
                             </Link>
                             <Link
-                                to="/profile-settings"
+                                to="/settings"
                                 className="flex items-center px-4 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-[#1F2836] dark:bg-gray-700 rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 text-gray-900 dark:text-white font-medium"
                             > {/* Applied dark:bg-gray-700, dark:hover:bg-gray-600, dark:text-white */}
                                 <Settings className="mr-3 text-gray-600 dark:text-gray-400" size={20} />
                                 <HighlightedText>Account Settings</HighlightedText>
                             </Link>
                             <Link
-                                to="/support"
+                                to="/faq"
                                 className="flex items-center px-4 py-3 bg-yellow-100 hover:bg-yellow-200 dark:bg-[#1F2836] dark:bg-gray-700 rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 text-gray-900 dark:text-white font-medium"
                             > {/* Applied dark:bg-gray-700, dark:hover:bg-gray-600, dark:text-white */}
                                 <ClipboardCheck className="mr-3 text-purple-600 dark:text-purple-400" size={20} />
