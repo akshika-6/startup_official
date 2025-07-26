@@ -220,13 +220,9 @@ const Notifications = () => {
     const isInboxClean = notifications.length === 0 && !loading && !error;
 
     return (
-        <section className="min-h-screen pt-20 sm:pt-24 pb-12 px-4 sm:px-8 lg:px-12 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white relative overflow-hidden">
-            {/* Background Blobs for consistency */}
-            <div className="absolute top-0 left-0 w-64 h-64 bg-yellow-300 dark:bg-yellow-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob pointer-events-none"></div>
-            <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-orange-300 dark:bg-orange-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000 pointer-events-none"></div>
-            <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-lime-300 dark:bg-lime-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000 pointer-events-none"></div>
-
-            <div className="relative z-10 max-w-4xl mx-auto bg-white dark:bg-gray-850 rounded-2xl shadow-2xl p-6 sm:p-8 border border-gray-200 dark:border-gray-700 animate-fade-in">
+        <section >
+           
+            <div >
                 <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
                     {/* Centered Heading Group with Sparkles */}
                     <div className="relative flex flex-col items-center flex-grow text-center">

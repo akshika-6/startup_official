@@ -1,11 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion'; // Import AnimatePresence for modal animations
 import { API_BASE_URL } from "../config";
 
 // Lucide icons for a polished look
-import { Search, XCircle, User, Mail, MapPin, Briefcase, Filter, RefreshCcw, X, ChevronDown } from 'lucide-react';
+import {
+  Search,
+  XCircle,
+  User,
+  Mail,
+  MapPin,
+  Briefcase,
+  Filter,
+  RefreshCcw,
+  X,
+  ChevronDown,
+  Sparkles, // Added Sparkles for AI Match
+} from 'lucide-react';
 
 const ExploreInvestors = () => {
   const [investors, setInvestors] = useState([]);
@@ -28,9 +40,19 @@ const ExploreInvestors = () => {
   const [availableDealSizes, setAvailableDealSizes] = useState([]);
   const [selectedDealSize, setSelectedDealSize] = useState('');
 
+  // Dummy data for filter options - these would typically come from your backend
+  const dummyFilterOptions = {
+    stages: ['Seed', 'Series A', 'Series B', 'Series C', 'Growth', 'Public'],
+    industries: ['SaaS', 'FinTech', 'HealthTech', 'AI/ML', 'E-commerce', 'Biotech', 'Clean Energy', 'EdTech', 'Consumer Goods'],
+    dealSizes: ['< $500K', '$500K - $1M', '$1M - $5M', '$5M - $20M', '> $20M'],
+    regions: ['North America', 'Europe', 'Asia', 'South America', 'Africa', 'Oceania'],
+    roles: ['Angel Investor', 'Venture Capitalist', 'Private Equity', 'Corporate VC', 'Family Office'],
+  };
+
+
   useEffect(() => {
     const fetchInvestors = async () => {
-      setLoading(true);
+      setLoading(true); // Set loading to true before fetching
       setError(null);
       try {
         const token = localStorage.getItem('token');
@@ -58,9 +80,9 @@ const ExploreInvestors = () => {
           // --- START: ADDING DUMMY DATA FOR DEMO PURPOSES ---
           // In a real application, these fields (investmentStage, industry, preferredDealSize)
           // would come directly from your backend API response for each investor.
-          const stages = ['Seed', 'Series A', 'Series B', 'Series C', 'Growth', 'Public'];
-          const industries = ['SaaS', 'FinTech', 'HealthTech', 'AI/ML', 'E-commerce', 'Biotech', 'Clean Energy', 'EdTech', 'Consumer Goods'];
-          const dealSizes = ['< $500K', '$500K - $1M', '$1M - $5M', '$5M - $20M', '> $20M'];
+          const stages = dummyFilterOptions.stages;
+          const industries = dummyFilterOptions.industries;
+          const dealSizes = dummyFilterOptions.dealSizes;
 
           fetchedInvestors = fetchedInvestors.map(inv => ({
             ...inv,
@@ -68,6 +90,9 @@ const ExploreInvestors = () => {
             investmentStage: inv.investmentStage || stages[Math.floor(Math.random() * stages.length)],
             industry: inv.industry || industries[Math.floor(Math.random() * industries.length)],
             preferredDealSize: inv.preferredDealSize || dealSizes[Math.floor(Math.random() * dealSizes.length)],
+            // Add dummy location and role if they don't exist for demo
+            location: inv.location || dummyFilterOptions.regions[Math.floor(Math.random() * dummyFilterOptions.regions.length)],
+            role: inv.role || dummyFilterOptions.roles[Math.floor(Math.random() * dummyFilterOptions.roles.length)],
           }));
           // --- END: ADDING DUMMY DATA FOR DEMO PURPOSES ---
 
@@ -110,12 +135,12 @@ const ExploreInvestors = () => {
           setError('Error: An unexpected error occurred while fetching investors.');
         }
       } finally {
-        setLoading(false);
+        setLoading(false); // Set loading to false after fetching
       }
     };
 
     fetchInvestors();
-  }, []);
+  }, []); // Empty dependency array means this runs once on mount
 
   // Handlers for filter dropdown changes
   const handleRegionChange = (e) => setSelectedRegion(e.target.value);
@@ -187,36 +212,7 @@ const ExploreInvestors = () => {
   return (
     <div className="relative min-h-screen flex"> {/* Changed to flex for sidebar layout */}
       {/* Background Gradient & Animated Shapes */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-950 dark:via-purple-950 dark:to-blue-950 z-0">
-        <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-blue-300 dark:bg-blue-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-pink-300 dark:bg-purple-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 h-1/3 bg-purple-300 dark:bg-pink-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
-      </div>
-
-      {/* Dashboard-like Sidebar (Placeholder - you'd integrate your actual dashboard sidebar here) */}
-      {/* For a true dashboard layout, this part would likely be in a parent layout component */}
-      <aside className="relative z-20 w-64 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-xl border-r border-white/30 dark:border-gray-700/50 flex-shrink-0
-                      hidden md:flex flex-col py-8 px-4 overflow-y-auto">
-        <div className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-          Investify Pro
-        </div>
-        <nav className="flex-1 space-y-2">
-          {/* Example Nav Links - replace with your actual sidebar links */}
-          <Link to="/dashboard" className="flex items-center p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200">
-            <span className="mr-3">📊</span> Dashboard
-          </Link>
-          <Link to="/startups" className="flex items-center p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200">
-            <span className="mr-3">🚀</span> Explore Startups
-          </Link>
-          <Link to="/investors" className="flex items-center p-3 rounded-lg text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-gray-700/50 font-semibold">
-            <span className="mr-3">💰</span> Explore Investors
-          </Link>
-          <Link to="/profile" className="flex items-center p-3 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-700 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200">
-            <span className="mr-3">👤</span> My Profile
-          </Link>
-          {/* More links */}
-        </nav>
-      </aside>
+     
 
       {/* Main Content Area */}
       <main className="relative z-10 flex-1 px-4 sm:px-6 lg:px-8 py-8 md:py-12 overflow-y-auto">
@@ -238,7 +234,7 @@ const ExploreInvestors = () => {
             Discover and engage with a curated list of investors looking for the next big idea.
           </motion.p>
 
-          {/* Search Bar & Filter Button */}
+          {/* Search Bar & Filter/AI Match Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -260,6 +256,12 @@ const ExploreInvestors = () => {
               className="px-6 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition duration-200 flex items-center justify-center shadow-md w-full sm:w-auto"
             >
               <Filter className="mr-2 h-5 w-5" /> Filter Options
+            </button>
+            <button
+              onClick={() => alert("AI Match functionality coming soon!")} // Placeholder for AI Match logic
+              className="px-6 py-3 bg-purple-600 text-white rounded-full font-semibold hover:bg-purple-700 transition duration-200 flex items-center justify-center shadow-md w-full sm:w-auto"
+            >
+              <Sparkles className="mr-2 h-5 w-5" /> AI Match
             </button>
           </motion.div>
 
@@ -363,7 +365,7 @@ const ExploreInvestors = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-center mt-20 p-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-xl border border-white/30 dark:border-gray-700/50 max-w-2xl mx-auto"
+                className="text-center mt-20 p-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl shadow-xl border border-white/30 dark:border-700/50 max-w-2xl mx-auto"
               >
                 <h3 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
                   No Investors Found!

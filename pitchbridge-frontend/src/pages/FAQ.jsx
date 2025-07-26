@@ -203,6 +203,24 @@ const FAQ = () => {
       category: 'Security & Privacy',
       question: 'What measures are in place to prevent fraud?',
       answer: 'We employ a multi-layered approach including user verification, data encryption, continuous monitoring, and community reporting features. We encourage users to report any suspicious activity immediately.'
+    },
+    {
+      id: 'founder-9',
+      category: 'For Founders',
+      question: 'How to Craft a Winning Pitch Deck?',
+      answer: 'A winning pitch deck tells a compelling story. Focus on clarity, conciseness, and impact. Key slides include: Problem, Solution, Market Opportunity, Product/Service, Business Model, Go-to-Market Strategy, Team, Financials, Competition, and Ask. Use strong visuals and tailor it to your audience. The goal is to generate interest for a follow-up meeting.'
+    },
+    {
+      id: 'investor-9',
+      category: 'For Investors',
+      question: 'Understanding Investor Due Diligence',
+      answer: 'Due diligence is the process investors undertake to verify information about a potential investment. This includes reviewing financial records, legal documents, intellectual property, market analysis, team background, and customer references. It ensures the investment opportunity aligns with their risk appetite and investment thesis, and that all claims by the startup are substantiated.'
+    },
+    {
+      id: 'early-stage-metrics-1',
+      category: 'For Founders', // You can change this category if you have a more specific one like 'Metrics'
+      question: 'Key Metrics for Early-Stage Startups',
+      answer: 'For early-stage startups, investors look beyond just revenue. Key metrics include: Customer Acquisition Cost (CAC), Lifetime Value (LTV), Monthly Recurring Revenue (MRR) if applicable, Churn Rate, User Engagement (DAU/MAU), Burn Rate, and Runway. Demonstrating product-market fit and growth potential through these metrics is crucial.'
     }
   ];
 
@@ -240,12 +258,9 @@ const FAQ = () => {
 
   return (
     // Main container with the same background as Settings page
-    <div className="p-6 md:p-10 lg:p-12 min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white relative overflow-hidden">
+    <div >
       {/* Background blobs copied from Settings.jsx */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-blue-300 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-      <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-purple-300 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-      <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-green-300 dark:bg-green-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
-
+      
       {/* Content wrapper to ensure it's above the background elements and retains original max-width */}
       <div className="relative z-10 animate-fade-in max-w-5xl mx-auto">
         <motion.div

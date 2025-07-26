@@ -131,12 +131,8 @@ const Settings = () => {
 
   return (
     // Main container with a richer, more dynamic background
-    <div className="p-6 md:p-10 lg:p-12 min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white relative overflow-hidden">
-      {/* Optional: Add some subtle background blobs/shapes for flair */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-blue-300 dark:bg-blue-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-      <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-purple-300 dark:bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-      <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-green-300 dark:bg-green-600 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
-
+    <div >
+     
       {/* Content wrapper to ensure it's above the background elements */}
       <div className="relative z-10 animate-fade-in">
         {/* Hero Header Section */}

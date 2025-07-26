@@ -1,8 +1,9 @@
+// src/pages/UpdateProfilePicture.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_BASE_URL } from '../../config';
-import { UserCircle, Loader2, CheckCircle, XCircle, ChevronLeft } from 'lucide-react'; // Changed ArrowLeft to ChevronLeft
-import { Link } from 'react-router-dom'; // Import Link
+import { UserCircle, Loader2, CheckCircle, XCircle, ChevronLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const UpdateProfilePicture = () => {
   const [inputProfilePicture, setInputProfilePicture] = useState('');
@@ -13,6 +14,7 @@ const UpdateProfilePicture = () => {
   const [isFetching, setIsFetching] = useState(true);
   const [errors, setErrors] = useState({});
 
+  // Animation CSS (unchanged)
   useEffect(() => {
     const style = document.createElement('style');
     style.id = 'update-profile-picture-animations';
@@ -24,7 +26,6 @@ const UpdateProfilePicture = () => {
       .animate-fade-in {
         animation: fadeIn 0.5s ease-out forwards;
       }
-
       @keyframes blob {
         0% { transform: translate(0px, 0px) scale(1); }
         33% { transform: translate(30px, -50px) scale(1.1); }
@@ -34,12 +35,8 @@ const UpdateProfilePicture = () => {
       .animate-blob {
         animation: blob 7s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
       }
-      .animation-delay-2000 {
-        animation-delay: 2s;
-      }
-      .animation-delay-4000 {
-        animation-delay: 4s;
-      }
+      .animation-delay-2000 { animation-delay: 2s; }
+      .animation-delay-4000 { animation-delay: 4s; }
     `;
     if (!document.getElementById('update-profile-picture-animations')) {
       document.head.appendChild(style);
@@ -52,18 +49,38 @@ const UpdateProfilePicture = () => {
     };
   }, []);
 
+  // Fetch current profile picture
   useEffect(() => {
     const fetchProfilePicture = async () => {
       setIsFetching(true);
       const token = localStorage.getItem('token');
+      const userString = localStorage.getItem('user');
+      if (!token || !userString) {
+        setMessage('User not authenticated.');
+        setMessageType('error');
+        setIsFetching(false);
+        return;
+      }
+      let user;
       try {
-        // This is the endpoint that was causing the 404. Ensure your backend has a GET route here.
-        const res = await axios.get(`${API_BASE_URL}/settings/profile-picture`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+        user = JSON.parse(userString);
+      } catch {
+        setMessage('Invalid user data.');
+        setMessageType('error');
+        setIsFetching(false);
+        return;
+      }
+      if (!user._id) {
+        setMessage('User ID not found.');
+        setMessageType('error');
+        setIsFetching(false);
+        return;
+      }
+      try {
+        const res = await axios.get(`${API_BASE_URL}/api/users/${user._id}`, {
+          headers: { Authorization: `Bearer ${token}` }
         });
-        setCurrentProfilePicture(res.data.profilePictureUrl || '');
+        setCurrentProfilePicture(res.data.profilePic || '');
       } catch (err) {
         setMessage(err.response?.data?.message || 'Error fetching current profile picture.');
         setMessageType('error');
@@ -74,42 +91,68 @@ const UpdateProfilePicture = () => {
     fetchProfilePicture();
   }, []);
 
+  // Form validation
   const validateForm = () => {
     const newErrors = {};
     if (!inputProfilePicture) {
-      newErrors.profilePicture = 'Image URL or base64 string is required.';
-    } else if (!inputProfilePicture.startsWith('http') && !inputProfilePicture.startsWith('data:image')) {
-      newErrors.profilePicture = 'Please enter a valid URL or base64 image string.';
+      newErrors.profilePic = 'Image URL or base64 string is required.';
+    } else if (
+      !inputProfilePicture.startsWith('http') &&
+      !inputProfilePicture.startsWith('data:image')
+    ) {
+      newErrors.profilePic = 'Please enter a valid URL or base64 image string.';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
+  // Handle profile picture update
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage(null);
     setMessageType('');
     setErrors({});
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
     setIsLoading(true);
     const token = localStorage.getItem('token');
+    const userString = localStorage.getItem('user');
+    if (!token || !userString) {
+      setMessage('User not authenticated.');
+      setMessageType('error');
+      setIsLoading(false);
+      return;
+    }
+    let user;
     try {
-      // This is the endpoint that was causing the 404. Ensure your backend has a PUT route here.
-      const res = await axios.put(
-        `${API_BASE_URL}/settings/profile-picture`,
-        { profilePicture: inputProfilePicture },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+      user = JSON.parse(userString);
+    } catch {
+      setMessage('Invalid user data.');
+      setMessageType('error');
+      setIsLoading(false);
+      return;
+    }
+    if (!user._id) {
+      setMessage('User ID not found.');
+      setMessageType('error');
+      setIsLoading(false);
+      return;
+    }
+    try {
+      // PUT request to update profilePic (type: string in schema)
+      await axios.put(
+        `${API_BASE_URL}/api/users/${user._id}`,
+        { profilePic: inputProfilePicture },
+        { headers: { Authorization: `Bearer ${token}` } }
       );
-      setMessage(res.data.message || 'Profile picture updated successfully!');
+      // Refetch profile to show most up-to-date image
+      const res = await axios.get(
+        `${API_BASE_URL}/api/users/${user._id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setCurrentProfilePicture(res.data.profilePic || '');
+      setMessage('Profile picture updated successfully!');
       setMessageType('success');
-      setCurrentProfilePicture(inputProfilePicture);
-      setInputProfilePicture(''); // Clear the input after successful update
+      setInputProfilePicture('');
     } catch (err) {
       const errorMsg = err.response?.data?.message || 'Error updating profile picture. Please try again.';
       setMessage(errorMsg);
@@ -153,7 +196,7 @@ const UpdateProfilePicture = () => {
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       e.target.onerror = null;
-                      e.target.src = "https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Error"; // Fallback image
+                      e.target.src = 'https://via.placeholder.com/150/CCCCCC/FFFFFF?text=Error';
                     }}
                   />
                 ) : (
@@ -171,30 +214,32 @@ const UpdateProfilePicture = () => {
                 type="text"
                 placeholder="https://example.com/your-image.jpg or data:image/jpeg;base64,..."
                 value={inputProfilePicture}
-                onChange={(e) => setInputProfilePicture(e.target.value)}
+                onChange={e => setInputProfilePicture(e.target.value)}
                 className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent
-                            bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white
-                            ${errors.profilePicture ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'}
-                           `}
-                aria-invalid={errors.profilePicture ? "true" : "false"}
-                aria-describedby={errors.profilePicture ? "profile-picture-error" : undefined}
+                  bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white
+                  ${errors.profilePic ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'}
+                 `}
+                aria-invalid={errors.profilePic ? "true" : "false"}
+                aria-describedby={errors.profilePic ? "profile-picture-error" : undefined}
                 disabled={isLoading}
               />
-              {errors.profilePicture && (
-                <p id="profile-picture-error" className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.profilePicture}</p>
+              {errors.profilePic && (
+                <p id="profile-picture-error" className="mt-1 text-sm text-red-600 dark:text-red-400">
+                  {errors.profilePic}
+                </p>
               )}
             </div>
 
             <button
               type="submit"
               className={`w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-white
-                          transition-all duration-300 ease-in-out
-                          ${isLoading
-                              ? 'bg-blue-400 dark:bg-blue-600 cursor-not-allowed'
-                              : 'bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800'
-                          }
-                          transform hover:scale-[1.005]
-                         `}
+                transition-all duration-300 ease-in-out
+                ${isLoading
+                  ? 'bg-blue-400 dark:bg-blue-600 cursor-not-allowed'
+                  : 'bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800'
+                }
+                transform hover:scale-[1.005]
+               `}
               disabled={isLoading}
             >
               {isLoading ? (
@@ -223,12 +268,11 @@ const UpdateProfilePicture = () => {
           </div>
         )}
 
-        {/* Consistent "Back to Settings" Link placement and styling */}
         <Link
-            to="/settings"
-            className="mt-6 text-center text-blue-600 dark:text-blue-400 hover:underline flex items-center justify-center gap-1"
+          to="/settings"
+          className="mt-6 text-center text-blue-600 dark:text-blue-400 hover:underline flex items-center justify-center gap-1"
         >
-            <ChevronLeft size={16} /> Back to Settings
+          <ChevronLeft size={16} /> Back to Settings
         </Link>
       </div>
     </div>
