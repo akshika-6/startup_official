@@ -654,28 +654,28 @@ const FounderDashboard = ({ teamMembers }) => {
                         <div className="space-y-4">
                             <Link
                                 to="/submit-pitch"
-                                className="flex items-center px-4 py-3 bg-blue-100 hover:bg-blue-200 dark:bg-[#1F2836] dark:bg-gray-700 rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 text-gray-900 dark:text-white font-medium"
+                                className="flex items-center px-4 py-3 bg-blue-100 hover:bg-blue-200 dark:bg-[#1F2836] dark:bg-[#1F2836] rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 text-gray-900 dark:text-white font-medium"
                             > {/* Applied dark:bg-gray-700, dark:hover:bg-gray-600, dark:text-white */}
                                 <Briefcase className="mr-3 text-blue-600 dark:text-blue-400" size={20} />
                                 <HighlightedText>Create New Pitch</HighlightedText>
                             </Link>
                             <Link
                                 to="/investors"
-                                className="flex items-center px-4 py-3 bg-green-100 hover:bg-green-200 dark:bg-[#1F2836] dark:bg-gray-700 rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 text-gray-900 dark:text-white font-medium"
+                                className="flex items-center px-4 py-3 bg-green-100 hover:bg-green-200 dark:bg-[#1F2836] dark:bg-[#1F2836] rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 text-gray-900 dark:text-white font-medium"
                             > {/* Applied dark:bg-gray-700, dark:hover:bg-gray-600, dark:text-white */}
                                 <MessageSquare className="mr-3 text-green-600 dark:text-green-400" size={20} />
                                 <HighlightedText>Meet Investors</HighlightedText>
                             </Link>
                             <Link
                                 to="/settings"
-                                className="flex items-center px-4 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-[#1F2836] dark:bg-gray-700 rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 text-gray-900 dark:text-white font-medium"
+                                className="flex items-center px-4 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-[#1F2836] dark:bg-[#1F2836] rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 text-gray-900 dark:text-white font-medium"
                             > {/* Applied dark:bg-gray-700, dark:hover:bg-gray-600, dark:text-white */}
                                 <Settings className="mr-3 text-gray-600 dark:text-gray-400" size={20} />
                                 <HighlightedText>Account Settings</HighlightedText>
                             </Link>
                             <Link
                                 to="/faq"
-                                className="flex items-center px-4 py-3 bg-yellow-100 hover:bg-yellow-200 dark:bg-[#1F2836] dark:bg-gray-700 rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 text-gray-900 dark:text-white font-medium"
+                                className="flex items-center px-4 py-3 bg-yellow-100 hover:bg-yellow-200 dark:bg-[#1F2836] dark:bg-[#1F2836] rounded-lg shadow-sm hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 text-gray-900 dark:text-white font-medium"
                             > {/* Applied dark:bg-gray-700, dark:hover:bg-gray-600, dark:text-white */}
                                 <ClipboardCheck className="mr-3 text-purple-600 dark:text-purple-400" size={20} />
                                 <HighlightedText>Support & Help</HighlightedText>

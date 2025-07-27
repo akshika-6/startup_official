@@ -8,6 +8,8 @@ import GuestNavbar from './components/GuestNavbar';
 import FullPageSpinner from './components/FullPageSpinner';
 // Import the AuthLayout from its actual location
 import AuthLayout from './pages/layouts/AuthLayout';
+// Import the new ScrollToTop component
+import ScrollToTop from './components/ScrollToTop'; // <--- NEW IMPORT
 
 // Import all your page components
 import Home from './pages/Home';
@@ -69,8 +71,6 @@ const AuthenticatedRouteWrapper = () => {
     console.log('--- End App.jsx Debugging ---');
 
     return (
-        // AuthLayout will now simply render its sidebar and main content area
-        // It does NOT need to set its own background, as the root App component does that.
         <AuthLayout>
             <Outlet /> {/* Renders the specific page component for the matched nested route */}
         </AuthLayout>
@@ -95,12 +95,12 @@ const PublicLayout = () => {
     }
 
     return (
-        // REMOVED: bg-gray-50 dark:bg-gray-900 from here.
-        // The background is now handled by the root App component.
-        <div className="min-h-screen"> {/* Keep min-h-screen for layout sizing */}
+        <div className="min-h-screen">
+            {/* NOTE: You will also need to make GuestNavbar fixed and add padding-top to this main. */}
+            {/* Ensure GuestNavbar.jsx also has 'fixed top-0 left-0 w-full z-50' */}
             <GuestNavbar />
-            <main className="pt-16"> {/* Use padding-top to ensure content starts below the fixed GuestNavbar */}
-                <Outlet /> {/* Renders the specific public page component */}
+            <main className="pt-16"> {/* Assuming GuestNavbar is also h-16, adjust as needed */}
+                <Outlet />
             </main>
         </div>
     );
@@ -135,12 +135,10 @@ const AppContent = () => {
     };
 
     if (loading) {
-        return <FullPageSpinner />; // This spinner is rendered within the theme background now
+        return <FullPageSpinner />;
     }
 
     return (
-        // The routes themselves do not need to manage the background or blobs,
-        // as they are provided by the parent App component.
         <Routes>
             {/* Public routes wrapped by PublicLayout */}
             <Route element={<PublicLayout />}>
@@ -151,11 +149,7 @@ const AppContent = () => {
                 <Route path="/explore" element={<ExploreOpportunities />} />
             </Route>
 
-            {/* DashboardHome - This is the special full-screen route for ALL authenticated users
-                when they explicitly navigate to it (e.g., via sidebar "Home" link).
-                It is NOT wrapped by AuthLayout, so no sidebar here.
-                It will automatically sit on the global themed background.
-            */}
+            {/* DashboardHome - This is the special full-screen route for ALL authenticated users */}
             <Route
                 path="/home-dashboard"
                 element={user ? <DashboardHome /> : <Navigate to="/login" replace />}
@@ -229,10 +223,10 @@ const AppContent = () => {
  */
 const App = () => (
     <Router>
+        {/* Place ScrollToTop directly inside Router */}
+        <ScrollToTop /> {/* <--- NEW COMPONENT USAGE */}
         <AuthProvider>
             <ThemeProvider>
-                {/* This is the new centralized background and animated blobs for the entire app */}
-                {/* The z-10 is crucial here to bring your page content forward */}
                 <div className="relative min-h-screen flex flex-col overflow-hidden bg-theme-bg">
                     {/* Background Gradient & Animated Shapes - Now CENTRALIZED */}
                     <div className="absolute inset-0 bg-theme-gradient-start z-0">
@@ -242,9 +236,8 @@ const App = () => (
                     </div>
 
                     {/* Content Wrapper - ensures pages are on top of blobs */}
-                    {/* flex-grow allows the content area to expand and fill the available space */}
                     <div className="relative z-10 flex-grow flex flex-col">
-                        <AppContent /> {/* AppContent contains all your routes and layouts */}
+                        <AppContent />
                     </div>
                 </div>
             </ThemeProvider>
