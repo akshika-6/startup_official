@@ -4185,7 +4185,39 @@ const handleSave = async () => {
                 location,
         } catch (err) {
             console.error("Error during image upload:", err);
-            setStatusMessage(`Error uploading image: ${err.message || 'Please try again.'}`);
+            
+            ge(`Error uploading image: ${err.message || 'Please try again.'}`);
+            ge(`Error uploading image: ${err.message || 'Please try again.'}`);
+
+            ge(`Error uploading image: ${err.message || 'Please try again.'}`);
+
+
+
+
+
+
+            ge(`Error uploading image: ${err.message || 'Please try again.'}`);
+
+            ge(`Error uploading image: ${err.message || 'Please try again.'}`);
+
+
+            ge(`Error uploading image: ${err.message || 'Please try again.'}`);
+
+            ge(`Error uploading image: ${err.message || 'Please try again.'}`);
+
+            ge(`Error uploading image: ${err.message || 'Please try again.'}`);
+
+            ge(`Error uploading image: ${err.message || 'Please try again.'}`);
+
+
+            ge(`Error uploading image: ${err.message || 'Please try again.'}`);
+
+            ge(`Error uploading image: ${err.message || 'Please try again.'}`);
+
+            ge(`Error uploading image: ${err.message || 'Please try again.'}`);
+
+            ge(`Error uploading image: ${err.message || 'Please try again.'}`);
+
         } finally {
             setIsLoading1(false);
             setTimeout(() => setStatusMessage(''), 3000);
