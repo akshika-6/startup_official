@@ -1,18 +1,4 @@
-// import express from 'express';
-// import {
-//   createStartup,
-//   getAllStartups,
-//   getStartupById
-// } from '../controllers/startupcontroller.mjs';
-// import { protect } from '../middleware/auth.mjs';
 
-// const router = express.Router();
-
-// router.post('/', protect, createStartup);
-// router.get('/', getAllStartups);
-// router.get('/:id', getStartupById);
-
-// export default router;
 
 import express from 'express';
 import { body, param } from 'express-validator';
@@ -67,12 +53,39 @@ router.get(
 import upload from '../middleware/multer.mjs';
 import { uploadPitch } from '../controllers/startupcontroller.mjs';
 
+// router.post(
+//   '/upload-pitch/:startupId',
+//   protect,
+//   upload.single('pitchFile'),
+//   uploadPitch
+// );
+
+
 router.post(
-  '/upload-pitch/:startupId',
+  "/upload-pitch/:startupId",
   protect,
-  upload.single('pitchFile'),
-  uploadPitch
+  upload.single("pitchFile"),
+  async (req, res) => {
+    const { startupId } = req.params;
+
+    if (!req.file) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+
+    const startup = await Startup.findById(startupId);
+    if (!startup) return res.status(404).json({ error: "Startup not found" });
+
+    if (req.file.mimetype === "application/pdf") {
+      startup.pitchDeck = req.file.filename;
+    } else if (req.file.mimetype === "video/mp4") {
+      startup.videoPitch = req.file.filename;
+    }
+
+    await startup.save();
+    res.json({ message: "Pitch uploaded successfully", file: req.file.filename });
+  }
 );
+
 
 
 
