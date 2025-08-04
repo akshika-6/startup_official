@@ -251,15 +251,30 @@ const ExploreInvestors = () => {
               />
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400 h-6 w-6" />
             </div>
+            
+            {/* Updated Filter Button */}
             <button
               onClick={() => setShowFilterModal(true)}
-              className="px-6 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition duration-200 flex items-center justify-center shadow-md w-full sm:w-auto"
+              className="px-6 py-3 bg-gray-700 dark:bg-gray-800 text-gray-200 dark:text-gray-300 rounded-full font-medium hover:bg-gray-600 dark:hover:bg-gray-700 transition duration-200 flex items-center justify-center shadow-md w-full sm:w-auto border border-gray-600 dark:border-gray-700"
             >
-              <Filter className="mr-2 h-5 w-5" /> Filter Options
+              <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="4" y1="6" x2="4" y2="6"></line>
+                <line x1="4" y1="10" x2="4" y2="20"></line>
+                <line x1="12" y1="6" x2="12" y2="20"></line>
+                <line x1="20" y1="6" x2="20" y2="10"></line>
+                <line x1="20" y1="14" x2="20" y2="20"></line>
+                <circle cx="4" cy="8" r="2"></circle>
+                <circle cx="12" cy="4" r="2"></circle>
+                <circle cx="20" cy="12" r="2"></circle>
+              </svg>
+              Filter
+              <ChevronDown className="ml-2 h-4 w-4" />
             </button>
+
+            {/* Updated AI Match Button */}
             <button
               onClick={() => alert("AI Match functionality coming soon!")} // Placeholder for AI Match logic
-              className="px-6 py-3 bg-purple-600 text-white rounded-full font-semibold hover:bg-purple-700 transition duration-200 flex items-center justify-center shadow-md w-full sm:w-auto"
+              className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full font-medium hover:from-purple-700 hover:to-blue-700 transition duration-200 flex items-center justify-center shadow-md w-full sm:w-auto"
             >
               <Sparkles className="mr-2 h-5 w-5" /> AI Match
             </button>
@@ -342,14 +357,15 @@ const ExploreInvestors = () => {
                     </div>
                   </Link>
 
-                  <div className="flex mt-4 space-x-2">
-                    <button className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-200 text-sm">
+                  {/* Updated Profile Action Buttons - Now Vertical */}
+                  <div className="flex flex-col mt-4 space-y-3">
+                    <button className="w-full bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 transition duration-200 text-sm">
                       View Profile
                     </button>
-                    <button className="flex-1 bg-gray-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-600 transition duration-200 text-sm">
+                    <button className="w-full bg-gray-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-600 transition duration-200 text-sm">
                       Message
                     </button>
-                    <button className="flex-1 border border-blue-500 text-blue-600 dark:text-blue-400 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 dark:hover:bg-gray-700 transition duration-200 text-sm">
+                    <button className="w-full border border-blue-500 text-blue-600 dark:text-blue-400 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 dark:hover:bg-gray-700 transition duration-200 text-sm">
                       Pitch Idea
                     </button>
                   </div>
@@ -382,14 +398,14 @@ const ExploreInvestors = () => {
         </div>
       </main>
 
-      {/* Filter Modal */}
+      {/* Updated Filter Modal */}
       <AnimatePresence>
         {showFilterModal && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 dark:bg-black/80 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/60 dark:bg-black/80 z-50 flex items-start justify-center pt-20 p-4"
             onClick={() => setShowFilterModal(false)} // Close modal when clicking outside
           >
             <motion.div
@@ -397,130 +413,137 @@ const ExploreInvestors = () => {
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="bg-white dark:bg-gray-900 rounded-lg shadow-2xl p-6 md:p-8 w-full max-w-md max-h-[90vh] overflow-y-auto relative"
+              className="bg-white dark:bg-gray-900 rounded-lg shadow-2xl p-6 md:p-8 w-full max-w-md max-h-[80vh] overflow-y-auto relative"
               onClick={(e) => e.stopPropagation()} // Prevent modal from closing when clicking inside
             >
-              <button
-                onClick={() => setShowFilterModal(false)}
-                className="absolute top-4 right-4 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
-              >
-                <X size={24} />
-              </button>
-
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-6 flex items-center">
-                <Filter className="mr-3 h-8 w-8 text-blue-600 dark:text-blue-400" />
-                Filter Investors
-              </h2>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-white flex items-center">
+                  Filters
+                </h2>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={clearFilters}
+                    className="text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 text-sm font-medium"
+                  >
+                    Clear All
+                  </button>
+                  <button
+                    onClick={() => setShowFilterModal(false)}
+                    className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+              </div>
 
               <div className="space-y-6">
-                {/* Region Dropdown */}
+                {/* Stage Section */}
                 <div>
-                  <label htmlFor="regionFilter" className="block text-lg font-medium text-gray-800 dark:text-gray-200 mb-2">Region</label>
-                  <div className="relative">
-                    <select
-                      id="regionFilter"
-                      value={selectedRegion}
-                      onChange={handleRegionChange}
-                      className="block w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
-                    >
-                      <option value="">All Regions</option>
-                      {availableRegions.map((region) => (
-                        <option key={region} value={region}>{region}</option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none" />
+                  <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-3">Stage</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {dummyFilterOptions.stages.map((stage) => (
+                      <button
+                        key={stage}
+                        onClick={() => setSelectedStage(selectedStage === stage ? '' : stage)}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                          selectedStage === stage
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                        }`}
+                      >
+                        {stage}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
-                {/* Role Dropdown */}
+                {/* Industry Section */}
                 <div>
-                  <label htmlFor="roleFilter" className="block text-lg font-medium text-gray-800 dark:text-gray-200 mb-2">Role</label>
-                  <div className="relative">
-                    <select
-                      id="roleFilter"
-                      value={selectedRole}
-                      onChange={handleRoleChange}
-                      className="block w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
-                    >
-                      <option value="">All Roles</option>
-                      {availableRoles.map((role) => (
-                        <option key={role} value={role}>{role}</option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none" />
+                  <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-3">Industry</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {dummyFilterOptions.industries.map((industry) => (
+                      <button
+                        key={industry}
+                        onClick={() => setSelectedIndustry(selectedIndustry === industry ? '' : industry)}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                          selectedIndustry === industry
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                        }`}
+                      >
+                        {industry}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
-                {/* Investment Stage Dropdown (Dummy Data) */}
+                {/* Funding Range Section */}
                 <div>
-                  <label htmlFor="stageFilter" className="block text-lg font-medium text-gray-800 dark:text-gray-200 mb-2">Investment Stage</label>
-                  <div className="relative">
-                    <select
-                      id="stageFilter"
-                      value={selectedStage}
-                      onChange={handleStageChange}
-                      className="block w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
-                    >
-                      <option value="">All Stages</option>
-                      {availableStages.map((stage) => (
-                        <option key={stage} value={stage}>{stage}</option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none" />
+                  <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-3">Funding Range</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {dummyFilterOptions.dealSizes.map((size) => (
+                      <button
+                        key={size}
+                        onClick={() => setSelectedDealSize(selectedDealSize === size ? '' : size)}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                          selectedDealSize === size
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
-                {/* Industry Focus Dropdown (Dummy Data) */}
+                {/* Region Section */}
                 <div>
-                  <label htmlFor="industryFilter" className="block text-lg font-medium text-gray-800 dark:text-gray-200 mb-2">Industry Focus</label>
-                  <div className="relative">
-                    <select
-                      id="industryFilter"
-                      value={selectedIndustry}
-                      onChange={handleIndustryChange}
-                      className="block w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
-                    >
-                      <option value="">All Industries</option>
-                      {availableIndustries.map((industry) => (
-                        <option key={industry} value={industry}>{industry}</option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none" />
+                  <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-3">Region</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {dummyFilterOptions.regions.map((region) => (
+                      <button
+                        key={region}
+                        onClick={() => setSelectedRegion(selectedRegion === region ? '' : region)}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                          selectedRegion === region
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                        }`}
+                      >
+                        {region}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
-                {/* Preferred Deal Size Dropdown (Dummy Data) */}
+                {/* Role Section */}
                 <div>
-                  <label htmlFor="dealSizeFilter" className="block text-lg font-medium text-gray-800 dark:text-gray-200 mb-2">Preferred Deal Size</label>
-                  <div className="relative">
-                    <select
-                      id="dealSizeFilter"
-                      value={selectedDealSize}
-                      onChange={handleDealSizeChange}
-                      className="block w-full px-4 py-3 border border-gray-300 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none"
-                    >
-                      <option value="">Any Size</option>
-                      {availableDealSizes.map((size) => (
-                        <option key={size} value={size}>{size}</option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none" />
+                  <h3 className="text-lg font-medium text-gray-800 dark:text-white mb-3">Role</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {dummyFilterOptions.roles.map((role) => (
+                      <button
+                        key={role}
+                        onClick={() => setSelectedRole(selectedRole === role ? '' : role)}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                          selectedRole === role
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                        }`}
+                      >
+                        {role}
+                      </button>
+                    ))}
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 flex justify-end space-x-4">
-                <button
-                  onClick={clearFilters}
-                  className="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition duration-200 flex items-center"
-                >
-                  <RefreshCcw className="mr-2 h-5 w-5" /> Clear All
-                </button>
+              <div className="mt-8">
                 <button
                   onClick={() => setShowFilterModal(false)}
-                  className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition duration-200 flex items-center"
+                  className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition duration-200"
                 >
-                  Apply Filters
+                  Apply Filters ({filteredInvestors.length} results)
                 </button>
               </div>
             </motion.div>

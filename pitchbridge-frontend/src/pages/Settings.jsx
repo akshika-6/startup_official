@@ -102,11 +102,6 @@ const Settings = () => {
       color: 'indigo'
     },
     {
-      name: 'Advanced Settings', path: '/settings/advanced', icon: Sliders,
-      description: 'Explore more advanced configuration options.',
-      color: 'gray'
-    },
-    {
       name: 'Delete Account', path: '/settings/delete', icon: Trash2,
       description: 'Permanently remove your account and all associated data.',
       danger: true, color: 'red'

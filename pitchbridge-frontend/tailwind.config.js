@@ -12,6 +12,7 @@ module.exports = {
       colors: {
         // --- EXISTING BASE THEME COLORS ---
         // Define your base light colors
+        'custom-blue': '#b7def1',
         'light-primary': 'var(--color-light-primary)',
         'light-secondary': 'var(--color-light-secondary)',
         'light-card-bg': 'var(--color-light-card-bg)',

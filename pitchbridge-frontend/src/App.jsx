@@ -9,7 +9,7 @@ import FullPageSpinner from './components/FullPageSpinner';
 // Import the AuthLayout from its actual location
 import AuthLayout from './pages/layouts/AuthLayout';
 // Import the new ScrollToTop component
-import ScrollToTop from './components/ScrollToTop'; // <--- NEW IMPORT
+import ScrollToTop from './components/ScrollToTop';
 
 // Import all your page components
 import Home from './pages/Home';
@@ -32,7 +32,7 @@ import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import ExploreInvestors from './pages/ExploreInvestors';
 import AddStartup from './pages/AddStartup';
-import Settings from './pages/Settings';
+import Settings from './pages/Settings'; // Main settings page
 import ChangePassword from './pages/settings/ChangePassword';
 import ChangeEmail from './pages/settings/ChangeEmail';
 import ChangeUsername from './pages/settings/ChangeUsername';
@@ -46,6 +46,20 @@ import FounderDashboard from './components/FounderDashboard.jsx';
 // Dashboard components
 import DashboardInstructions from './pages/dashboard/DashboardInstructions';
 import DashboardHome from './pages/dashboard/DashboardHome';
+
+
+// --- Placeholder Components for Advanced Settings Sub-Pages ---
+// You will replace these with actual components later
+const ProfileAndPitchVisibility = () => <div className="p-8 text-center text-lg dark:text-gray-300">Profile & Pitch Visibility Settings Coming Soon!</div>;
+const SearchEngineIndexing = () => <div className="p-8 text-center text-lg dark:text-gray-300">Search Engine Indexing Settings Coming Soon!</div>;
+const DefaultPitchSettings = () => <div className="p-8 text-center text-lg dark:text-gray-300">Default Pitch Settings Coming Soon!</div>;
+const InterestAndRecommendationFilters = () => <div className="p-8 text-center text-lg dark:text-gray-300">Interest & Recommendation Filters Coming Soon!</div>;
+const ExportYourData = () => <div className="p-8 text-center text-lg dark:text-gray-300">Export Your Data Page Coming Soon!</div>;
+const StorageAndFileManagement = () => <div className="p-8 text-center text-lg dark:text-gray-300">Storage & File Management Page Coming Soon!</div>;
+const ThirdPartyIntegrations = () => <div className="p-8 text-center text-lg dark:text-gray-300">Third-Party Integrations Coming Soon!</div>;
+const TwoFactorAuthentication = () => <div className="p-8 text-center text-lg dark:text-gray-300">Two-Factor Authentication Settings Coming Soon!</div>;
+const ManageActiveSessions = () => <div className="p-8 text-center text-lg dark:text-gray-300">Manage Active Sessions Page Coming Soon!</div>;
+const BlockedUsersAndConnections = () => <div className="p-8 text-center text-lg dark:text-gray-300">Blocked Users & Connections Settings Coming Soon!</div>;
 
 /**
  * This component acts purely as a "Protected Route Wrapper" that checks authentication status.
@@ -96,8 +110,6 @@ const PublicLayout = () => {
 
     return (
         <div className="min-h-screen">
-            {/* NOTE: You will also need to make GuestNavbar fixed and add padding-top to this main. */}
-            {/* Ensure GuestNavbar.jsx also has 'fixed top-0 left-0 w-full z-50' */}
             <GuestNavbar />
             <main className="pt-16"> {/* Assuming GuestNavbar is also h-16, adjust as needed */}
                 <Outlet />
@@ -192,7 +204,7 @@ const AppContent = () => {
                 <Route path="/rate-startups" element={user?.role === 'investor' ? <RateStartup /> : <Navigate to="/dashboard" replace />} />
                 <Route path="/my-investments" element={user?.role === 'investor' ? <InvestorDeck /> : <Navigate to="/dashboard" replace />} />
 
-                {/* Settings routes */}
+                {/* --- Settings routes --- */}
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/settings/username" element={<ChangeUsername />} />
                 <Route path="/settings/email" element={<ChangeEmail />} />
@@ -201,6 +213,7 @@ const AppContent = () => {
                 <Route path="/settings/notifications" element={<NotificationSettings />} />
                 <Route path="/settings/privacy" element={<PrivacySettings />} />
                 <Route path="/settings/delete" element={<DeleteAccount />} />
+              
 
                 {/* Admin-specific routes */}
                 <Route path="/admin/users" element={user?.role === 'admin' ? <AdminUsers /> : <Navigate to="/dashboard" replace />} />
@@ -209,11 +222,11 @@ const AppContent = () => {
                 <Route path="/admin/investments" element={user?.role === 'admin' ? <InvestorDeck /> : <Navigate to="/dashboard" replace />} />
 
                 {/* Fallback for protected routes */}
-                <Route path="*" element={<div className="text-center text-xl font-bold mt-10 text-theme-heading-primary">Protected Route: 404 Not Found or Unauthorized Access</div>} />
+                <Route path="*" element={<div className="p-8 text-center text-xl font-bold mt-10 text-theme-heading-primary">Protected Route: 404 Not Found or Unauthorized Access</div>} />
             </Route>
 
             {/* Catch-all for any other routes not matched */}
-            <Route path="*" element={<div className="text-center text-xl font-bold mt-10 text-theme-heading-primary">404 Not Found</div>} />
+            <Route path="*" element={<div className="p-8 text-center text-xl font-bold mt-10 text-theme-heading-primary">404 Not Found</div>} />
         </Routes>
     );
 };
@@ -224,7 +237,7 @@ const AppContent = () => {
 const App = () => (
     <Router>
         {/* Place ScrollToTop directly inside Router */}
-        <ScrollToTop /> {/* <--- NEW COMPONENT USAGE */}
+        <ScrollToTop />
         <AuthProvider>
             <ThemeProvider>
                 <div className="relative min-h-screen flex flex-col overflow-hidden bg-theme-bg">

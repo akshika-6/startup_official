@@ -21,18 +21,18 @@ html {
   :root {
     /* Light Theme (Default - Pinkish) */
     /* Base Light Theme Colors - Pinkish Palette */
-    --color-light-primary: #be8995; /* Your original soft pink */
-    --color-light-secondary: #e6d0db; /* Your original lighter pink for outer background */
-    --color-light-card-bg: #f3cfd9; /* Distinct soft pink for card background */
+    --color-light-primary: #b7def1; /* Your original soft pink */
+    --color-light-secondary: #d0dde6; /* Your original lighter pink for outer background */
+    --color-light-card-bg: #cfe0f3; /* Distinct soft pink for card background */
     --color-light-text-primary: #070707; /* Dark text for readability */
-    --color-light-text-secondary: #3d3c3c; /* Lighter text */
-    --color-light-border: #ec2b48; /* Pink border */
-    --color-light-input-border: #ce2944; /* Even softer pink for input borders */
-    --color-light-button-primary-bg: #e97dc0; /* Hot pink for primary buttons */
+    --color-light-text-secondary: #353434; /* Lighter text */
+    --color-light-border: #2b92ec; /* Pink border */
+    --color-light-input-border: #2979ce; /* Even softer pink for input borders */
+    --color-light-button-primary-bg: #7daee9; /* Hot pink for primary buttons */
     --color-light-button-primary-text: #000000;
-    --color-light-button-secondary-bg: #4b4b4b; /* Ghost White for secondary buttons (text) */
-    --color-light-button-secondary-text: #a7227a;
-    --color-light-link: #ea08e2; /* Orchid for links */
+    --color-light-button-secondary-bg: #ffffff; /* Ghost White for secondary buttons (text) */
+    --color-light-button-secondary-text: #4322a7;
+    --color-light-link: #9b08ea; /* Orchid for links */
 
     /* Blob Colors (static for a consistent accent in hero, can be made theme-aware if needed) */
     --color-blob-light-1: #013444; /* Dark Cyan/Blue */
@@ -40,7 +40,7 @@ html {
     --color-blob-light-3: #01293c; /* Dark Blue */
 
     /* Input field specific background for light mode */
-    --color-light-input-bg: #e0abc5; /* Lavender Blush */
+    --color-light-input-bg: #abc1e0; /* Lavender Blush */
 
     /* --- Theme-aware mappings for light mode (these are the ones used in JSX) --- */
     --color-theme-bg: var(--color-light-secondary); /* Outer background */
@@ -48,7 +48,7 @@ html {
     --color-theme-heading-primary: var(--color-light-text-primary);
     --color-theme-text: var(--color-light-text-primary);
     --color-theme-text-secondary: var(--color-light-text-secondary);
-    --color-nav-bg: rgba(255, 255, 255, 0.9); /* Navbar background (can be adjusted for pink if needed) */
+    --color-nav-bg: rgba(255, 255, 255, 255); /* Navbar background (can be adjusted for pink if needed) */
     --color-theme-border: var(--color-light-border);
 
     /* Hero Section specific (light mode) - Keeping a static dark gradient for tech aesthetic */
@@ -67,26 +67,26 @@ html {
     --color-button-secondary-text: var(--color-light-button-secondary-text);
     --color-button-secondary-hover: transparent; /* Transparent hover for border-only */
     --color-button-secondary-border: var(--color-light-button-secondary-text); /* Border color from secondary text */
-    --color-button-secondary-hover-alt: color-mix(in srgb, var(--color-light-button-secondary-text) 10%, rgb(223, 194, 194)); /* Very light background on hover */
+    --color-button-secondary-hover-alt: color-mix(in srgb, var(--color-light-button-secondary-text) 10%, rgb(194, 208, 223)); /* Very light background on hover */
 
     /* Card */
     --color-card-bg: var(--color-light-card-bg);
     --color-card-bg-light: var(--color-light-secondary); /* For cards in general sections */
-    --color-card-hover-bg-light: #bf81b9; /* Slightly different pink on hover */
+    --color-card-hover-bg-light: #818ebf; /* Slightly different pink on hover */
 
     /* Input/Progress */
-    --color-input-bg: var(--color-light-input-bg);
+    --color-input-bg: 
     --color-progress-bar-bg: var(--color-light-border); /* Progress bar background */
 
     /* How It Works Section */
     --color-heading-step: var(--color-light-text-secondary); /* Darker text for step numbers */
     --color-step-arrow: var(--color-light-border); /* Gray/Pink for step arrows */
-    --color-gradient-1-start: #f56eb2; /* Pink */
-    --color-gradient-1-end: #ea08e2; /* Orchid */
-    --color-gradient-2-start: #FF69B4; /* Hot Pink */
-    --color-gradient-2-end: #FF1493; /* Deep Pink */
-    --color-gradient-3-start: #FFC0CB; /* Light Pink */
-    --color-gradient-3-end: #f56eb2; /* Pink */
+    --color-gradient-1-start: #6e85f5; /* Pink */
+    --color-gradient-1-end: #0850ea; /* Orchid */
+    --color-gradient-2-start: #69b2ff; /* Hot Pink */
+    --color-gradient-2-end: #145eff; /* Deep Pink */
+    --color-gradient-3-start: #c0e6ff; /* Light Pink */
+    --color-gradient-3-end: #6ea0f5; /* Pink */
 
     /* Stats Section */
     --color-stat-icon-bg: var(--color-light-button-secondary-bg); /* Use light secondary button bg */
@@ -96,15 +96,15 @@ html {
     --color-stat-label: var(--color-light-text-secondary);
 
     /* User Role Section / Accent Section (light mode) */
-    --color-accent-bg: linear-gradient(to right, #FF69B4, #f56eb2); /* Pink gradient */
-    --color-accent-text-secondary: #FFD1DC; /* Lighter pink for text */
+    --color-accent-bg: linear-gradient(to right, #69aaff, #6e92f5); /* Pink gradient */
+    --color-accent-text-secondary: #d1f6ff; /* Lighter pink for text */
     --color-accent-button-bg: #ffffff;
-    --color-accent-button-text: #FF69B4;
+    --color-accent-button-text: #69b4ff;
 
     /* Success Stories Section / Accent Section 2 (light mode) - Static dark for tech aesthetic */
     --color-section-accent-bg: linear-gradient(to bottom right, #13161c, #2d3748);
     --color-section-accent-text-secondary: #0e0f0f; /* Lighter blue/gray for text on dark background */
-    --color-success-avatar-gradient: #be8995; /* Light blue to light purple (static) */
+    --color-success-avatar-gradient: #899cbe; /* Light blue to light purple (static) */
     --color-success-raised-bg: #05f8a7; /* Green (static) */
 
     /* Why Choose Section */
@@ -113,19 +113,19 @@ html {
     --color-success-color: #10b981; /* Green checkmark (static) */
 
     /* CTA Section */
-    --color-cta-bg: linear-gradient(to right, #f56eb2, #ea08e2); /* Hot pink to orchid gradient */
-    --color-cta-text-secondary: #FFD1DC; /* Light pink for text */
-    --color-cta-text-tertiary: #FFC0CB; /* Even lighter pink for small text */
-    --color-cta-button-primary-bg: #ebe5e5;
-    --color-cta-button-primary-text: #f56eb2;
-    --color-cta-button-secondary-border: #c68c8c;
+    --color-cta-bg: linear-gradient(to right, #6e90f5, #8808ea); /* Hot pink to orchid gradient */
+    --color-cta-text-secondary: #d1f7ff; /* Light pink for text */
+    --color-cta-text-tertiary: #c0c2ff; /* Even lighter pink for small text */
+    --color-cta-button-primary-bg: #e5e9eb;
+    --color-cta-button-primary-text: #6eadf5;
+    --color-cta-button-secondary-border: #8c98c6;
     --color-cta-button-secondary-text: #ffffff;
 
     /* Footer */
     --color-footer-bg: #333333; /* Dark gray for footer */
     --color-footer-text: #a0aec0; /* Gray text */
     --color-footer-link-hover: #ffffff;
-    --color-footer-logo-gradient: linear-gradient(to bottom right, #FF69B4, #ea08e2); /* Pink to Orchid */
+    --color-footer-logo-gradient: linear-gradient(to bottom right, #69e9ff, #0850ea); /* Pink to Orchid */
 
     /* Helper variables to get RGB components from hex for rgba() */
     --color-light-link-rgb: 234, 8, 226; /* RGB for #ea08e2 (Orchid) */
@@ -134,9 +134,9 @@ html {
     --color-focus-ring: rgba(var(--color-light-link-rgb), 0.5);
 
     /* --- NEW SIDEBAR SPECIFIC COLORS FOR LIGHT THEME --- */
-    --gradient-sidebar-start-light: #e6d0db; /* Indigo-600 */
-    --gradient-sidebar-end-light: #a857a4; /* Indigo-500 */
-    --color-sidebar-light: #c976bf; /* Fallback/solid color if gradient doesn't apply */
+    --gradient-sidebar-start-light: #d0e2e6; /* Indigo-600 */
+    --gradient-sidebar-end-light: #5779a8; /* Indigo-500 */
+    --color-sidebar-light: #7688c9; /* Fallback/solid color if gradient doesn't apply */
 
     /* Navigation Items (Light Theme) - assuming white/off-white text on gradient */
     --color-nav-item-text-light: rgba(255, 255, 255, 0.9); /* White 90% opacity */
@@ -158,11 +158,11 @@ html {
     --color-logout-btn-icon-bg-light: rgba(255, 255, 255, 0.2);
 
     /* sidebar light */
-    --color-primary-light: #e546b5; /* Indigo-600 (from sidebar setup) */
+    --color-primary-light: #464ee5; /* Indigo-600 (from sidebar setup) */
     --color-accent-light: #0a0009; /* Emerald-500 (from sidebar setup) */
     --color-text-light: #374151; /* Gray-700 (from sidebar setup) */
-    --color-background-light: #F9FAFB; /* Gray-50 (from sidebar setup) */
-    --color-card-light: #FFFFFF; /* White (from sidebar setup) */
+    --color-background-light: #85b8ea; /* Gray-50 (from sidebar setup) */
+    --color-card-light: #9ad3ef; /* White (from sidebar setup) */
 
     /* --- ADDED: Placeholder text color for light theme --- */
     --color-light-input-placeholder: rgba(7, 7, 7, 0.6); /* Darker, slightly transparent for light theme */
@@ -176,7 +176,7 @@ html {
     --color-dark-secondary: #2d3748; /* Your previous secondary */
     --color-dark-card-bg: #2d3748;
     --color-dark-text-primary: #e2e8f0;
-    --color-dark-text-secondary: #c0a0a0;
+    --color-dark-text-secondary: #fbfdfe;
     --color-dark-border: #4a5568;
     --color-dark-input-border: #4a5568;
     --color-dark-button-primary-bg: #6366f1; /* Indigo */
@@ -199,7 +199,7 @@ html {
     --color-theme-heading-primary: var(--color-dark-text-primary);
     --color-theme-text: var(--color-dark-text-primary);
     --color-theme-text-secondary: var(--color-dark-text-secondary);
-    --color-nav-bg: rgba(31, 31, 31, 0.9);
+    --color-nav-bg: #121721;
     --color-theme-border: var(--color-dark-border);
 
     /* Hero Section specific (dark mode) - Static dark gradient for tech aesthetic */
@@ -230,8 +230,8 @@ html {
     --color-progress-bar-bg: var(--color-dark-border);
 
     /* How It Works Section */
-    --color-heading-step: var(--color-dark-text-secondary); /* Lighter text for step numbers */
-    --color-step-arrow: var(--color-dark-border); /* Darker gray for step arrows */
+    --color-heading-step: #7ab2e0; /* Lighter text for step numbers */
+    --color-step-arrow: #7ab2e0; /* Darker gray for step arrows */
     --color-gradient-1-start: #6366f1; /* Indigo */
     --color-gradient-1-end: #38bdf8; /* Light blue */
     --color-gradient-2-start: #a855f7; /* Violet */

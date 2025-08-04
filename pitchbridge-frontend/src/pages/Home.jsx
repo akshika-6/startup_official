@@ -177,7 +177,7 @@ const Home = () => {
       {user && (
   <section className="py-16 px-6 bg-theme-accent-bg text-white"> {/* Using theme accent bg */}
     <div className="max-w-4xl mx-auto text-center space-y-6">
-      <h2 className="text-3xl font-bold">
+      <h2 className="text-3xl font-bold text-black dark:text-white">
         {user.role === 'founder'
           ? '🚀 Ready to accelerate your startup journey?'
           : user.role === 'investor'
@@ -276,56 +276,57 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Enhanced Success Stories */}
-     <section id="success-stories" className="py-20 px-6 bg-theme-section-accent-bg text-white"> {/* Using theme accent bg */}
-    <div className="max-w-7xl mx-auto">
-        <div className="text-center space-y-4 mb-16">
-            <h2 className="text-4xl font-bold">Success Stories</h2>
-            <p className="text-xl text-theme-section-accent-text-secondary max-w-2xl mx-auto">
-                Real founders, real results. See how PitchBridge has transformed businesses.
-            </p>
-        </div>
-
-        <div className="relative max-w-4xl mx-auto">
-            <div className="bg-theme-success-avatar-gradient backdrop-blur-lg rounded-3xl p-8 md:p-12"> {/* Kept as white/10 for transparency effect */}
-                <div className="text-center space-y-6">
-                    <div className="flex justify-center">
-                        <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center text-xl font-bold text-black">
-                            {testimonials[activeTestimonial].avatar}
-                        </div>
-                    </div>
-
-                    <blockquote className="text-2xl md:text-3xl font-light leading-relaxed text-black">
-                        "{testimonials[activeTestimonial].content}"
-                    </blockquote>
-
-                    <div className="space-y-2">
-                        <div className="font-semibold text-lg text-black">{testimonials[activeTestimonial].name}</div> {/* Made name black */}
-                        <div className="text-theme-section-accent-text-secondary">{testimonials[activeTestimonial].role}</div> {/* Using theme accent text */}
-                        {testimonials[activeTestimonial].raised && (
-                            <div className="inline-block bg-theme-success-raised-bg text-black px-3 py-1 rounded-full text-sm font-semibold">
-                                Raised {testimonials[activeTestimonial].raised}
+            {/* Enhanced Success Stories */}
+                  <section id="success-stories" className="py-20 px-6 bg-theme-section-accent-bg text-white"> {/* Using theme accent bg */}
+                    <div className="max-w-7xl mx-auto">
+                      <div className="text-center space-y-4 mb-16">
+                        <h2 className="text-4xl font-bold text-black dark:text-white">Success Stories</h2>
+                        <p className="text-xl text-theme-section-accent-text-secondary max-w-2xl mx-auto">
+                          Real founders, real results. See how PitchBridge has transformed businesses.
+                        </p>
+                      </div>
+            
+                      <div className="relative max-w-4xl mx-auto">
+                        <div className="bg-custom-blue dark:bg-white/10 backdrop-blur-lg rounded-3xl p-8 md:p-12">
+                          <div className="text-center space-y-6">
+                            <div className="flex justify-center">
+                              <div className="w-16 h-16 bg-theme-success-avatar-gradient dark:bg-gray-800 rounded-full flex items-center justify-center text-xl font-bold text-black dark:text-white">
+                                {testimonials[activeTestimonial].avatar}
+                              </div>
                             </div>
-                        )}
+            
+                            <blockquote className="text-2xl md:text-3xl font-light leading-relaxed text-black dark:text-white">
+                              "{testimonials[activeTestimonial].content}"
+                            </blockquote>
+            
+                            <div className="space-y-2">
+                              <div className="font-semibold text-lg">{testimonials[activeTestimonial].name}</div>
+                              <div className="text-theme-section-accent-text-secondary">{testimonials[activeTestimonial].role}</div> {/* Using theme accent text */}
+                              {testimonials[activeTestimonial].raised && (
+                                <div className="inline-block bg-theme-success-raised-bg text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                  Raised {testimonials[activeTestimonial].raised}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+            
+                        {/* Testimonial Indicators */}
+                        <div className="flex justify-center space-x-2 mt-8">
+                          {testimonials.map((_, idx) => (
+                            <button
+                              key={idx}
+                              onClick={() => setActiveTestimonial(idx)}
+                              className={`w-3 h-3 rounded-full transition ${
+                                idx === activeTestimonial ? 'bg-white' : 'bg-white/30' // Kept white/30 for indicators as they are on a dark background
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                </div>
-            </div>
+                  </section>
 
-            {/* Testimonial Indicators */}
-            <div className="flex justify-center space-x-2 mt-8">
-                {testimonials.map((_, idx) => (
-                    <button
-                        key={idx}
-                        onClick={() => setActiveTestimonial(idx)}
-                        className={`w-3 h-3 rounded-full transition ${
-                            idx === activeTestimonial ? 'bg-black' : 'bg-gray-400' // Active indicator black, inactive a shade of gray for visibility
-                        }`}
-                    />
-                ))}
-            </div>
-        </div>
-    </div>
-</section>
       {/* Enhanced Why Choose Section */}
       <section className="py-20 px-6 bg-theme-bg">
         <div className="max-w-7xl mx-auto">
@@ -336,7 +337,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 ">
             {[
               {
                 title: "AI-Powered Matching",
@@ -363,7 +364,7 @@ const Home = () => {
                 benefits: ["1-on-1 mentoring", "Pitch feedback", "Market insights"]
               }
             ].map((item, idx) => (
-              <div key={idx} className="bg-theme-card-bg-light rounded-2xl p-6 hover:bg-theme-card-hover-bg-light transition group">
+              <div class="bg-theme-card-bg-light rounded-2xl p-6 hover:bg-[#b7def1] dark:hover:bg-theme-card-hover-bg-light transition group">
                 <div className="inline-flex p-3 rounded-xl bg-theme-icon-bg text-theme-icon-color mb-4 group-hover:bg-blue-200 transition">
                   <item.icon className="w-6 h-6" />
                 </div>
@@ -392,22 +393,26 @@ const Home = () => {
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-white/10 rounded-full filter blur-3xl"></div>
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white/10 rounded-full filter blur-3xl"></div>
 
-        <div className="relative max-w-4xl mx-auto text-center space-y-8">
-          <h2 className="text-5xl font-bold leading-tight">
+        <div className="relative max-w-4xl mx-auto text-center space-y-8 text-black dark:text-white">
+          <h2 className="text-5xl font-bold leading-tight text-black dark:text-white">
             Ready to Build the Future?
           </h2>
-          <p class="text-2xl text-theme-cta-text-secondary max-w-2xl mx-auto leading-relaxed text-black">Join 500+ successful founders and investors who've transformed their vision into reality with PitchBridge.</p>
+          <p class="text-2xl max-w-2xl mx-auto leading-relaxed text-black dark:text-theme-cta-text-secondary">
+  Join 500+ successful founders and investors who've transformed their vision into reality with PitchBridge.
+</p>
+
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a href="/register" className="bg-theme-cta-button-primary-bg text-theme-cta-button-primary-text px-10 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition shadow-2xl">
               Start Your Journey Today
             </a>
-            <button className="border-2 border-theme-cta-button-secondary-border text-theme-cta-button-secondary-text px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-theme-cta-button-primary-text transition">
+            <button className="text-black dark:text-white border-2 border-theme-cta-button-secondary-border px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-theme-cta-button-primary-text transition">
               Schedule a Demo
             </button>
           </div>
 
-         <div className="pt-8 text-theme-cta-text-tertiary text-sm text-black">
+         <div className="pt-8 text-black dark:text-theme-cta-text-tertiary text-sm">
+
     ✨ Free to get started • No credit card required • Join in 2 minutes
 </div>
         </div>
@@ -472,7 +477,7 @@ const Home = () => {
           </div>
 
           <div className="border-t border-theme-border mt-12 pt-8 text-center text-theme-footer-text"> {/* Changed border color */}
-            <p>&copy; 2024 PitchBridge. All rights reserved.</p>
+            <p>&copy; 2025 PitchBridge. All rights reserved.</p>
           </div>
         </div>
       </footer>

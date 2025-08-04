@@ -196,7 +196,7 @@ const DashboardHome = () => {
             {/* User Role-Based Section */}
             {user && (
                 <section className="py-16 px-6 bg-theme-user-role-section-bg text-white"> {/* Adjusted for theme gradient */}
-                    <div className="max-w-4xl mx-auto text-center space-y-6">
+                    <div className="max-w-4xl mx-auto text-center space-y-6 text-black dark:text-white">
                         <h2 className="text-3xl font-bold">
                             {user.role === 'founder'
                             ? '🚀 Ready to accelerate your startup journey?'
@@ -204,8 +204,13 @@ const DashboardHome = () => {
                             ? '💼 Discover the next unicorn startup'
                             : 'Welcome to PitchBridge!'}
                         </h2>
-                       <p className="text-xl text-theme-accent-text-secondary">
-                            {user.role === 'founder'
+                        <p
+                          className={`
+                            text-xl
+                            ${theme === 'light' ? 'text-black' : 'text-theme-accent-text-secondary'}
+                          `}
+                        >
+                          {user.role === 'founder'
                             ? 'Access our founder toolkit: pitch builder, investor matching, and funding analytics.'
                             : user.role === 'investor'
                             ? 'Browse vetted startups, review detailed pitches, and connect with promising entrepreneurs.'
