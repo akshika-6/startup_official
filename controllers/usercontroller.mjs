@@ -50,14 +50,19 @@ export const getUserById = async (req, res, next) => {
 // @desc    Register new user
 export const createUser = async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({ message: 'Email already registered' });
     }
 
-    const newUser = await User.create({ name, email, password });
+    // ✅ Only allow valid roles
+    const validRoles = ['founder', 'investor', 'admin'];
+    const assignedRole = validRoles.includes(role) ? role : 'founder';
+
+    const newUser = await User.create({ name, email, password, role: assignedRole });
+
     res.status(201).json({
       _id: newUser._id,
       name: newUser.name,
@@ -69,6 +74,7 @@ export const createUser = async (req, res, next) => {
     next(err);
   }
 };
+
 
 // export const updateUser = async (req, res) => {
 //   const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
