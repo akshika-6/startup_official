@@ -10,7 +10,6 @@ const Home = () => {
   // user state is kept for conditional rendering logic in the user role-based section,
   // even if its value is static and not passed as a prop from App.jsx.
   const [user] = useState({ role: 'founder' });
-
   const testimonials = [
     {
       name: "Sarah Chen",
