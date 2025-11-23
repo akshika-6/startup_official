@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { API_BASE_URL } from '../config';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { API_BASE_URL } from "../config";
 import {
   DollarSign,
   TrendingUp,
@@ -21,8 +21,8 @@ import {
   Filter,
   Search,
   ChevronDown,
-  RefreshCw
-} from 'lucide-react';
+  RefreshCw,
+} from "lucide-react";
 
 const Investments = () => {
   const navigate = useNavigate();
@@ -32,13 +32,13 @@ const Investments = () => {
     activePreferences: 0,
     preferencesByStage: [],
     preferencesByIndustry: [],
-    recentActivity: []
+    recentActivity: [],
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedTab, setSelectedTab] = useState('overview');
-  const [filterStatus, setFilterStatus] = useState('all');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTab, setSelectedTab] = useState("overview");
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetchInvestments();
@@ -47,19 +47,19 @@ const Investments = () => {
 
   const fetchInvestments = async () => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       const response = await fetch(`${API_BASE_URL}/api/investor-preferences`, {
         headers: {
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
+          "Content-Type": "application/json",
+        },
       });
 
       if (response.ok) {
         const data = await response.json();
         setInvestments(data.data || []);
       } else {
-        throw new Error('Failed to fetch investments');
+        throw new Error("Failed to fetch investments");
       }
     } catch (err) {
       setError(err.message);
@@ -68,45 +68,55 @@ const Investments = () => {
 
   const fetchStats = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/investor-preferences/stats`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `${API_BASE_URL}/api/investor-preferences/stats`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        },
+      );
 
       if (response.ok) {
         const data = await response.json();
         setStats(data.data);
       }
     } catch (err) {
-      console.error('Error fetching stats:', err);
+      console.error("Error fetching stats:", err);
     } finally {
       setLoading(false);
     }
   };
 
   const handleDeleteInvestment = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this investment interest?')) {
+    if (
+      !window.confirm(
+        "Are you sure you want to delete this investment interest?",
+      )
+    ) {
       return;
     }
 
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`${API_BASE_URL}/api/investor-preferences/${id}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `${API_BASE_URL}/api/investor-preferences/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        },
+      );
 
       if (response.ok) {
-        setInvestments(investments.filter(inv => inv._id !== id));
+        setInvestments(investments.filter((inv) => inv._id !== id));
         fetchStats(); // Refresh stats
       } else {
-        throw new Error('Failed to delete investment');
+        throw new Error("Failed to delete investment");
       }
     } catch (err) {
       setError(err.message);
@@ -115,11 +125,11 @@ const Investments = () => {
 
   const getStatusIcon = (status) => {
     switch (status) {
-      case 'active':
+      case "active":
         return <CheckCircle className="h-4 w-4 text-green-500" />;
-      case 'inactive':
+      case "inactive":
         return <Clock className="h-4 w-4 text-yellow-500" />;
-      case 'completed':
+      case "completed":
         return <AlertCircle className="h-4 w-4 text-blue-500" />;
       default:
         return <Clock className="h-4 w-4 text-gray-500" />;
@@ -128,29 +138,30 @@ const Investments = () => {
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'active':
-        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
-      case 'inactive':
-        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-      case 'completed':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+      case "active":
+        return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200";
+      case "inactive":
+        return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200";
+      case "completed":
+        return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200";
       default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
+        return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200";
     }
   };
 
-  const filteredInvestments = investments.filter(inv => {
-    const matchesSearch = inv.areasOfInterest?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         inv.investorName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         inv.companyName?.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = filterStatus === 'all' || inv.status === filterStatus;
+  const filteredInvestments = investments.filter((inv) => {
+    const matchesSearch =
+      inv.areasOfInterest?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      inv.investorName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      inv.companyName?.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesFilter = filterStatus === "all" || inv.status === filterStatus;
     return matchesSearch && matchesFilter;
   });
 
   const tabs = [
-    { id: 'overview', label: 'Overview', icon: BarChart3 },
-    { id: 'interests', label: 'Investment Interests', icon: Target },
-    { id: 'analytics', label: 'Analytics', icon: PieChart }
+    { id: "overview", label: "Overview", icon: BarChart3 },
+    { id: "interests", label: "Investment Interests", icon: Target },
+    { id: "analytics", label: "Analytics", icon: PieChart },
   ];
 
   if (loading) {
@@ -158,7 +169,9 @@ const Investments = () => {
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <RefreshCw className="h-8 w-8 animate-spin text-blue-600 mx-auto mb-4" />
-          <p className="text-gray-600 dark:text-gray-400">Loading your investments...</p>
+          <p className="text-gray-600 dark:text-gray-400">
+            Loading your investments...
+          </p>
         </div>
       </div>
     );
@@ -181,7 +194,7 @@ const Investments = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => navigate('/investor-deck')}
+              onClick={() => navigate("/investor-deck")}
               className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center space-x-2 transition-colors"
             >
               <Plus className="h-5 w-5" />
@@ -254,12 +267,16 @@ const Investments = () => {
                   This Month
                 </p>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {investments.filter(inv => {
-                    const thisMonth = new Date();
-                    const invDate = new Date(inv.submittedAt);
-                    return invDate.getMonth() === thisMonth.getMonth() &&
-                           invDate.getFullYear() === thisMonth.getFullYear();
-                  }).length}
+                  {
+                    investments.filter((inv) => {
+                      const thisMonth = new Date();
+                      const invDate = new Date(inv.submittedAt);
+                      return (
+                        invDate.getMonth() === thisMonth.getMonth() &&
+                        invDate.getFullYear() === thisMonth.getFullYear()
+                      );
+                    }).length
+                  }
                 </p>
               </div>
             </div>
@@ -280,7 +297,13 @@ const Investments = () => {
                   Industries
                 </p>
                 <p className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {new Set(investments.map(inv => inv.areasOfInterest).filter(Boolean)).size}
+                  {
+                    new Set(
+                      investments
+                        .map((inv) => inv.areasOfInterest)
+                        .filter(Boolean),
+                    ).size
+                  }
                 </p>
               </div>
             </div>
@@ -299,8 +322,8 @@ const Investments = () => {
                     onClick={() => setSelectedTab(tab.id)}
                     className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center space-x-2 transition-colors ${
                       selectedTab === tab.id
-                        ? 'border-blue-500 text-blue-600 dark:text-blue-400'
-                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
+                        ? "border-blue-500 text-blue-600 dark:text-blue-400"
+                        : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300"
                     }`}
                   >
                     <Icon className="h-4 w-4" />
@@ -314,7 +337,7 @@ const Investments = () => {
 
         {/* Tab Content */}
         <AnimatePresence mode="wait">
-          {selectedTab === 'interests' && (
+          {selectedTab === "interests" && (
             <motion.div
               key="interests"
               initial={{ opacity: 0, y: 20 }}
@@ -369,7 +392,7 @@ const Investments = () => {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={() => navigate('/investor-deck')}
+                      onClick={() => navigate("/investor-deck")}
                       className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
                     >
                       Submit Investment Interest
@@ -395,8 +418,11 @@ const Investments = () => {
                               </h3>
                               <div className="flex items-center space-x-2">
                                 {getStatusIcon(investment.status)}
-                                <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(investment.status)}`}>
-                                  {investment.status?.charAt(0).toUpperCase() + investment.status?.slice(1)}
+                                <span
+                                  className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(investment.status)}`}
+                                >
+                                  {investment.status?.charAt(0).toUpperCase() +
+                                    investment.status?.slice(1)}
                                 </span>
                               </div>
                             </div>
@@ -404,31 +430,51 @@ const Investments = () => {
 
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <div>
-                              <p className="text-sm text-gray-600 dark:text-gray-400">Investment Amount</p>
-                              <p className="font-medium text-gray-900 dark:text-white">{investment.investmentAmount}</p>
+                              <p className="text-sm text-gray-600 dark:text-gray-400">
+                                Investment Amount
+                              </p>
+                              <p className="font-medium text-gray-900 dark:text-white">
+                                {investment.investmentAmount}
+                              </p>
                             </div>
                             {investment.companyName && (
                               <div>
-                                <p className="text-sm text-gray-600 dark:text-gray-400">Company</p>
-                                <p className="font-medium text-gray-900 dark:text-white">{investment.companyName}</p>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                  Company
+                                </p>
+                                <p className="font-medium text-gray-900 dark:text-white">
+                                  {investment.companyName}
+                                </p>
                               </div>
                             )}
                             <div>
-                              <p className="text-sm text-gray-600 dark:text-gray-400">Contact</p>
-                              <p className="font-medium text-gray-900 dark:text-white">{investment.contactEmail}</p>
+                              <p className="text-sm text-gray-600 dark:text-gray-400">
+                                Contact
+                              </p>
+                              <p className="font-medium text-gray-900 dark:text-white">
+                                {investment.contactEmail}
+                              </p>
                             </div>
                             <div>
-                              <p className="text-sm text-gray-600 dark:text-gray-400">Submitted</p>
+                              <p className="text-sm text-gray-600 dark:text-gray-400">
+                                Submitted
+                              </p>
                               <p className="font-medium text-gray-900 dark:text-white">
-                                {new Date(investment.submittedAt).toLocaleDateString()}
+                                {new Date(
+                                  investment.submittedAt,
+                                ).toLocaleDateString()}
                               </p>
                             </div>
                           </div>
 
                           {investment.notes && (
                             <div className="mb-4">
-                              <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">Notes</p>
-                              <p className="text-gray-900 dark:text-white">{investment.notes}</p>
+                              <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                                Notes
+                              </p>
+                              <p className="text-gray-900 dark:text-white">
+                                {investment.notes}
+                              </p>
                             </div>
                           )}
                         </div>
@@ -453,7 +499,9 @@ const Investments = () => {
                           <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.9 }}
-                            onClick={() => handleDeleteInvestment(investment._id)}
+                            onClick={() =>
+                              handleDeleteInvestment(investment._id)
+                            }
                             className="p-2 text-gray-600 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 transition-colors"
                             title="Delete"
                           >
@@ -468,7 +516,7 @@ const Investments = () => {
             </motion.div>
           )}
 
-          {selectedTab === 'overview' && (
+          {selectedTab === "overview" && (
             <motion.div
               key="overview"
               initial={{ opacity: 0, y: 20 }}
@@ -484,25 +532,36 @@ const Investments = () => {
                     Recent Activity
                   </h3>
                   <div className="space-y-4">
-                    {stats.recentActivity?.slice(0, 5).map((activity, index) => (
-                      <div key={index} className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                        <div className="p-1 bg-blue-100 dark:bg-blue-900/20 rounded">
-                          <Target className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                    {stats.recentActivity
+                      ?.slice(0, 5)
+                      .map((activity, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"
+                        >
+                          <div className="p-1 bg-blue-100 dark:bg-blue-900/20 rounded">
+                            <Target className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-sm font-medium text-gray-900 dark:text-white">
+                              {activity.areasOfInterest}
+                            </p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">
+                              {activity.investmentAmount} •{" "}
+                              {new Date(
+                                activity.submittedAt,
+                              ).toLocaleDateString()}
+                            </p>
+                          </div>
+                          <span
+                            className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(activity.status)}`}
+                          >
+                            {activity.status}
+                          </span>
                         </div>
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-gray-900 dark:text-white">
-                            {activity.areasOfInterest}
-                          </p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {activity.investmentAmount} • {new Date(activity.submittedAt).toLocaleDateString()}
-                          </p>
-                        </div>
-                        <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(activity.status)}`}>
-                          {activity.status}
-                        </span>
-                      </div>
-                    ))}
-                    {(!stats.recentActivity || stats.recentActivity.length === 0) && (
+                      ))}
+                    {(!stats.recentActivity ||
+                      stats.recentActivity.length === 0) && (
                       <p className="text-gray-500 dark:text-gray-400 text-center py-8">
                         No recent activity
                       </p>
@@ -519,7 +578,7 @@ const Investments = () => {
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      onClick={() => navigate('/investor-deck')}
+                      onClick={() => navigate("/investor-deck")}
                       className="w-full p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg text-left hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors"
                     >
                       <div className="flex items-center space-x-3">
@@ -538,7 +597,7 @@ const Investments = () => {
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      onClick={() => navigate('/explore-investors')}
+                      onClick={() => navigate("/explore-investors")}
                       className="w-full p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg text-left hover:bg-green-100 dark:hover:bg-green-900/30 transition-colors"
                     >
                       <div className="flex items-center space-x-3">
@@ -557,7 +616,7 @@ const Investments = () => {
                     <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      onClick={() => setSelectedTab('analytics')}
+                      onClick={() => setSelectedTab("analytics")}
                       className="w-full p-4 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg text-left hover:bg-purple-100 dark:hover:bg-purple-900/30 transition-colors"
                     >
                       <div className="flex items-center space-x-3">
@@ -578,7 +637,7 @@ const Investments = () => {
             </motion.div>
           )}
 
-          {selectedTab === 'analytics' && (
+          {selectedTab === "analytics" && (
             <motion.div
               key="analytics"
               initial={{ opacity: 0, y: 20 }}
@@ -595,16 +654,20 @@ const Investments = () => {
                   </h3>
                   <div className="space-y-3">
                     {stats.preferencesByStage?.map((stage, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                      <div
+                        key={index}
+                        className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"
+                      >
                         <span className="text-gray-900 dark:text-white font-medium">
-                          {stage._id || 'Not specified'}
+                          {stage._id || "Not specified"}
                         </span>
                         <span className="text-blue-600 dark:text-blue-400 font-semibold">
                           {stage.count}
                         </span>
                       </div>
                     ))}
-                    {(!stats.preferencesByStage || stats.preferencesByStage.length === 0) && (
+                    {(!stats.preferencesByStage ||
+                      stats.preferencesByStage.length === 0) && (
                       <p className="text-gray-500 dark:text-gray-400 text-center py-8">
                         No data available
                       </p>
@@ -620,16 +683,20 @@ const Investments = () => {
                   </h3>
                   <div className="space-y-3">
                     {stats.preferencesByIndustry?.map((industry, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                      <div
+                        key={index}
+                        className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"
+                      >
                         <span className="text-gray-900 dark:text-white font-medium">
-                          {industry._id || 'Not specified'}
+                          {industry._id || "Not specified"}
                         </span>
                         <span className="text-green-600 dark:text-green-400 font-semibold">
                           {industry.count}
                         </span>
                       </div>
                     ))}
-                    {(!stats.preferencesByIndustry || stats.preferencesByIndustry.length === 0) && (
+                    {(!stats.preferencesByIndustry ||
+                      stats.preferencesByIndustry.length === 0) && (
                       <p className="text-gray-500 dark:text-gray-400 text-center py-8">
                         No data available
                       </p>
@@ -637,4 +704,12 @@ const Investments = () => {
                   </div>
                 </div>
               </div>
-            </motion.
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
+
+export default Investments;
