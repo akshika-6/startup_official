@@ -49,7 +49,8 @@ import NotificationSettings from "./pages/settings/NotificationSettings";
 import PrivacySettings from "./pages/settings/PrivacySettings";
 import DeleteAccount from "./pages/settings/DeleteAccount";
 import ManageTeamPage from "./pages/ManageTeamPage.jsx";
-import FounderDashboard from "./components/FounderDashboard.jsx";
+import FounderDashboard from "./pages/dashboard/FounderDashboard.jsx";
+import StartupDetailPage from "./pages/startup/StartupDetail.jsx";
 
 // Dashboard components
 import DashboardInstructions from "./pages/dashboard/DashboardInstructions";
@@ -298,6 +299,16 @@ const AppContent = () => {
         />
         <Route path="/startups" element={<Startups />} />
         <Route path="/startups/:id" element={<StartupDetail />} />
+        <Route
+          path="/startup/:id"
+          element={
+            user?.role === "founder" ? (
+              <StartupDetailPage />
+            ) : (
+              <Navigate to="/dashboard" replace />
+            )
+          }
+        />
         <Route path="/profile" element={<Profile />} />
         <Route path="/messages/:userId?" element={<Messages />} />
         <Route path="/notifications" element={<Notifications />} />

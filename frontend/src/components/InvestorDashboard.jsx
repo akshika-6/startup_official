@@ -57,6 +57,41 @@ const InvestorDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch dashboard data from backend
+  useEffect(() => {
+    const fetchDashboardData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          setError("Authentication token not found");
+          setLoading(false);
+          return;
+        }
+
+        const response = await fetch(`${API_BASE_URL}/api/dashboard/investor`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setDashboardData(data.data);
+        } else {
+          throw new Error("Failed to fetch dashboard data");
+        }
+      } catch (err) {
+        console.error("Error fetching dashboard data:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDashboardData();
+  }, []);
+
   // Default values while loading
   const portfolioStats = dashboardData?.portfolioStats || {
     currentValue: 0,
@@ -77,7 +112,8 @@ const InvestorDashboard = () => {
 
   const portfolioCompanies = dashboardData?.portfolioCompanies || [];
 
-  const recentActivity = [
+  // Use real recent activity from backend
+  const recentActivity = dashboardData?.recentActivity || [
     {
       id: 1,
       type: "New Deal",
@@ -124,29 +160,8 @@ const InvestorDashboard = () => {
     },
   ];
 
-  const upcomingMeetings = [
-    {
-      id: 1,
-      title: "Pitch: EcoInnovate",
-      time: "Today, 2:00 PM",
-      location: "Zoom Call",
-      icon: <Phone size={20} className="text-blue-500" />,
-    },
-    {
-      id: 2,
-      title: "Portfolio Review: FinTech Solutions",
-      time: "Tomorrow, 10:00 AM",
-      location: "Office",
-      icon: <Users size={20} className="text-green-500" />,
-    },
-    {
-      id: 3,
-      title: "Due Diligence: AI Insights",
-      time: "Mon, Jul 29, 3:00 PM",
-      location: "Online",
-      icon: <Award size={20} className="text-purple-500" />,
-    },
-  ];
+  // Use real upcoming meetings from backend
+  const upcomingMeetings = dashboardData?.upcomingMeetings || [];
 
   // Chart Data & Options
   const lineChartData = {
@@ -288,6 +303,32 @@ const InvestorDashboard = () => {
   const CurrentGraphComponent = portfolioGraphs[currentGraphIndex].type;
   const currentGraphData = portfolioGraphs[currentGraphIndex].data;
   const currentGraphOptions = portfolioGraphs[currentGraphIndex].options;
+
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="bg-gray-100 dark:bg-gray-800 min-h-screen p-8 flex items-center justify-center">
+        <div className="text-center">
+          <RefreshCw className="h-12 w-12 animate-spin text-blue-600 mx-auto mb-4" />
+          <p className="text-xl text-gray-600 dark:text-gray-400">
+            Loading your investor dashboard...
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <div className="bg-gray-100 dark:bg-gray-800 min-h-screen p-8">
+        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-6 py-4 rounded-lg">
+          <p className="font-semibold">Error loading dashboard</p>
+          <p>{error}</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-gray-100 dark:bg-gray-800 min-h-screen p-8">
@@ -463,31 +504,43 @@ const InvestorDashboard = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white dark:bg-gray-700 divide-y divide-gray-200 dark:divide-gray-600">
-                  {portfolioCompanies.map((company) => (
-                    <tr
-                      key={company.id}
-                      className="hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-150"
-                    >
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                        {company.name}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                        {company.industry}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                        {company.stage}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                        ${company.invested.toLocaleString()}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                        ${company.current.toLocaleString()}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
-                        {company.nextRound}
+                  {portfolioCompanies.length === 0 ? (
+                    <tr>
+                      <td
+                        colSpan="6"
+                        className="px-6 py-8 text-center text-gray-500 dark:text-gray-400"
+                      >
+                        No portfolio companies found. Start exploring startups
+                        to build your portfolio!
                       </td>
                     </tr>
-                  ))}
+                  ) : (
+                    portfolioCompanies.map((company) => (
+                      <tr
+                        key={company.id}
+                        className="hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-150"
+                      >
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                          {company.name}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                          {company.industry}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                          {company.stage}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                          ${company.invested?.toLocaleString() || "N/A"}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                          ${company.current?.toLocaleString() || "N/A"}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-gray-200">
+                          {company.nextRound || "TBD"}
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>
@@ -510,25 +563,41 @@ const InvestorDashboard = () => {
               Recent Activity
             </h3>
             <ul className="space-y-4">
-              {recentActivity.map((activity) => (
-                <li
-                  key={activity.id}
-                  className="flex items-start bg-white dark:bg-[#1F2836] hover:bg-gray-50 dark:hover:bg-gray-600 p-3 rounded-lg transition-colors duration-150 border border-gray-200 dark:border-gray-600"
-                >
-                  <div className="mr-3 flex-shrink-0">{activity.icon}</div>
-                  <div className="flex-grow">
-                    <p className="text-gray-900 font-medium dark:text-white">
-                      {activity.type}:{" "}
-                      <span className="text-gray-700 dark:text-gray-300">
-                        {activity.description}
-                      </span>
-                    </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {activity.time}
-                    </p>
-                  </div>
+              {recentActivity.length === 0 ? (
+                <li className="text-center text-gray-500 dark:text-gray-400 py-8">
+                  No recent activity. Start exploring investment opportunities!
                 </li>
-              ))}
+              ) : (
+                recentActivity.map((activity) => (
+                  <li
+                    key={activity.id}
+                    className="flex items-start bg-white dark:bg-[#1F2836] hover:bg-gray-50 dark:hover:bg-gray-600 p-3 rounded-lg transition-colors duration-150 border border-gray-200 dark:border-gray-600"
+                  >
+                    <div className="mr-3 flex-shrink-0">
+                      {activity.icon ? (
+                        activity.icon
+                      ) : (
+                        <div className="p-2 rounded-full bg-gray-100 dark:bg-gray-800">
+                          <Lightbulb size={20} className="text-blue-500" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-grow">
+                      <p className="text-gray-900 font-medium dark:text-white">
+                        {activity.type}:{" "}
+                        <span className="text-gray-700 dark:text-gray-300">
+                          {activity.description}
+                        </span>
+                      </p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {activity.time
+                          ? new Date(activity.time).toLocaleDateString()
+                          : "Recent"}
+                      </p>
+                    </div>
+                  </li>
+                ))
+              )}
             </ul>
             <Link
               to="/notifications"

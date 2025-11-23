@@ -16,8 +16,10 @@ const generateToken = (id) => {
 
 export const getAllUsers = async (req, res, next) => {
   try {
-    const users = await User.find().select("-password");
-    res.json(users);
+    const { role } = req.query;
+    const filter = role ? { role } : {};
+    const users = await User.find(filter).select("-password");
+    res.json({ success: true, data: users });
   } catch (err) {
     next(err);
   }

@@ -14,43 +14,77 @@
 
 // export default router;
 
-import express from 'express';
-import { body, param } from 'express-validator';
+import express from "express";
+import { body, param } from "express-validator";
 import {
   createStartup,
   getAllStartups,
-  getStartupById
-} from '../controllers/startupcontroller.mjs';
-import { protect } from '../middleware/auth.mjs';
-import validateRequest from '../middleware/validateRequest.mjs';
+  getStartupById,
+  getStartupsByFounder,
+  updateStartup,
+  deleteStartup,
+} from "../controllers/startupcontroller.mjs";
+import { protect } from "../middleware/auth.mjs";
+import validateRequest from "../middleware/validateRequest.mjs";
 
 const router = express.Router();
 
 // POST /api/startups - founders only
 router.post(
-  '/',
+  "/",
   protect,
   [
-    body('startupName').notEmpty().withMessage('Startup name is required'),
-    body('domain').notEmpty().withMessage('Domain is required'),
-    body('stage')
-      .isIn(['idea', 'MVP', 'revenue'])
-      .withMessage('Stage must be one of: idea, MVP, revenue')
+    body("startupName").notEmpty().withMessage("Startup name is required"),
+    body("domain").notEmpty().withMessage("Domain is required"),
+    body("stage")
+      .isIn(["idea", "MVP", "revenue"])
+      .withMessage("Stage must be one of: idea, MVP, revenue"),
   ],
   validateRequest,
-  createStartup
+  createStartup,
 );
 
 // GET /api/startups
-router.get('/', getAllStartups);
+router.get("/", getAllStartups);
+
+// GET /api/startups/my - Get current founder's startups
+router.get("/my", protect, getStartupsByFounder);
 
 // GET /api/startups/:id
 router.get(
-  '/:id',
-  [param('id').isMongoId().withMessage('Invalid startup ID')],
+  "/:id",
+  [param("id").isMongoId().withMessage("Invalid startup ID")],
   validateRequest,
-  getStartupById
+  getStartupById,
+);
+
+// PUT /api/startups/:id - Update startup (founder only)
+router.put(
+  "/:id",
+  protect,
+  [
+    param("id").isMongoId().withMessage("Invalid startup ID"),
+    body("startupName")
+      .optional()
+      .notEmpty()
+      .withMessage("Startup name cannot be empty"),
+    body("domain").optional().notEmpty().withMessage("Domain cannot be empty"),
+    body("stage")
+      .optional()
+      .isIn(["idea", "MVP", "revenue"])
+      .withMessage("Stage must be one of: idea, MVP, revenue"),
+  ],
+  validateRequest,
+  updateStartup,
+);
+
+// DELETE /api/startups/:id - Delete startup (founder only)
+router.delete(
+  "/:id",
+  protect,
+  [param("id").isMongoId().withMessage("Invalid startup ID")],
+  validateRequest,
+  deleteStartup,
 );
 
 export default router;
-
