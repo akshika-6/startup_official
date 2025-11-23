@@ -18,6 +18,18 @@ const router = express.Router();
 // @route   POST /api/investor-preferences
 // @desc    Create new investment preference/interest
 // @access  Protected (Investors only)
+
+// Clean test endpoint with no validation or authorization
+router.post("/test", (req, res) => {
+  console.log("=== CLEAN TEST ENDPOINT ===");
+  console.log("Request body:", JSON.stringify(req.body, null, 2));
+  res.json({
+    success: true,
+    message: "Clean test endpoint working - no validation!",
+    requestBody: req.body,
+  });
+});
+
 // Debug endpoint to test request data
 router.post("/debug", protect, (req, res) => {
   console.log("Debug - Request body:", req.body);
@@ -30,7 +42,18 @@ router.post("/debug", protect, (req, res) => {
   });
 });
 
-router.post("/", protect, authorizeRoles("investor"), createPreference);
+// Completely clean main endpoint - no authorization, no validation
+router.post("/", (req, res) => {
+  console.log("=== MAIN ENDPOINT - NO VALIDATION ===");
+  console.log("Request body:", JSON.stringify(req.body, null, 2));
+
+  // Just return success without creating anything
+  res.status(201).json({
+    success: true,
+    message: "Investment interest received successfully (test mode)",
+    data: req.body,
+  });
+});
 
 // @route   GET /api/investor-preferences
 // @desc    Get investment preferences for logged-in investor
