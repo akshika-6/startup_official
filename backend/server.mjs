@@ -15,6 +15,7 @@ import commentRoutes from "./routes/commentroutes.mjs";
 import investorRoutes from "./routes/investorroutes.mjs";
 //import investorPreferenceRoutes from './routes/InvestorPreferencerouts.mjs'; // ✅ NEW
 import investorPreferenceRoutes from "./routes/InvestorPreferenceroutes.mjs";
+import dashboardRoutes from "./routes/dashboardroutes.mjs";
 import errorHandler from "./middleware/errorHandler.mjs";
 
 dotenv.config(); // Load environment variables
@@ -45,6 +46,7 @@ app.use("/api/ratings", ratingRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/investors", investorRoutes);
 app.use("/api/investor-preferences", investorPreferenceRoutes); // ✅ ADDED
+app.use("/api/dashboard", dashboardRoutes); // ✅ ADDED
 
 // Root endpoint
 app.get("/", (req, res) => {
