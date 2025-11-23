@@ -5,6 +5,10 @@ import { InvestorPreference, User } from "../Schema.mjs";
 // @access  Protected (Investors only)
 export const createPreference = async (req, res, next) => {
   try {
+    console.log("=== INVESTMENT PREFERENCE DEBUG ===");
+    console.log("Request body:", JSON.stringify(req.body, null, 2));
+    console.log("User:", req.user);
+
     const {
       investorName,
       contactEmail,
@@ -25,20 +29,29 @@ export const createPreference = async (req, res, next) => {
       });
     }
 
-    // Create investment preference/interest
-    const preference = await InvestorPreference.create({
+    // Create investment preference/interest - make it very permissive
+    const preferenceData = {
       investorId: req.user._id,
-      investorName: investorName || user.name,
-      contactEmail: contactEmail || user.email,
+      investorName: investorName || user.name || "Anonymous",
+      contactEmail: contactEmail || user.email || "no-email@example.com",
       companyName: companyName || "",
-      investmentAmount: investmentAmount || stage || "",
-      areasOfInterest: areasOfInterest || domain || "",
+      investmentAmount: investmentAmount || stage || "Not specified",
+      areasOfInterest: areasOfInterest || domain || "Not specified",
       notes: notes || "",
       domain: domain || areasOfInterest || "",
       stage: stage || investmentAmount || "",
       status: "active",
       submittedAt: new Date(),
-    });
+    };
+
+    console.log(
+      "Creating preference with data:",
+      JSON.stringify(preferenceData, null, 2),
+    );
+
+    const preference = await InvestorPreference.create(preferenceData);
+
+    console.log("Successfully created preference:", preference._id);
 
     res.status(201).json({
       success: true,
@@ -46,8 +59,17 @@ export const createPreference = async (req, res, next) => {
       data: preference,
     });
   } catch (error) {
-    console.error("Error creating investment preference:", error);
-    next(error);
+    console.error("=== ERROR creating investment preference ===");
+    console.error("Error details:", error);
+    console.error("Error message:", error.message);
+    console.error("Error stack:", error.stack);
+
+    // Return more detailed error info
+    res.status(500).json({
+      success: false,
+      message: error.message || "Failed to create investment preference",
+      error: process.env.NODE_ENV === "development" ? error : undefined,
+    });
   }
 };
 

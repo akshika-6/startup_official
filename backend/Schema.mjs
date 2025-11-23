@@ -39,11 +39,11 @@ const StartupSchema = new Schema({
 // Investor Preference Schema
 const InvestorPreferenceSchema = new Schema({
   investorId: { type: Schema.Types.ObjectId, ref: "User", required: true },
-  investorName: { type: String, required: true },
-  contactEmail: { type: String, required: true },
+  investorName: { type: String },
+  contactEmail: { type: String },
   companyName: { type: String },
-  investmentAmount: { type: String, required: true }, // e.g., "Pre-Seed (up to $100K)"
-  areasOfInterest: { type: String, required: true }, // e.g., "AI, FinTech, SaaS"
+  investmentAmount: { type: String }, // e.g., "Pre-Seed (up to $100K)"
+  areasOfInterest: { type: String }, // e.g., "AI, FinTech, SaaS"
   notes: { type: String },
   status: {
     type: String,

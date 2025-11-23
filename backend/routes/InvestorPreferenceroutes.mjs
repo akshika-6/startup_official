@@ -18,24 +18,19 @@ const router = express.Router();
 // @route   POST /api/investor-preferences
 // @desc    Create new investment preference/interest
 // @access  Protected (Investors only)
-router.post(
-  "/",
-  protect,
-  authorizeRoles("investor"),
-  [
-    body("investorName").optional().isString().trim(),
-    body("contactEmail")
-      .optional()
-      .isEmail()
-      .withMessage("Valid email is required"),
-    body("companyName").optional().isString().trim(),
-    body("investmentAmount").optional().isString(),
-    body("areasOfInterest").optional().isString(),
-    body("notes").optional().isString().trim(),
-  ],
-  validateRequest,
-  createPreference,
-);
+// Debug endpoint to test request data
+router.post("/debug", protect, (req, res) => {
+  console.log("Debug - Request body:", req.body);
+  console.log("Debug - User:", req.user);
+  res.json({
+    success: true,
+    message: "Debug endpoint working",
+    requestBody: req.body,
+    user: req.user,
+  });
+});
+
+router.post("/", protect, authorizeRoles("investor"), createPreference);
 
 // @route   GET /api/investor-preferences
 // @desc    Get investment preferences for logged-in investor
