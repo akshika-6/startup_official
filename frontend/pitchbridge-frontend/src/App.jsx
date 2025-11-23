@@ -1,22 +1,21 @@
-import React, { useState } from 'react';
+// src/App.jsx - FINAL FINAL FINAL CORRECTED & VERIFIED for "SIDEBAR PUSHES NAV"
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 
 // Import your Navbar components
 import GuestNavbar from './components/GuestNavbar';
+import AuthNavbar from './components/AuthNavbar';
+// REMOVED: import DashboardHomeNavbar from './components/DashboardHomeNavbar'; // This is removed for layout consistency
+import Sidebar from './components/Sidebar';
 import FullPageSpinner from './components/FullPageSpinner';
-// Import the AuthLayout from its actual location
-import AuthLayout from './pages/layouts/AuthLayout';
-// Import the new ScrollToTop component
-import ScrollToTop from './components/ScrollToTop';
 
 // Import all your page components
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
-import ExploreOpportunities from './pages/ExploreOpportunities';
 import Startups from './pages/Startups';
 import StartupDetail from './pages/StartupDetail';
 import SubmitPitch from './pages/SubmitPitch';
@@ -28,11 +27,16 @@ import AdminActivity from './pages/admin/Activity';
 import InvestorDeck from './pages/InvestorDeck';
 import Messages from './pages/Messages';
 import Profile from './pages/Profile';
-import FAQ from './pages/FAQ';
+import FAQ from './pages/FAQ'; // This FAQ page will now be authenticated
 import Contact from './pages/Contact';
+import Logout from './pages/Logout';
+import DashboardInstructions from './pages/dashboard/DashboardInstructions';
+import DashboardHome from './pages/dashboard/DashboardHome'; // This will now be part of AuthenticatedLayout
+import FounderDashboard from './pages/dashboard/FounderDashboard';
+import InvestorDashboard from './pages/dashboard/InvestorDashboard';
 import ExploreInvestors from './pages/ExploreInvestors';
 import AddStartup from './pages/AddStartup';
-import Settings from './pages/Settings'; // Main settings page
+import Settings from './pages/Settings';
 import ChangePassword from './pages/settings/ChangePassword';
 import ChangeEmail from './pages/settings/ChangeEmail';
 import ChangeUsername from './pages/settings/ChangeUsername';
@@ -40,79 +44,93 @@ import UpdateProfilePicture from './pages/settings/UpdateProfilePicture';
 import NotificationSettings from './pages/settings/NotificationSettings';
 import PrivacySettings from './pages/settings/PrivacySettings';
 import DeleteAccount from './pages/settings/DeleteAccount';
-import ManageTeamPage from './pages/ManageTeamPage.jsx';
-import FounderDashboard from './components/FounderDashboard.jsx';
-
-// Dashboard components
-import DashboardInstructions from './pages/dashboard/DashboardInstructions';
-import DashboardHome from './pages/dashboard/DashboardHome';
 
 
-// --- Placeholder Components for Advanced Settings Sub-Pages ---
-// You will replace these with actual components later
-const ProfileAndPitchVisibility = () => <div className="p-8 text-center text-lg dark:text-gray-300">Profile & Pitch Visibility Settings Coming Soon!</div>;
-const SearchEngineIndexing = () => <div className="p-8 text-center text-lg dark:text-gray-300">Search Engine Indexing Settings Coming Soon!</div>;
-const DefaultPitchSettings = () => <div className="p-8 text-center text-lg dark:text-gray-300">Default Pitch Settings Coming Soon!</div>;
-const InterestAndRecommendationFilters = () => <div className="p-8 text-center text-lg dark:text-gray-300">Interest & Recommendation Filters Coming Soon!</div>;
-const ExportYourData = () => <div className="p-8 text-center text-lg dark:text-gray-300">Export Your Data Page Coming Soon!</div>;
-const StorageAndFileManagement = () => <div className="p-8 text-center text-lg dark:text-gray-300">Storage & File Management Page Coming Soon!</div>;
-const ThirdPartyIntegrations = () => <div className="p-8 text-center text-lg dark:text-gray-300">Third-Party Integrations Coming Soon!</div>;
-const TwoFactorAuthentication = () => <div className="p-8 text-center text-lg dark:text-gray-300">Two-Factor Authentication Settings Coming Soon!</div>;
-const ManageActiveSessions = () => <div className="p-8 text-center text-lg dark:text-gray-300">Manage Active Sessions Page Coming Soon!</div>;
-const BlockedUsersAndConnections = () => <div className="p-8 text-center text-lg dark:text-gray-300">Blocked Users & Connections Settings Coming Soon!</div>;
+// Constants for layout dimensions (adjust these as needed)
+const SIDEBAR_WIDTH_DESKTOP = '64'; // w-64 = 16rem = 256px
+const NAVBAR_HEIGHT = '16'; // h-16 = 4rem = 64px
 
 /**
- * This component acts purely as a "Protected Route Wrapper" that checks authentication status.
- * It will then render AuthLayout, which provides the actual visual layout (with sidebar).
+ * Layout for authenticated users, includes Sidebar and AuthNavbar.
  */
-const AuthenticatedRouteWrapper = () => {
+const AuthenticatedLayout = ({ toggleSidebar, isSidebarOpen, sidebarWidthDesktop, navbarHeight }) => {
     const { user, loading } = useAuth();
     const location = useLocation();
 
+    // Show a full page spinner while authentication status is being determined
     if (loading) {
         return <FullPageSpinner />;
     }
 
+    // Redirect unauthenticated users to login page
     if (!user) {
-        console.log(`AuthenticatedRouteWrapper: User not found, redirecting to /login from ${location.pathname}`);
+        console.log(`AuthenticatedLayout: User not found, redirecting to /login from ${location.pathname}`);
         return <Navigate to="/login" state={{ from: location.pathname }} replace />;
     }
 
-    console.log('--- App.jsx Debugging User Role in AuthenticatedRouteWrapper ---');
-    console.log('Current user object:', user);
-    console.log('User role from AuthContext:', user?.role);
-    console.log('Current Path (in AuthenticatedRouteWrapper):', location.pathname);
-    console.log('--- End App.jsx Debugging ---');
-
     return (
-        <AuthLayout>
-            <Outlet /> {/* Renders the specific page component for the matched nested route */}
-        </AuthLayout>
+        <div className="flex min-h-screen bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white overflow-hidden">
+            {/* Sidebar component - fixed on desktop, overlay on mobile */}
+            <Sidebar
+                isOpen={isSidebarOpen}
+                toggleSidebar={toggleSidebar}
+                sidebarWidthDesktop={sidebarWidthDesktop}
+                navbarHeight={navbarHeight}
+            />
+
+            {/* Main content area, including AuthNavbar */}
+            {/* This div handles the pushing of content away from the fixed sidebar on desktop */}
+            <div
+                className={`
+                    flex-1 flex flex-col min-h-screen
+                    transition-all duration-300
+                    // Desktop: Margin-left creates space for the sidebar
+                    md:ml-[16rem]
+                    // Mobile: No margin-left, as sidebar is overlay (managed by Sidebar component itself)
+                `}
+            >
+                {/* AuthNavbar - now a child of the main content area, so it's pushed by the sidebar */}
+                <AuthNavbar
+                    toggleSidebar={toggleSidebar}
+                    navbarHeight={navbarHeight}
+                />
+
+                {/* Page content */}
+                {/* The padding-top ensures content starts below the AuthNavbar */}
+                <main className={`flex-1 p-6 overflow-y-auto pt-${navbarHeight}`}>
+                    <Outlet /> {/* Renders the specific page component */}
+                </main>
+            </div>
+
+            {/* Mobile-only overlay background when sidebar is open */}
+            {isSidebarOpen && window.innerWidth < 768 && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+                    onClick={toggleSidebar}
+                ></div>
+            )}
+        </div>
     );
 };
 
 /**
  * Layout for public (guest) users, includes GuestNavbar.
- * Handles initial redirection for authenticated users.
  */
 const PublicLayout = () => {
     const { user } = useAuth();
     const location = useLocation();
 
-    // REDIRECTION LOGIC FOR AUTHENTICATED USERS AWAY FROM PUBLIC ROUTES
-    if (user && (location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/forgot-password' || location.pathname === '/explore' || location.pathname === '/')) {
-        console.log(`PublicLayout: User authenticated, redirecting from ${location.pathname} to dashboard based on role`);
-        if (user.role === 'founder') {
-            return <Navigate to="/founder-dashboard" replace />;
-        }
+    // Redirect authenticated users from typical public entry points (login, register, forgot-password) to dashboard
+    if (user && (location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/forgot-password')) {
         return <Navigate to="/dashboard" replace />;
     }
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
             <GuestNavbar />
-            <main className="pt-16"> {/* Assuming GuestNavbar is also h-16, adjust as needed */}
-                <Outlet />
+            {/* Use padding-top to ensure content starts below the fixed GuestNavbar */}
+            <main className="pt-16">
+                <Outlet /> {/* Renders the specific public page component */}
             </main>
         </div>
     );
@@ -123,27 +141,27 @@ const PublicLayout = () => {
  */
 const AppContent = () => {
     const { user, loading } = useAuth();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Default to true for desktop
 
-    const [teamMembers, setTeamMembers] = useState([
-        { id: 1, name: 'Alice Johnson', role: 'CEO', email: 'alice@example.com', avatar: 'https://randomuser.me/api/portraits/women/7.jpg' },
-        { id: 2, name: 'Bob Williams', role: 'CTO', email: 'bob@example.com', avatar: 'https://randomuser.me/api/portraits/men/8.jpg' },
-        { id: 3, name: 'Charlie Davis', role: 'CFO', email: 'charlie@example.com', avatar: 'https://randomuser.me/api/portraits/men/9.jpg' },
-        { id: 4, name: 'Diana Prince', role: 'CMO', email: 'diana@example.com', avatar: 'https://randomuser.me/api/portraits/women/10.jpg' },
-    ]);
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) { // Tailwind's 'md' breakpoint
+                setIsSidebarOpen(true); // Ensure sidebar is always open on desktop
+            } else {
+                setIsSidebarOpen(false); // Default to closed on mobile
+            }
+        };
 
-    const handleAddOrEditMember = (newMemberData, memberIdToUpdate = null) => {
-        if (memberIdToUpdate) {
-            setTeamMembers(teamMembers.map(member =>
-                member.id === memberIdToUpdate ? { ...member, ...newMemberData } : member
-            ));
-        } else {
-            const newId = teamMembers.length > 0 ? Math.max(...teamMembers.map(m => m.id)) + 1 : 1;
-            setTeamMembers([...teamMembers, { id: newId, ...newMemberData }]);
+        window.addEventListener('resize', handleResize);
+        handleResize(); // Set initial state
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const toggleSidebar = () => {
+        // Only allow toggling on mobile. On desktop, it's always open by design.
+        if (window.innerWidth < 768) {
+            setIsSidebarOpen(!isSidebarOpen);
         }
-    };
-
-    const handleDeleteMember = (id) => {
-        setTeamMembers(teamMembers.filter(member => member.id !== id));
     };
 
     if (loading) {
@@ -153,58 +171,64 @@ const AppContent = () => {
     return (
         <Routes>
             {/* Public routes wrapped by PublicLayout */}
+            {/* The root path "/" should also use PublicLayout if not logged in */}
             <Route element={<PublicLayout />}>
-                <Route path="/" element={<Home />} />
+                <Route
+                    path="/"
+                    element={user ? <Navigate to="/dashboard" replace /> : <Home />}
+                    
+                />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
-                <Route path="/explore" element={<ExploreOpportunities />} />
+                
+                {/* REMOVED: <Route path="/faq" element={<FAQ />} />  FAQ is now under AuthenticatedLayout */}
+                
+              
             </Route>
 
-            {/* DashboardHome - This is the special full-screen route for ALL authenticated users */}
+            {/* Authenticated/Protected routes wrapped by AuthenticatedLayout */}
             <Route
-                path="/home-dashboard"
-                element={user ? <DashboardHome /> : <Navigate to="/login" replace />}
-            />
+                element={
+                    <AuthenticatedLayout
+                        toggleSidebar={toggleSidebar}
+                        isSidebarOpen={isSidebarOpen}
+                        sidebarWidthDesktop={SIDEBAR_WIDTH_DESKTOP}
+                        navbarHeight={NAVBAR_HEIGHT}
+                    />
+                }
+            >
+                {/* Moved FAQ here, so it's now a protected route */}
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/logout" element={<Logout />} />
+              
+                <Route path="/investors" element={<ExploreInvestors />} /> {/* Public Explore Investors if any */}
+                {/* <Route path="/startups" element={<ExploreStartups />} /> Public Explore Investors if any */}
 
-            {/* Authenticated/Protected routes wrapped by the AuthenticatedRouteWrapper (these will have sidebar) */}
-            <Route element={<AuthenticatedRouteWrapper />}>
-                {/* Default dashboard for investor/admin, or a general dashboard with sidebar */}
+                {/* Dashboards based on user role or general dashboard */}
                 <Route path="/dashboard" element={<DashboardInstructions />} />
-
-                {/* Founder-specific dashboard with sidebar */}
-                <Route path="/founder-dashboard" element={user?.role === 'founder' ? <FounderDashboard teamMembers={teamMembers} /> : <Navigate to="/dashboard" replace />} />
+                <Route path="/dashboard-home" element={<DashboardHome />} /> {/* Consolidated Dashboard Home */}
+                <Route path="/dashboard/founder" element={user?.role === 'founder' ? <FounderDashboard /> : <Navigate to="/dashboard" replace />} />
+                <Route path="/dashboard/investor" element={user?.role === 'investor' ? <InvestorDashboard /> : <Navigate to="/dashboard" replace />} />
 
                 {/* Main application features */}
-                <Route
-                    path="/manage-team"
-                    element={user?.role === 'founder' ?
-                        <ManageTeamPage
-                            teamMembers={teamMembers}
-                            onAddOrEditMember={handleAddOrEditMember}
-                            onDeleteMember={handleDeleteMember}
-                        /> : <Navigate to="/dashboard" replace />}
-                />
                 <Route path="/startups" element={<Startups />} />
                 <Route path="/startups/:id" element={<StartupDetail />} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/messages/:userId?" element={<Messages />} />
+                <Route path="/messages" element={<Messages />} />
                 <Route path="/notifications" element={<Notifications />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/investors" element={<ExploreInvestors />} />
 
-                {/* Founder-specific routes - ensure these are accessible only by 'founder' role */}
+                {/* Founder-specific routes */}
                 <Route path="/submit-pitch" element={user?.role === 'founder' ? <SubmitPitch /> : <Navigate to="/dashboard" replace />} />
                 <Route path="/create-startup" element={user?.role === 'founder' ? <CreateStartup /> : <Navigate to="/dashboard" replace />} />
                 <Route path="/add-startup" element={user?.role === 'founder' ? <AddStartup /> : <Navigate to="/dashboard" replace />} />
 
-                {/* Investor-specific routes - ensure these are accessible only by 'investor' role */}
+                {/* Investor-specific routes */}
                 <Route path="/investor-deck" element={user?.role === 'investor' ? <InvestorDeck /> : <Navigate to="/dashboard" replace />} />
                 <Route path="/rate-startups" element={user?.role === 'investor' ? <RateStartup /> : <Navigate to="/dashboard" replace />} />
-                <Route path="/my-investments" element={user?.role === 'investor' ? <InvestorDeck /> : <Navigate to="/dashboard" replace />} />
 
-                {/* --- Settings routes --- */}
+                {/* Settings routes */}
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/settings/username" element={<ChangeUsername />} />
                 <Route path="/settings/email" element={<ChangeEmail />} />
@@ -213,20 +237,18 @@ const AppContent = () => {
                 <Route path="/settings/notifications" element={<NotificationSettings />} />
                 <Route path="/settings/privacy" element={<PrivacySettings />} />
                 <Route path="/settings/delete" element={<DeleteAccount />} />
-              
 
                 {/* Admin-specific routes */}
                 <Route path="/admin/users" element={user?.role === 'admin' ? <AdminUsers /> : <Navigate to="/dashboard" replace />} />
                 <Route path="/admin/activity" element={user?.role === 'admin' ? <AdminActivity /> : <Navigate to="/dashboard" replace />} />
-                <Route path="/admin/startups" element={user?.role === 'admin' ? <SubmitPitch /> : <Navigate to="/dashboard" replace />} />
-                <Route path="/admin/investments" element={user?.role === 'admin' ? <InvestorDeck /> : <Navigate to="/dashboard" replace />} />
 
-                {/* Fallback for protected routes */}
-                <Route path="*" element={<div className="p-8 text-center text-xl font-bold mt-10 text-theme-heading-primary">Protected Route: 404 Not Found or Unauthorized Access</div>} />
+                {/* Fallback for protected routes - ensures user is logged in before showing 404 */}
+                <Route path="*" element={<div className="text-center text-xl font-bold mt-10">Protected Route: 404 Not Found or Unauthorized Access</div>} />
             </Route>
 
-            {/* Catch-all for any other routes not matched */}
-            <Route path="*" element={<div className="p-8 text-center text-xl font-bold mt-10 text-theme-heading-primary">404 Not Found</div>} />
+            {/* Catch-all for any other routes not matched by PublicLayout or AuthenticatedLayout */}
+            <Route path="/home-dashboard" element={<DashboardHome />} />
+            <Route path="*" element={<div className="text-center text-xl font-bold mt-10">404 Not Found</div>} />
         </Routes>
     );
 };
@@ -236,23 +258,9 @@ const AppContent = () => {
  */
 const App = () => (
     <Router>
-        {/* Place ScrollToTop directly inside Router */}
-        <ScrollToTop />
         <AuthProvider>
             <ThemeProvider>
-                <div className="relative min-h-screen flex flex-col overflow-hidden bg-theme-bg">
-                    {/* Background Gradient & Animated Shapes - Now CENTRALIZED */}
-                    <div className="absolute inset-0 bg-theme-gradient-start z-0">
-                        <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-theme-blob-1 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-                        <div className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-theme-blob-2 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 h-1/3 bg-theme-blob-3 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
-                    </div>
-
-                    {/* Content Wrapper - ensures pages are on top of blobs */}
-                    <div className="relative z-10 flex-grow flex flex-col">
-                        <AppContent />
-                    </div>
-                </div>
+                <AppContent />
             </ThemeProvider>
         </AuthProvider>
     </Router>

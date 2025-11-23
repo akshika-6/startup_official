@@ -1,24 +1,50 @@
 {
-  "name": "startup_official",
+  "name": "pitchbridge-fullstack",
   "version": "1.0.0",
-  "main": "server.mjs",
+  "description": "A full-stack startup pitch platform connecting entrepreneurs with investors",
+  "main": "backend/server.mjs",
   "type": "module",
   "scripts": {
-    "start": "node server.mjs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
+    "start": "npm run backend:start",
+    "backend:dev": "cd backend && npm run dev",
+    "backend:start": "cd backend && npm start",
+    "backend:install": "cd backend && npm install",
+    "frontend:dev": "cd frontend && npm run dev",
+    "frontend:build": "cd frontend && npm run build",
+    "frontend:preview": "cd frontend && npm run preview",
+    "frontend:install": "cd frontend && npm install",
+    "install:all": "npm run backend:install && npm run frontend:install",
+    "build": "npm run frontend:build",
+    "lint": "npm run frontend:lint",
+    "clean": "rm -rf backend/node_modules frontend/node_modules backend/dist frontend/dist",
+    "postinstall": "npm run install:all"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "startup",
+    "pitch",
+    "investor",
+    "entrepreneur",
+    "fullstack",
+    "react",
+    "nodejs",
+    "express",
+    "mongodb"
+  ],
+  "author": "PitchBridge Team",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "bcrypt": "^6.0.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.6.1",
-    "express": "^5.1.0",
-    "express-validator": "^7.2.1",
-    "helmet": "^8.1.0",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.16.1"
-  }
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/startup_official.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/startup_official/issues"
+  },
+  "homepage": "https://github.com/yourusername/startup_official#readme"
 }
