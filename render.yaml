@@ -4,26 +4,17 @@ services:
     env: node
     region: oregon
     plan: free
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && npm start
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
     healthCheckPath: /
     envVars:
       - key: NODE_ENV
         value: production
       - key: PORT
-        value: 3000
+        value: 10000
       - key: MONGODB_URI
-        fromDatabase:
-          name: pitchbridge-db
-          property: connectionString
+        sync: false
       - key: JWT_SECRET
         generateValue: true
     autoDeploy: true
-    rootDir: .
-
-databases:
-  - name: pitchbridge-db
-    databaseName: pitchbridge
-    user: pitchbridge_user
-    region: oregon
-    plan: free
