@@ -89,7 +89,7 @@ const Sidebar = ({ isOpen, toggleSidebar, sidebarWidthMd = "64" }) => {
 
       <aside
         className={`
-        flex flex-col h-full w-full
+        flex flex-col h-full w-full py-4
         ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
         transition-transform duration-300 ease-in-out
         ${theme === "light"
