@@ -89,13 +89,20 @@ const Sidebar = ({ isOpen, toggleSidebar, sidebarWidthMd = "64" }) => {
 
       <aside
         className={`
-        flex flex-col h-full w-full
-        ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-        transition-transform duration-300 ease-in-out
-        ${theme === "light"
-          ? "bg-gradient-to-b from-[var(--gradient-sidebar-start-light)] to-[var(--gradient-sidebar-end-light)]"
-          : "bg-gradient-to-b from-[var(--gradient-sidebar-start-dark)] to-[var(--gradient-sidebar-end-dark)]"
-        }`}
+    fixed top-0 left-0 z-[999] flex flex-col
+    transition-transform duration-300 ease-in-out
+    ${isOpen ? "translate-x-0" : "-translate-x-full"}
+    md:translate-x-0
+    w-${sidebarWidthMd}
+    md:w-${sidebarWidthMd}
+    shadow-lg
+    ${
+      theme === "light"
+        ? "bg-gradient-to-b from-[var(--gradient-sidebar-start-light)] to-[var(--gradient-sidebar-end-light)]"
+        : "bg-gradient-to-b from-[var(--gradient-sidebar-start-dark)] to-[var(--gradient-sidebar-end-dark)]"
+    }
+  `}
+        style={{ height: "100vh" }}
       >
         {/* Top fixed: Logo + user info */}
         <div className="shrink-0 px-4 pt-8">
