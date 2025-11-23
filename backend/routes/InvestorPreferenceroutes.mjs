@@ -29,17 +29,9 @@ router.post(
       .isEmail()
       .withMessage("Valid email is required"),
     body("companyName").optional().isString().trim(),
-    body("investmentAmount")
-      .optional()
-      .isString()
-      .withMessage("Investment amount/stage is required"),
-    body("areasOfInterest")
-      .optional()
-      .isString()
-      .withMessage("Areas of interest are required"),
+    body("investmentAmount").optional().isString(),
+    body("areasOfInterest").optional().isString(),
     body("notes").optional().isString().trim(),
-    body("domain").optional().isString().trim(),
-    body("stage").optional().isString().trim(),
   ],
   validateRequest,
   createPreference,
