@@ -210,9 +210,9 @@ const FounderDashboard = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-6 space-y-6">
+      <div className="pt-6 pr-6 pb-6 space-y-6">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        <div className="pl-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
               Founder Dashboard
@@ -232,7 +232,7 @@ const FounderDashboard = () => {
 
         {/* Stats Cards */}
         {dashboardStats && (
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="pl-6 grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
               <div className="flex items-center">
                 <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
@@ -300,7 +300,7 @@ const FounderDashboard = () => {
         )}
 
         {/* Startups List */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div className="ml-6 bg-white dark:bg-gray-800 rounded-lg shadow">
           <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
               Your Startups
@@ -400,7 +400,7 @@ const FounderDashboard = () => {
         </div>
 
         {/* Recent Pitches */}
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
+        <div className="ml-6 bg-white dark:bg-gray-800 rounded-lg shadow">
           <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
               Recent Pitches
