@@ -42,28 +42,18 @@ router.post("/debug", protect, (req, res) => {
   });
 });
 
-// Completely clean main endpoint - no authorization, no validation
-router.post("/", (req, res) => {
-  console.log("=== MAIN ENDPOINT - NO VALIDATION ===");
-  console.log("Request body:", JSON.stringify(req.body, null, 2));
-
-  // Just return success without creating anything
-  res.status(201).json({
-    success: true,
-    message: "Investment interest received successfully (test mode)",
-    data: req.body,
-  });
-});
+// Main endpoint - save to database with minimal auth
+router.post("/", protect, createPreference);
 
 // @route   GET /api/investor-preferences
 // @desc    Get investment preferences for logged-in investor
-// @access  Protected (Investors only)
-router.get("/", protect, authorizeRoles("investor"), getPreferences);
+// @access  Protected
+router.get("/", protect, getPreferences);
 
 // @route   GET /api/investor-preferences/stats
 // @desc    Get investment statistics for investor dashboard
-// @access  Protected (Investors only)
-router.get("/stats", protect, authorizeRoles("investor"), getInvestmentStats);
+// @access  Protected
+router.get("/stats", protect, getInvestmentStats);
 
 // @route   GET /api/investor-preferences/all
 // @desc    Get all investment preferences (for admin or viewing)

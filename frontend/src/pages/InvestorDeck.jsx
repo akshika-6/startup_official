@@ -71,22 +71,14 @@ const SubmitInvestment = () => {
       };
       const body = JSON.stringify(formData);
 
-      console.log("=== FRONTEND DEBUG ===");
-      console.log("Sending data:", formData);
-      console.log("API URL:", `${API_BASE_URL}/api/investor-preferences/test`);
-
-      const res = await fetch(`${API_BASE_URL}/api/investor-preferences/test`, {
-        // Using test endpoint with no validation
+      const res = await fetch(`${API_BASE_URL}/api/investor-preferences`, {
+        // Using main endpoint
         method: "POST",
         headers: headers,
         body: body,
       });
 
       const data = await res.json();
-
-      console.log("=== API RESPONSE ===");
-      console.log("Status:", res.status);
-      console.log("Response data:", data);
 
       if (res.ok) {
         setSuccess(
@@ -96,8 +88,6 @@ const SubmitInvestment = () => {
         setIsFormVisible(false); // Hide the form to show the initial prompt
         setTimeout(() => navigate("/investments"), 1500); // Navigate to investments page
       } else {
-        console.log("=== API ERROR ===");
-        console.log("Full error response:", data);
         setError(
           data.message ||
             (data.errors && data.errors.map((err) => err.message).join(", ")) ||

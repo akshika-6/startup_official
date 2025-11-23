@@ -20,14 +20,17 @@ export const createPreference = async (req, res, next) => {
       stage,
     } = req.body;
 
-    // Check if user is an investor
+    // Check if user exists and get user data
     const user = await User.findById(req.user._id);
-    if (!user || user.role !== "investor") {
-      return res.status(403).json({
+    if (!user) {
+      return res.status(404).json({
         success: false,
-        message: "Only investors can submit investment preferences",
+        message: "User not found",
       });
     }
+
+    // Allow all authenticated users for now (remove role restriction temporarily)
+    console.log("User role:", user.role);
 
     // Create investment preference/interest - make it very permissive
     const preferenceData = {
