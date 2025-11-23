@@ -52,8 +52,7 @@
 
 // export default DashboardLayout;
 
-
-import React from 'react';
+import React from "react";
 import Sidebar from "../../components/Sidebar"; // ✅ Adjust the path if needed
 
 const DashboardLayout = ({ children, role }) => {
@@ -65,7 +64,7 @@ const DashboardLayout = ({ children, role }) => {
       </div>
 
       {/* Main content area */}
-      <main className="flex-1 p-6 overflow-y-auto bg-gray-50 dark:bg-gray-900">
+      <main className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900">
         {children}
       </main>
     </div>
@@ -73,5 +72,3 @@ const DashboardLayout = ({ children, role }) => {
 };
 
 export default DashboardLayout;
-
-

@@ -80,7 +80,7 @@ const StartupDetail = () => {
         `${API_BASE_URL}/api/pitches/startup/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
 
       if (pitchesRes.ok) {
@@ -151,7 +151,7 @@ const StartupDetail = () => {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(newPitch),
-        }
+        },
       );
 
       const data = await response.json();
@@ -194,7 +194,7 @@ const StartupDetail = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+      <div className="flex items-center justify-center min-h-96">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
       </div>
     );
@@ -202,8 +202,8 @@ const StartupDetail = () => {
 
   if (!startup) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-        <div className="text-center">
+      <div className="flex items-center justify-center min-h-96">
+        <div className="text-center px-6">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
             Startup not found
           </h1>
@@ -219,8 +219,8 @@ const StartupDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-6 py-6">
         {/* Header */}
         <div className="mb-8">
           <button
