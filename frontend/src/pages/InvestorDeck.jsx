@@ -193,16 +193,28 @@ const SubmitInvestment = () => {
               Ready to express your interest in groundbreaking startups? Click
               the button below to submit your investment profile!
             </p>
-            <motion.button
-              onClick={() => setIsFormVisible(true)}
-              className="bg-green-600 hover:bg-green-700 text-white py-3 px-8 rounded-lg font-semibold text-xl flex items-center justify-center mx-auto transition-colors duration-200 shadow-md hover:shadow-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <DollarSign className="mr-3 h-6 w-6" />{" "}
-              {/* Changed icon and color */}
-              Submit Investment Profile
-            </motion.button>
+
+            <div className="space-y-4">
+              <motion.button
+                onClick={() => setIsFormVisible(true)}
+                className="bg-green-600 hover:bg-green-700 text-white py-3 px-8 rounded-lg font-semibold text-xl flex items-center justify-center mx-auto transition-colors duration-200 shadow-md hover:shadow-lg"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <DollarSign className="mr-3 h-6 w-6" />
+                Submit Investment Profile
+              </motion.button>
+
+              <motion.button
+                onClick={() => navigate("/investments")}
+                className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg font-medium text-lg flex items-center justify-center mx-auto transition-colors duration-200"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Briefcase className="mr-2 h-5 w-5" />
+                View My Investments
+              </motion.button>
+            </div>
           </motion.div>
         ) : (
           <AnimatePresence>
