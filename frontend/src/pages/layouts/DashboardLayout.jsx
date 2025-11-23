@@ -57,15 +57,15 @@ import Sidebar from "../../components/Sidebar";
 
 const DashboardLayout = ({ children, role }) => {
   return (
-    <div className="flex min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
+    <div className="flex h-screen w-full bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white overflow-hidden">
       {/* Sidebar with role-based links */}
-      <div className="w-64 flex-shrink-0 h-screen overflow-y-auto bg-white dark:bg-gray-800 shadow-md">
+      <div className="w-64 flex-shrink-0 h-full overflow-y-auto bg-white dark:bg-gray-800 shadow-md z-10">
         <Sidebar role={role} />
       </div>
 
       {/* Main content area */}
-      <main className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900">
-        <div className="w-full h-full">
+      <main className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900 ml-0">
+        <div className="w-full h-full p-6">
           {children}
         </div>
       </main>
