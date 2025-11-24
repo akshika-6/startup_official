@@ -200,7 +200,7 @@ const FounderDashboard = () => {
 
   if (loading) {
     return (
-      <DashboardLayout>
+      <DashboardLayout role="founder">
         <div className="flex items-center justify-center min-h-96">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
         </div>
@@ -209,10 +209,12 @@ const FounderDashboard = () => {
   }
 
   return (
-    <DashboardLayout>
-      <div className="pt-6 pr-6 pb-6 space-y-6">
-        {/* Header */}
-        <div className="pl-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+    <DashboardLayout role="founder">
+      {/* ✅ FIXED: Replaced 'pt-6 pr-6 pb-6' with 'p-6' for uniform spacing */}
+      <div className="p-6 space-y-6">
+        
+        {/* ✅ FIXED: Removed 'pl-6' from here */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
               Founder Dashboard
@@ -230,9 +232,9 @@ const FounderDashboard = () => {
           </button>
         </div>
 
-        {/* Stats Cards */}
+        {/* Stats Cards - ✅ FIXED: Removed 'pl-6' from here */}
         {dashboardStats && (
-          <div className="pl-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
               <div className="flex items-center">
                 <div className="p-3 rounded-full bg-blue-100 dark:bg-blue-900">
@@ -299,8 +301,8 @@ const FounderDashboard = () => {
           </div>
         )}
 
-        {/* Startups List */}
-        <div className="ml-6 bg-white dark:bg-gray-800 rounded-lg shadow">
+        {/* Startups List - ✅ FIXED: Removed 'ml-6' from here */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
           <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
               Your Startups
@@ -399,8 +401,8 @@ const FounderDashboard = () => {
           )}
         </div>
 
-        {/* Recent Pitches */}
-        <div className="ml-6 bg-white dark:bg-gray-800 rounded-lg shadow">
+        {/* Recent Pitches - ✅ FIXED: Removed 'ml-6' from here */}
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow">
           <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
             <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
               Recent Pitches
@@ -454,178 +456,54 @@ const FounderDashboard = () => {
                 Create New Startup
               </h3>
               <form onSubmit={handleCreateStartup} className="space-y-4">
+                {/* ... Form Fields (Kept Same) ... */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Startup Name *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={newStartup.startupName}
-                      onChange={(e) =>
-                        setNewStartup({
-                          ...newStartup,
-                          startupName: e.target.value,
-                        })
-                      }
-                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    />
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Startup Name *</label>
+                    <input type="text" required value={newStartup.startupName} onChange={(e) => setNewStartup({ ...newStartup, startupName: e.target.value })} className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
                   </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Domain *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={newStartup.domain}
-                      onChange={(e) =>
-                        setNewStartup({ ...newStartup, domain: e.target.value })
-                      }
-                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                      placeholder="e.g., FinTech, AI, Healthcare"
-                    />
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Domain *</label>
+                    <input type="text" required value={newStartup.domain} onChange={(e) => setNewStartup({ ...newStartup, domain: e.target.value })} className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="e.g., FinTech, AI, Healthcare" />
                   </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Stage *
-                    </label>
-                    <select
-                      required
-                      value={newStartup.stage}
-                      onChange={(e) =>
-                        setNewStartup({ ...newStartup, stage: e.target.value })
-                      }
-                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    >
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Stage *</label>
+                    <select required value={newStartup.stage} onChange={(e) => setNewStartup({ ...newStartup, stage: e.target.value })} className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                       <option value="idea">Idea</option>
                       <option value="MVP">MVP</option>
                       <option value="revenue">Revenue</option>
                     </select>
                   </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Location
-                    </label>
-                    <input
-                      type="text"
-                      value={newStartup.location}
-                      onChange={(e) =>
-                        setNewStartup({
-                          ...newStartup,
-                          location: e.target.value,
-                        })
-                      }
-                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    />
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Location</label>
+                    <input type="text" value={newStartup.location} onChange={(e) => setNewStartup({ ...newStartup, location: e.target.value })} className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
                   </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Target Raise ($)
-                    </label>
-                    <input
-                      type="number"
-                      value={newStartup.targetRaise}
-                      onChange={(e) =>
-                        setNewStartup({
-                          ...newStartup,
-                          targetRaise: e.target.value,
-                        })
-                      }
-                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    />
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Target Raise ($)</label>
+                    <input type="number" value={newStartup.targetRaise} onChange={(e) => setNewStartup({ ...newStartup, targetRaise: e.target.value })} className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
                   </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Equity Offered (%)
-                    </label>
-                    <input
-                      type="number"
-                      min="0"
-                      max="100"
-                      value={newStartup.equityOffered}
-                      onChange={(e) =>
-                        setNewStartup({
-                          ...newStartup,
-                          equityOffered: e.target.value,
-                        })
-                      }
-                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    />
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Equity Offered (%)</label>
+                    <input type="number" min="0" max="100" value={newStartup.equityOffered} onChange={(e) => setNewStartup({ ...newStartup, equityOffered: e.target.value })} className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
                   </div>
                 </div>
-
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    Summary
-                  </label>
-                  <textarea
-                    rows="3"
-                    value={newStartup.summary}
-                    onChange={(e) =>
-                      setNewStartup({ ...newStartup, summary: e.target.value })
-                    }
-                    className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    placeholder="Brief description of your startup..."
-                  />
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Summary</label>
+                  <textarea rows="3" value={newStartup.summary} onChange={(e) => setNewStartup({ ...newStartup, summary: e.target.value })} className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="Brief description of your startup..." />
                 </div>
-
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Pitch Deck URL
-                    </label>
-                    <input
-                      type="url"
-                      value={newStartup.pitchDeck}
-                      onChange={(e) =>
-                        setNewStartup({
-                          ...newStartup,
-                          pitchDeck: e.target.value,
-                        })
-                      }
-                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    />
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Pitch Deck URL</label>
+                    <input type="url" value={newStartup.pitchDeck} onChange={(e) => setNewStartup({ ...newStartup, pitchDeck: e.target.value })} className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
                   </div>
-
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                      Video Pitch URL
-                    </label>
-                    <input
-                      type="url"
-                      value={newStartup.videoPitch}
-                      onChange={(e) =>
-                        setNewStartup({
-                          ...newStartup,
-                          videoPitch: e.target.value,
-                        })
-                      }
-                      className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                    />
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Video Pitch URL</label>
+                    <input type="url" value={newStartup.videoPitch} onChange={(e) => setNewStartup({ ...newStartup, videoPitch: e.target.value })} className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 text-sm dark:bg-gray-700 dark:border-gray-600 dark:text-white" />
                   </div>
                 </div>
-
                 <div className="flex justify-end space-x-3 pt-4">
-                  <button
-                    type="button"
-                    onClick={() => setShowCreateModal(false)}
-                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 dark:bg-gray-600 dark:text-gray-300 dark:hover:bg-gray-500"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
-                  >
-                    Create Startup
-                  </button>
+                  <button type="button" onClick={() => setShowCreateModal(false)} className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 dark:bg-gray-600 dark:text-gray-300 dark:hover:bg-gray-500">Cancel</button>
+                  <button type="submit" className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">Create Startup</button>
                 </div>
               </form>
             </div>

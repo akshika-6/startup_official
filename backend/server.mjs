@@ -13,17 +13,16 @@ import messageRoutes from "./routes/messageroutes.mjs";
 import ratingRoutes from "./routes/ratingroutes.mjs";
 import commentRoutes from "./routes/commentroutes.mjs";
 import investorRoutes from "./routes/investorroutes.mjs";
-//import investorPreferenceRoutes from './routes/InvestorPreferencerouts.mjs'; // ✅ NEW
 import investorPreferenceRoutes from "./routes/InvestorPreferenceroutes.mjs";
 import dashboardRoutes from "./routes/dashboardroutes.mjs";
+import aiMatchRoutes from "./routes/aiMatchRoutes.mjs"; // ✅ NEW IMPORT
 import errorHandler from "./middleware/errorHandler.mjs";
 
-dotenv.config(); // Load environment variables
-connectDB(); // Connect to MongoDB
+dotenv.config(); 
+connectDB(); 
 
 const app = express();
-app.use(express.json()); // Enable JSON request body parsing
-//app.use(cors());
+app.use(express.json()); 
 app.use(
   cors({
     origin: [
@@ -45,10 +44,10 @@ app.use("/api/messages", messageRoutes);
 app.use("/api/ratings", ratingRoutes);
 app.use("/api/comments", commentRoutes);
 app.use("/api/investors", investorRoutes);
-app.use("/api/investor-preferences", investorPreferenceRoutes); // ✅ ADDED
-app.use("/api/dashboard", dashboardRoutes); // ✅ ADDED
+app.use("/api/investor-preferences", investorPreferenceRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/ai-match", aiMatchRoutes); // ✅ NEW ROUTE
 
-// Root endpoint
 app.get("/", (req, res) => {
   res.send("🌉 PitchBridge API is running...");
 });
@@ -57,10 +56,8 @@ app.use((req, res) => {
   res.status(404).json({ success: false, message: "Route Not Found" });
 });
 
-// ✅ Central Error Handler
 app.use(errorHandler);
 
-// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server started on http://localhost:${PORT}`);

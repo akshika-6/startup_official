@@ -8,10 +8,15 @@ import { Search, SlidersHorizontal, XCircle, ChevronDown, X, Sparkles } from 'lu
 
 const Startups = () => {
     const [startups, setStartups] = useState([]);
-    const [loading, setLoading] = useState(true); // Set to true initially for the first fetch
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredStartups, setFilteredStartups] = useState([]);
+
+    // AI Match States
+    const [aiMatches, setAiMatches] = useState([]);
+    const [showAiView, setShowAiView] = useState(false);
+    const [loadingAi, setLoadingAi] = useState(false);
 
     // Filter related states
     const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -32,13 +37,9 @@ const Startups = () => {
         teamSize: ['1-2', '3-5', '6-10', '11-25', '26-50', '50+']
     };
 
-    // 1) When I open this page, it takes some time to open it. It must open directly without that loading.
-    // To achieve this, we can set `loading` to `true` initially and only show the loading spinner during the actual data fetch.
-    // Once the data is fetched (successfully or with an error), `loading` is set back to `false`.
-
     useEffect(() => {
         const fetchStartups = async () => {
-            setLoading(true); // Show loading spinner when fetching data
+            setLoading(true);
             try {
                 const res = await fetch(`${API_BASE_URL}/api/startups`);
                 if (!res.ok) {
@@ -48,9 +49,9 @@ const Startups = () => {
 
                 if (Array.isArray(data.data)) {
                     setStartups(data.data);
-                    setFilteredStartups(data.data); // Initialize filtered startups with all startups
+                    setFilteredStartups(data.data);
                 } else {
-                    console.error("Unexpected API response format. Expected data.data to be an array.", data);
+                    console.error("Unexpected API response format.", data);
                     setStartups([]);
                     setFilteredStartups([]);
                     setError('Failed to load startups due to unexpected data format.');
@@ -61,18 +62,48 @@ const Startups = () => {
                 setStartups([]);
                 setFilteredStartups([]);
             } finally {
-                setLoading(false); // Hide loading spinner after fetch completes
+                setLoading(false);
             }
         };
 
         fetchStartups();
-    }, []); // Empty dependency array means this runs once on mount
+    }, []);
 
-    // Memoize the applyFilters function to prevent unnecessary re-creations
+    // AI Match Function
+    const handleAIMatch = async () => {
+        setLoadingAi(true);
+        try {
+            const token = localStorage.getItem('token');
+            
+            // Ensure we have a token
+            if (!token) {
+                alert("Please log in to use AI Match.");
+                setLoadingAi(false);
+                return;
+            }
+
+            const res = await fetch(`${API_BASE_URL}/api/ai-match/startups`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (!res.ok) throw new Error("Failed to fetch AI matches");
+            
+            const data = await res.json();
+            setAiMatches(data);
+            setShowAiView(true);
+        } catch (err) {
+            console.error("AI Match Failed", err);
+        } finally {
+            setLoadingAi(false);
+        }
+    };
+
     const applyFilters = useCallback(() => {
         let results = startups;
 
-        // Apply search filter
         if (searchTerm) {
             const lowerCaseSearchTerm = searchTerm.toLowerCase();
             results = results.filter(startup =>
@@ -82,15 +113,12 @@ const Startups = () => {
             );
         }
 
-        // Apply stage filter
         if (filters.stage) {
             results = results.filter(startup =>
                 startup.stage && startup.stage.toLowerCase() === filters.stage.toLowerCase()
             );
         }
 
-        // Apply industry filter (assuming industry is in tags or a separate field)
-        // Added more robust checks for startup.industry if it exists
         if (filters.industry) {
             results = results.filter(startup =>
                 (startup.industry && startup.industry.toLowerCase().includes(filters.industry.toLowerCase())) ||
@@ -98,10 +126,9 @@ const Startups = () => {
             );
         }
 
-        // Apply funding range filter
         if (filters.fundingRange) {
             results = results.filter(startup => {
-                const fundingAmount = startup.fundingAmount || startup.funding || 0; // Handle different possible field names
+                const fundingAmount = startup.fundingAmount || startup.funding || 0;
                 const range = filters.fundingRange;
 
                 if (range === 'Pre-Seed') return fundingAmount === 0 || !fundingAmount;
@@ -114,17 +141,15 @@ const Startups = () => {
             });
         }
 
-        // Apply location filter
         if (filters.location) {
             results = results.filter(startup =>
                 startup.location && startup.location.toLowerCase().includes(filters.location.toLowerCase())
             );
         }
 
-        // Apply team size filter
         if (filters.teamSize) {
             results = results.filter(startup => {
-                const teamSize = startup.teamSize || startup.team_size || 0; // Handle different possible field names
+                const teamSize = startup.teamSize || startup.team_size || 0;
                 const range = filters.teamSize;
 
                 if (range === '1-2') return teamSize >= 1 && teamSize <= 2;
@@ -137,19 +162,16 @@ const Startups = () => {
             });
         }
         return results;
-    }, [searchTerm, startups, filters]); // Dependencies for useCallback
+    }, [searchTerm, startups, filters]);
 
     useEffect(() => {
-        // 2) The filter is good but not working, add functionality to it.
-        // The filtering logic was mostly there but needed to be explicitly applied.
-        // This useEffect now calls `applyFilters` whenever `searchTerm`, `startups`, or `filters` change.
         setFilteredStartups(applyFilters());
     }, [searchTerm, startups, filters, applyFilters]);
 
     const handleFilterChange = (filterType, value) => {
         setFilters(prev => ({
             ...prev,
-            [filterType]: prev[filterType] === value ? '' : value // Toggle filter on/off
+            [filterType]: prev[filterType] === value ? '' : value
         }));
     };
 
@@ -167,36 +189,28 @@ const Startups = () => {
         return Object.values(filters).filter(value => value !== '').length;
     };
 
-    const handleAIMatch = () => {
-        // Placeholder for AI match functionality
-        console.log('AI Match clicked - will be implemented later');
-        alert('AI Match functionality coming soon!');
-    };
-
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
+            transition: { staggerChildren: 0.1 }
         }
     };
 
     const itemVariants = {
         hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1
-        }
+        visible: { y: 0, opacity: 1 }
     };
 
     return (
-        <div >
-            {/* Added pb-16 to the main tag for space at the bottom */}
-            <main className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 pt-20 **pb-16**">
-                {/* Background Gradient & Animated Shapes */}
-               
+        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+            <main className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 pt-20 pb-16">
+                {/* Background Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-950 dark:via-purple-950 dark:to-blue-950 z-0 opacity-70">
+                    <div className="absolute -top-1/4 -left-1/4 w-1/2 h-1/2 bg-blue-300 dark:bg-blue-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+                    <div className="absolute -bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-pink-300 dark:bg-purple-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 h-1/3 bg-purple-300 dark:bg-pink-800 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+                </div>
 
                 <div className="relative z-10">
                     <motion.h1
@@ -205,7 +219,7 @@ const Startups = () => {
                         transition={{ duration: 0.5 }}
                         className="text-5xl font-extrabold text-center text-gray-800 dark:text-white mb-6 leading-tight"
                     >
-                        Discover Innovative Startups
+                        Discover Innovative Startups (TEST)
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: -20 }}
@@ -216,7 +230,7 @@ const Startups = () => {
                         Explore groundbreaking ideas from passionate founders.
                     </motion.p>
 
-                    {/* Search Bar with Filter and AI Match buttons */}
+                    {/* Search & Filter Bar */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -252,10 +266,7 @@ const Startups = () => {
                                     <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isFilterOpen ? 'rotate-180' : ''}`} />
                                 </button>
 
-                                {/* Filter Dropdown Modal */}
-                                {/* 3) When filter pop-up opens, I should move the page up and down to see the full filter popup */}
-                                {/* This is addressed by changing the filter popup from `fixed inset-0` to a more controlled `modal` pattern.
-                                    The modal itself will have `overflow-y-auto` but the underlying page won't scroll. */}
+                                {/* Filter Modal */}
                                 <AnimatePresence>
                                     {isFilterOpen && (
                                         <motion.div
@@ -263,50 +274,30 @@ const Startups = () => {
                                             animate={{ opacity: 1, scale: 1 }}
                                             exit={{ opacity: 0, scale: 0.95 }}
                                             transition={{ duration: 0.2 }}
-                                            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6" // Center the modal
+                                            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
                                         >
-                                            <div
-                                                className="absolute inset-0 bg-black/50 backdrop-blur-sm" // Dark overlay
-                                                onClick={() => setIsFilterOpen(false)}
-                                            ></div>
+                                            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setIsFilterOpen(false)}></div>
                                             <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-2xl w-full max-w-md max-h-[90vh] flex flex-col relative z-10 overflow-hidden">
-                                                {/* Header */}
+                                                {/* Filter Header */}
                                                 <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 flex-shrink-0">
                                                     <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Filters</h3>
                                                     <div className="flex items-center gap-2">
-                                                        <button
-                                                            onClick={clearAllFilters}
-                                                            className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
-                                                        >
-                                                            Clear All
-                                                        </button>
-                                                        <button
-                                                            onClick={() => setIsFilterOpen(false)}
-                                                            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
-                                                        >
-                                                            <X className="h-5 w-5" />
-                                                        </button>
+                                                        <button onClick={clearAllFilters} className="text-sm text-blue-600 dark:text-blue-400 hover:underline">Clear All</button>
+                                                        <button onClick={() => setIsFilterOpen(false)} className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"><X className="h-5 w-5" /></button>
                                                     </div>
                                                 </div>
-
-                                                {/* Scrollable Content */}
-                                                <div className="flex-1 overflow-y-auto p-6 custom-scrollbar"> {/* Added custom-scrollbar class for styling */}
+                                                {/* Filter Content */}
+                                                <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
                                                     <div className="space-y-6">
                                                         {Object.keys(filterOptions).map((filterType) => (
                                                             <div key={filterType}>
-                                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 capitalize">
-                                                                    {filterType.replace(/([A-Z])/g, ' $1').trim()}
-                                                                </label>
+                                                                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 capitalize">{filterType.replace(/([A-Z])/g, ' $1').trim()}</label>
                                                                 <div className="flex flex-wrap gap-2">
                                                                     {filterOptions[filterType].map((option) => (
                                                                         <button
                                                                             key={option}
                                                                             onClick={() => handleFilterChange(filterType, option)}
-                                                                            className={`px-3 py-2 text-sm rounded-full border transition-all duration-200 ${
-                                                                                filters[filterType] === option
-                                                                                    ? 'bg-blue-500 text-white border-blue-500 shadow-md'
-                                                                                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-600'
-                                                                            }`}
+                                                                            className={`px-3 py-2 text-sm rounded-full border transition-all duration-200 ${filters[filterType] === option ? 'bg-blue-500 text-white border-blue-500 shadow-md' : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 border-gray-300 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-600'}`}
                                                                         >
                                                                             {option}
                                                                         </button>
@@ -316,13 +307,9 @@ const Startups = () => {
                                                         ))}
                                                     </div>
                                                 </div>
-
-                                                {/* Apply Button */}
+                                                {/* Filter Apply */}
                                                 <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex-shrink-0">
-                                                    <button
-                                                        onClick={() => setIsFilterOpen(false)}
-                                                        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-4 rounded-xl transition-colors duration-200"
-                                                    >
+                                                    <button onClick={() => setIsFilterOpen(false)} className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-4 rounded-xl transition-colors duration-200">
                                                         Apply Filters ({filteredStartups.length} results)
                                                     </button>
                                                 </div>
@@ -335,15 +322,85 @@ const Startups = () => {
                             {/* AI Match Button */}
                             <button
                                 onClick={handleAIMatch}
-                                className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-medium rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-3 focus:ring-purple-500/50 transition-all duration-200"
+                                disabled={loadingAi}
+                                className={`flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-medium rounded-full shadow-md hover:shadow-lg focus:outline-none focus:ring-3 focus:ring-purple-500/50 transition-all duration-200 ${loadingAi ? 'opacity-75 cursor-not-allowed' : ''}`}
                             >
-                                <Sparkles className="h-5 w-5" />
-                                <span>AI Match</span>
+                                <Sparkles className={`h-5 w-5 ${loadingAi ? 'animate-spin' : ''}`} />
+                                <span>{loadingAi ? "Analyzing..." : "AI Match"}</span>
                             </button>
                         </div>
                     </motion.div>
 
-                    {/* Conditional rendering for loading, error, or no startups */}
+                    {/* AI Results Section */}
+                    <AnimatePresence>
+                        {showAiView && (
+                            <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="mb-12 overflow-hidden"
+                            >
+                                <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700 rounded-3xl p-8 relative">
+                                    <div className="flex justify-between items-center mb-6">
+                                        <div>
+                                            <h2 className="text-2xl font-bold text-purple-900 dark:text-purple-100 flex items-center gap-2">
+                                                <Sparkles className="text-purple-600 dark:text-purple-400" />
+                                                AI-Curated Picks
+                                            </h2>
+                                            <p className="text-purple-700 dark:text-purple-300 text-sm">Based on your profile preferences</p>
+                                        </div>
+                                        <button 
+                                            onClick={() => setShowAiView(false)}
+                                            className="p-2 hover:bg-purple-100 dark:hover:bg-purple-800 rounded-full text-purple-600 dark:text-purple-300 transition-colors"
+                                        >
+                                            <X className="h-6 w-6" />
+                                        </button>
+                                    </div>
+
+                                    {aiMatches.length > 0 ? (
+                                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                                            {aiMatches.map((startup) => (
+                                                <div key={startup._id} className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-lg border-2 border-purple-100 dark:border-purple-800 relative overflow-hidden hover:scale-105 transition-transform duration-200">
+                                                    <div className="absolute top-0 right-0 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-bl-xl shadow-sm">
+                                                        {startup.matchScore}% Match
+                                                    </div>
+                                                    
+                                                    <Link to={`/startups/${startup._id}`}>
+                                                        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 pr-16">{startup.startupName}</h3>
+                                                    </Link>
+                                                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-3 line-clamp-2">{startup.summary}</p>
+                                                    
+                                                    <div className="bg-purple-50 dark:bg-purple-900/40 p-3 rounded-lg mb-3">
+                                                        <p className="text-xs font-bold text-purple-700 dark:text-purple-300 mb-1 uppercase tracking-wide">Why it fits:</p>
+                                                        <ul className="space-y-1">
+                                                            {startup.matchReasons && startup.matchReasons.map((reason, i) => (
+                                                                <li key={i} className="text-xs text-gray-600 dark:text-gray-300 flex items-start gap-1.5">
+                                                                    <span className="text-purple-500 mt-0.5">•</span>
+                                                                    {reason}
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+                                                    
+                                                    <div className="flex gap-2 text-xs text-gray-500 dark:text-gray-400 mt-auto border-t border-gray-100 dark:border-gray-700 pt-3">
+                                                        <span className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">{startup.industry}</span>
+                                                        <span className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">{startup.location}</span>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <div className="text-center py-8 text-purple-800 dark:text-purple-200">
+                                            <p>No high-confidence matches found yet.</p>
+                                            <p className="text-sm opacity-75">Try updating your profile with more specific interests!</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
+                    {/* Loading & Error States */}
                     {loading && (
                         <motion.div
                             initial={{ opacity: 0 }}
@@ -415,7 +472,6 @@ const Startups = () => {
                             ))}
                         </motion.div>
                     ) : (
-                        // Display "No Startups Found" only if not loading and no error, and filteredStartups is empty
                         !loading && !error && filteredStartups.length === 0 && (
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
@@ -436,8 +492,6 @@ const Startups = () => {
                     )}
                 </div>
             </main>
-
-            {/* The backdrop for the filter modal is now part of the modal's AnimatePresence */}
         </div>
     );
 };

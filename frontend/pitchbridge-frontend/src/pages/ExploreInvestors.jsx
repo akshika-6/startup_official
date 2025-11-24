@@ -5,13 +5,19 @@ import { motion, AnimatePresence } from 'framer-motion'; // Import AnimatePresen
 import { API_BASE_URL } from "../config";
 
 // Lucide icons for a polished look
-import { Search, XCircle, User, Mail, MapPin, Briefcase, Filter, RefreshCcw, X, ChevronDown } from 'lucide-react';
+import { Search, XCircle, User, Mail, MapPin, Briefcase, Filter, RefreshCcw, X, ChevronDown, Sparkles } from 'lucide-react';
 
 const ExploreInvestors = () => {
   const [investors, setInvestors] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // ... existing state ...
+  const [aiMatches, setAiMatches] = useState([]);
+  const [showAiView, setShowAiView] = useState(false);
+  const [loadingAi, setLoadingAi] = useState(false);
+  // Ensure 'Sparkles' is imported from 'lucide-react'
 
   // Filter states
   const [showFilterModal, setShowFilterModal] = useState(false);
@@ -137,19 +143,21 @@ const ExploreInvestors = () => {
   };
 
   // Combine search and filter logic
+  // Combine search and filter logic
   const filteredInvestors = investors.filter((inv) => {
     const lowerCaseSearchQuery = searchQuery.toLowerCase();
 
+    // Fix: Use 'inv' and 'searchQuery', do NOT use 'filters' here
     const matchesSearch =
       inv.name?.toLowerCase().includes(lowerCaseSearchQuery) ||
       inv.email?.toLowerCase().includes(lowerCaseSearchQuery) ||
       inv.location?.toLowerCase().includes(lowerCaseSearchQuery) ||
       inv.role?.toLowerCase().includes(lowerCaseSearchQuery) ||
-      inv.investmentStage?.toLowerCase().includes(lowerCaseSearchQuery) || // Search new fields
+      inv.investmentStage?.toLowerCase().includes(lowerCaseSearchQuery) || 
       inv.industry?.toLowerCase().includes(lowerCaseSearchQuery) ||
       inv.preferredDealSize?.toLowerCase().includes(lowerCaseSearchQuery);
 
-
+    // Fix: Use the individual state variables defined at the top of this file
     const matchesRegion = selectedRegion === '' || inv.location === selectedRegion;
     const matchesRole = selectedRole === '' || inv.role === selectedRole;
     const matchesStage = selectedStage === '' || inv.investmentStage === selectedStage;
@@ -182,6 +190,24 @@ const ExploreInvestors = () => {
     hidden: { opacity: 0, scale: 0.9, y: 50 },
     visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.3 } },
     exit: { opacity: 0, scale: 0.9, y: 50, transition: { duration: 0.2 } }
+  };
+
+  const handleAIMatch = async () => {
+    setLoadingAi(true);
+    try {
+        const token = localStorage.getItem('token');
+        // Ensure this URL matches your backend route
+        const res = await axios.get(`${API_BASE_URL}/api/ai-match/investors`, {
+            headers: { Authorization: `Bearer ${token}` }
+        });
+        
+        setAiMatches(res.data);
+        setShowAiView(true);
+    } catch (err) {
+        console.error("AI Match Failed", err);
+    } finally {
+        setLoadingAi(false);
+    }
   };
 
   return (
@@ -261,7 +287,76 @@ const ExploreInvestors = () => {
             >
               <Filter className="mr-2 h-5 w-5" /> Filter Options
             </button>
+
+            <button
+              onClick={handleAIMatch}
+              disabled={loadingAi}
+              className={`px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full font-semibold hover:from-purple-700 hover:to-blue-700 transition duration-200 flex items-center justify-center shadow-md w-full sm:w-auto ml-0 sm:ml-2 ${loadingAi ? 'opacity-75 cursor-not-allowed' : ''}`}
+            >
+              <Sparkles className={`mr-2 h-5 w-5 ${loadingAi ? 'animate-spin' : ''}`} /> 
+              {loadingAi ? "Analyzing..." : "AI Match"}
+            </button>
           </motion.div>
+
+          {/* AI Results Section */}
+          <AnimatePresence>
+            {showAiView && (
+                <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mb-10 overflow-hidden"
+                >
+                    <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-700 rounded-3xl p-6 relative">
+                        <div className="flex justify-between items-center mb-4">
+                             <h2 className="text-xl font-bold text-purple-900 dark:text-purple-100 flex items-center gap-2">
+                                <Sparkles className="text-purple-600 dark:text-purple-400" /> 
+                                AI Recommended Investors
+                             </h2>
+                             <button 
+                                onClick={() => setShowAiView(false)}
+                                className="p-2 hover:bg-purple-100 dark:hover:bg-purple-800 rounded-full text-purple-600 dark:text-purple-300 transition-colors"
+                             >
+                                <X className="h-5 w-5" />
+                             </button>
+                        </div>
+                        
+                        {aiMatches.length > 0 ? (
+                            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                                {aiMatches.map((investor) => (
+                                    <div key={investor._id} className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-lg border-2 border-purple-100 dark:border-purple-800 relative overflow-hidden hover:scale-105 transition-transform duration-200">
+                                        <div className="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-xl shadow-sm">
+                                            {investor.matchScore}% Match
+                                        </div>
+                                        
+                                        <Link to={`/investors/${investor._id}`}>
+                                            <h3 className="font-bold text-lg text-gray-900 dark:text-white mb-1">{investor.name}</h3>
+                                        </Link>
+                                        <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{investor.role}</p>
+                                        
+                                        <div className="bg-purple-50 dark:bg-purple-900/40 p-3 rounded-lg text-xs">
+                                            <p className="font-bold text-purple-700 dark:text-purple-300 mb-1 uppercase tracking-wide">Why:</p>
+                                            <ul className="space-y-1">
+                                                {investor.matchReasons && investor.matchReasons.map((r, i) => (
+                                                    <li key={i} className="text-gray-600 dark:text-gray-300 flex items-start gap-1.5">
+                                                        <span className="text-purple-500 mt-0.5">•</span>
+                                                        {r}
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center py-8 text-purple-800 dark:text-purple-200">
+                                <p>No specific matches found based on your current profile data.</p>
+                            </div>
+                        )}
+                    </div>
+                </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Loading State */}
           {loading && (
