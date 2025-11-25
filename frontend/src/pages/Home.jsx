@@ -105,10 +105,7 @@ const Home = () => {
                   <ArrowRight className="w-5 h-5" />
                 </a>
 
-                <button className="border-2 border-theme-button-secondary-border text-theme-button-secondary-text px-8 py-4 rounded-full hover:border-theme-button-secondary-text hover:bg-theme-button-secondary-hover-alt transition flex items-center justify-center space-x-2 text-lg font-semibold">
-                  <Play className="w-5 h-5" />
-                  <span>Watch Demo</span>
-                </button>
+                
               </div>
 
               {/* Quick Stats */}
@@ -161,9 +158,7 @@ const Home = () => {
                         <div key={i} className="w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full border-2 border-theme-card-bg"></div>
                       ))}
                     </div>
-                    <button className="bg-theme-button-primary-bg text-theme-button-primary-text px-4 py-2 rounded-full text-sm hover:bg-theme-button-primary-hover transition">
-                      View Pitch
-                    </button>
+                    
                   </div>
                 </div>
               </div>

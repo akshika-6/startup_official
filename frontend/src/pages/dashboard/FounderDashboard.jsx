@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from 'framer-motion'; 
 import {
   Plus,
   Edit3,
@@ -7,10 +8,9 @@ import {
   Users,
   TrendingUp,
   Calendar,
-  AlertCircle,
+  AlertCircle,RefreshCw
 } from "lucide-react";
 import { toast } from "react-toastify";
-import DashboardLayout from "../layouts/DashboardLayout";
 import { API_BASE_URL } from "../../config";
 
 const FounderDashboard = () => {
@@ -200,16 +200,22 @@ const FounderDashboard = () => {
 
   if (loading) {
     return (
-      <DashboardLayout role="founder">
-        <div className="flex items-center justify-center min-h-96">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+      <>
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <RefreshCw className="h-8 w-8 animate-spin text-blue-600 mx-auto mb-4" />
+          <p className="text-gray-600 dark:text-gray-400">
+            Fetching your Startups...
+          </p>
         </div>
-      </DashboardLayout>
+      </div>
+          
+      </>
     );
   }
 
   return (
-    <DashboardLayout role="founder">
+    <>
       {/* ✅ FIXED: Replaced 'pt-6 pr-6 pb-6' with 'p-6' for uniform spacing */}
       <div className="p-6 space-y-6">
         
@@ -217,7 +223,7 @@ const FounderDashboard = () => {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-              Founder Dashboard
+              My Startups
             </h1>
             <p className="mt-2 text-gray-600 dark:text-gray-400">
               Manage your startups and track investor interest
@@ -584,7 +590,7 @@ const FounderDashboard = () => {
           </div>
         </div>
       )}
-    </DashboardLayout>
+    </>
   );
 };
 

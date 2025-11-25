@@ -56,7 +56,7 @@ const Sidebar = ({ isOpen, toggleSidebar, sidebarWidthMd = "64" }) => {
   const adminNavItems = [
     { name: "Home", icon: HomeIcon, path: "/home-dashboard" },
     { name: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
-    { name: "Startups", icon: Award, path: "/admin/startups" },
+    //{ name: "Startups", icon: Award, path: "/FounderDashboard" },
     { name: "Investments", icon: Briefcase, path: "/admin/investments" },
     { name: "Explore Startups", icon: Rocket, path: "/startups" },
     { name: "Explore Investors", icon: DollarSign, path: "/investors" },

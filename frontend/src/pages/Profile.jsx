@@ -2,10 +2,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useAuth } from "../context/AuthContext";
+import { motion, AnimatePresence } from 'framer-motion'; 
 import { useNavigate } from 'react-router-dom';
 import {
     Mail, User, Briefcase, Edit, Save, X, Settings, MapPin,
-    MessageSquare, Loader2, Image, Sparkles, Trash2
+    MessageSquare, Loader2, Image, Sparkles, Trash2,RefreshCw
 } from 'lucide-react';
 import { API_BASE_URL } from '../config';
 import { useTheme } from "../context/ThemeContext";
@@ -295,10 +296,14 @@ const Profile = () => {
 
     if (isFetching) {
         return (
-            <div className="flex items-center justify-center min-h-screen">
-                <p className="text-lg text-blue-500">Loading your profile...</p>
-                <Loader2 className="animate-spin w-8 h-8 text-blue-600 ml-2" />
-            </div>
+            <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <RefreshCw className="h-8 w-8 animate-spin text-blue-600 mx-auto mb-4" />
+          <p className="text-gray-600 dark:text-gray-400">
+            Loading your Profile...
+          </p>
+        </div>
+      </div>
         );
     }
 
