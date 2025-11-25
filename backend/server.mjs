@@ -26,8 +26,10 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",
-      "https://your-frontend-domain.netlify.app",
+      "http://localhost:5173",                        // For local development
+      "http://localhost:3000",                        // Just in case you run frontend here
+      "https://precious-pika-fd3ec6.netlify.app",     // <--- YOUR NEW LIVE SITE (Found in your screenshot)
+      "https://bejewelled-souffle-3f03df.netlify.app" // <--- Your old one (good to keep just in case)
     ],
     credentials: true,
   }),
